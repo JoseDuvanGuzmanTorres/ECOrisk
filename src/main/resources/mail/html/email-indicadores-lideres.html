@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Template for HTML email with inline image</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+.customers {
+	font-family: 'Lato', sans-serif;
+}
+
+.customers td, .customers th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+.customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.customers tr:hover {
+	background-color: #ddd;
+}
+
+.customers th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #A5C800;
+	color: black;
+}
+</style>
+</head>
+<body>
+	<div
+		style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<div
+			style="line-height: 2; font-size: 12px; color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 24px;">
+			<img alt="Alternate text" border="0" class="left fixedwidth"
+				src="images/logo.png" data-th-src="|cid:logo|"
+				style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 180px; display: block;"
+				title="Alternate text" width="180" /> <br>
+			<p
+				style="font-size: 24px; line-height: 2; word-break: break-word; text-align: left; mso-line-height-alt: 48px; margin: 0;">
+			<div style="font-size: 1px; line-height: 10px"></div>
+			<span style="font-size: 24px;"> <strong>Estimado usuario</strong>
+			</span>
+			</p>
+			<span style="font-size: 16px;">
+				En el presente email encontrará la tabla de indicadores de los proyectos a su cargo.
+				Debajo de eso se encuentra la tabla de los controles de los talleres que se encuentran abiertos hasta la fecha.
+			</span> 
+			
+		</div>
+		<br>
+	<span style="font-size: 24px;"> <strong>Tabla de indicadores de los proyectos a su cargo en Talleres What-if, TDR/TPR y TCO</strong></span>
+	</div>
+	<table class="customers">
+		<thead>
+			<tr>
+				
+				<th><i class=""></i>Nombre Proyecto</th>
+				<th><i class=""></i>Lider Proyecto</th>
+				<th><i class=""></i>Eventos/Peligros Totales Identificados</th>
+				<th><i class=""></i>Riesgos VH</th>
+				<th><i class=""></i>Riesgos H</th>
+				<th><i class=""></i>Riesgos M</th>
+				<th><i class=""></i>Riesgos L</th>
+				<th><i class=""></i>Total Riesgos</th>
+				<th><i class=""></i>Controles Abiertos totales</th>
+				<th><i class=""></i>Controles Abiertos vencidos</th>
+				<th><i class=""></i>Controles Cerrados totales</th>
+				<th><i class=""></i>Promedio de oportunidad de cierre (días)</th>
+				<th><i class=""></i>Cumplimiento de cierre</th>
+				<th><i class=""></i># WHAT-IF</th>
+				<th><i class=""></i># CONSTRUCTABILIDAD</th>
+				<th><i class=""></i># DESIGN REVIEW</th>
+				<th><i class=""></i># PEER REVIEW</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="proyecto:${IndicadoresProyectoList} ">
+				
+				<td><a th:text="${proyecto.Nompro}"  ></a></td>
+				<td th:text="${proyecto.Eventos}">Eventos Totales Identificados</td>
+				<td><a th:text="${proyecto.Riesgosvh}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosh}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosm}" t></a></td>
+				<td><a th:text="${proyecto.Riesgosl}" ></a></td>
+				<td th:text="${proyecto.Riesgostotal}">Total Riesgos Identificados</td>
+				<td th:text="${proyecto.Abiertostotal}">Total abiertos</td>
+				<td th:text="${proyecto.Abiertosvencidos}">Abiertos Vencidos</td>
+				<td th:text="${proyecto.Cerradostotal}">Cerrados totales</td>
+				<td th:text="${proyecto.Promgaps}">Promedio de oportunidad de cierre</td>
+				<td th:text="${proyecto.Cumplimiento} + '%'">Cumplimiento de cierre</td>
+				<td th:text="${proyecto.Whatif}">WHAT-IF</td>
+				<td th:text="${proyecto.Constructabilidad}">CONSTRUCTABILIDAD</td>
+				<td th:text="${proyecto.Dreview}">DESIGN REVIEW</td>
+				<td th:text="${proyecto.Preview}">PEER REVIEW</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<br>
+		<div style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<br>
+		<span style="font-size: 24px;"> <strong>Tabla de indicadores de los proyectos a su cargo en Talleres de Lecciones Aprendidas</strong></span>
+	</div>
+		
+	</div>
+								<table 
+								class="customers">
+								<thead>
+									<tr>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Proceso</th>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Código Proyecto</th>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Nombre Proyecto</th>
+										<th><i class=""></i>Lider Proyecto</th>
+										<th><i class=""></i>Eventos/Peligros Totales Identificados</th>
+										<th><i class=""></i>Controles Abiertos totales</th>
+										<th><i class=""></i>Controles Abiertos vencidos</th>
+										<th><i class=""></i>Controles Cerrados totales</th>
+										<th><i class=""></i>Promedio de oportunidad de cierre (días)</th>
+										<th><i class=""></i>Cumplimiento de cierre</th>
+						
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="proyecto:${IndicadoresLA} ">
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Proceso}"></a></td>
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Codpro}" ></a></td>
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Nompro}" ></a></td>
+										<td><a th:text="${proyecto.Nomdue}" ></a></td>
+										<td th:text="${proyecto.Eventos}">Eventos Totales Identificados</td>
+										<td th:text="${proyecto.Abiertostotal}">Total abiertos</td>
+										<td th:text="${proyecto.Abiertosvencidos}">Abiertos Vencidos</td>
+										<td th:text="${proyecto.Cerradostotal}">Cerrados totales</td>
+										<td th:text="${proyecto.Promgaps}">Promedio de oportunidad de cierre</td>
+										<td th:text="${proyecto.Cumplimiento} + '%'">Cumplimiento de cierre</td>
+
+
+									</tr>
+								</tbody>
+							</table>
+	
+	
+	<div style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<br>
+		<span style="font-size: 24px;"> <strong>Controles Abiertos en Talleres What-if, TDR/TPR y TCO</strong></span>
+	</div>
+	<table class="customers">
+		<thead>
+			<tr>
+				<th><i class=""></i>Tipo de taller</th>
+				<th><i class=""></i>Código</th>
+				<th><i class=""></i>Estado</th>
+				<th><i class=""></i>Oportunidad</th>
+				<th><i class=""></i>Qué pasa si...?</th>
+				<th><i class=""></i>Evento</th>
+				<th><i class=""></i>Respuesta del responsable</th>
+				<th><i class=""></i>Especialidad</th>
+				<th><i class=""></i>Matriz RAM</th>
+				<th><i class=""></i>Salvaguardas</th>
+				<th><i class=""></i>Riesgo Actual Consecuencia</th>
+				<th><i class=""></i>Riesgo Actual Probabilidad</th>
+				<th><i class=""></i>Riesgo Actual Valoracion RAM</th>
+				<th><i class=""></i>Control</th>
+				<th><i class=""></i>Riesgo Residual Consecuencia</th>
+				<th><i class=""></i>Riesgo Residual Probabilidad</th>
+				<th><i class=""></i>Riesgo Residual Valoración RAM</th>
+				<th><i class=""></i>Responsable</th>
+				<th><i class=""></i>GAP</th>
+				<th><i class=""></i>Fecha Planeada Cierre</th>
+				<th><i class=""></i>Fecha de Cierre</th>
+				<th><i class=""></i>Observaciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="hojatrabajo:${hojatrabajoList} ">
+				<td th:text="${hojatrabajo.tipo}">Tipo taller</td>
+				<td th:text="${hojatrabajo.coddoc}">Cod Doc</td>
+				<td th:text="${hojatrabajo.estado}">Estado</td>
+				<td th:text="${hojatrabajo.oportunidad}">Oportunidad</td>
+				<td th:text="${hojatrabajo.pregunta}">Pregunta</td>
+				<td th:text="${hojatrabajo.evento}">Evento</td>
+				<td th:text="${hojatrabajo.respuesta}">Respuesta</td>
+				<td th:text="${hojatrabajo.especialidad}">Especialidad</td>
+				<td th:text="${hojatrabajo.ram}">Matriz RAM</td>
+				<td th:text="${hojatrabajo.salvaguardas}">Salvaguardas</td>
+				<td th:text="${hojatrabajo.raconsecuencia}">Riesgo Actual
+					Consecuencia</td>
+				<td th:text="${hojatrabajo.raprobabilidad}">Riesgo Actual
+					Probabilidad</td>
+				<td th:text="${hojatrabajo.ravaloracion}">Riesgo Actual
+					Valoración</td>
+				<td th:text="${hojatrabajo.control}">Control</td>
+				<td th:text="${hojatrabajo.reconsecuencia}">Riesgo Residual
+					Consecuencia</td>
+				<td th:text="${hojatrabajo.reprobabilidad}">Riesgo Residual
+					Probabilidad</td>
+				<td th:text="${hojatrabajo.revaloracion}">Riesgo Residual
+					Valoración</td>
+				<td th:text="${hojatrabajo.responsable}">Responsable</td>
+				<td
+					th:text="${hojatrabajo.gap != null} ? ${hojatrabajo.gap} : 'abierto'">Gap</td>
+				<td
+					th:text="${#dates.format(hojatrabajo.fechaplaneada, 'yyyy-MM-dd')}">Fecha
+					planeada de cierre</td>
+				<td
+					th:text="${#dates.format(hojatrabajo.fechacierre, 'yyyy-MM-dd')}">Fecha
+					de cierre</td>
+				<td th:text="${hojatrabajo.observacion}">Observaciones</td>
+			</tr>
+		</tbody>
+	</table>
+
+
+<div style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<br>
+		<span style="font-size: 24px;"> <strong>Controles Abiertos en Talleres de Lecciones Aprendidas</strong></span>
+	</div>
+	<table class="customers">
+		<thead>
+			<tr>
+				<th><i class=""></i>Tipo de taller</th>
+				<th><i class=""></i>Nombre del proyecto</th>
+				<th><i class=""></i>Codigo</th>
+				<th><i class=""></i>Estado</th>
+				<th><i class=""></i>Oportunidad</th>
+				<th><i class=""></i>Nombre</th>
+				<th><i class=""></i>Resumen</th>
+				<th><i class=""></i>Tema</th>
+				<th><i class=""></i>Subtema</th>
+				<th><i class=""></i>Area</th>
+				<th><i class=""></i>Que salio bien</th>
+				<th><i class=""></i>Que salio mal</th>
+				<th><i class=""></i>Causa raíz</th>
+				<th><i class=""></i>Que se aprendio</th>
+				<th><i class=""></i>Descriptores</th>
+				<th><i class=""></i>Control</th>
+				<th><i class=""></i>Responsable</th>
+				<th><i class=""></i>Gap</th>
+				<th><i class=""></i>Fecha</th>
+				<th><i class=""></i>Observacion</th>
+				<th><i class=""></i>Tiene seguimiento?</th>
+				<th><i class=""></i>Tiene evidencia?</th>
+			</tr>
+		</thead>
+		<tbody>		
+			<tr th:each="hojatrabajo:${leccionesAList} ">
+				<td th:text="${hojatrabajo.tipo}">Tipo taller</td>
+				<td th:text="${hojatrabajo.nompro}">Nom pro</td>
+				<td th:text="${hojatrabajo.coddoc}">Cod Doc</td>
+				<td th:text="${hojatrabajo.estado != 'Cerrado'} ? ${hojatrabajo.estado} : Abierto ">Estado</td>
+				<td th:text="${hojatrabajo.oportunidad}">Oportunidad</td>	
+				<td th:text="${hojatrabajo.Nombre}">Nombre</td>
+				<td th:text="${hojatrabajo.Resumen}">Resumen</td>
+				<td th:text="${hojatrabajo.Tema}">Tema</td>
+				<td th:text="${hojatrabajo.Subtema}">Subtema</td>
+				<td th:text="${hojatrabajo.Area}">Area</td>
+				<td th:text="${hojatrabajo.Salio_bien}">Salio_bien</td>
+				<td th:text="${hojatrabajo.Salio_mal}">Salio_mal</td>
+				<td th:text="${hojatrabajo.Causa_raiz}">Causa_raiz</td>
+				<td th:text="${hojatrabajo.Que_aprendio}">Que_aprendio</td>
+				<td th:text="${hojatrabajo.Descriptor}">Descriptor</td>
+				<td th:text="${hojatrabajo.Accion_desarrollar}">Control</td>
+				<td th:text="${hojatrabajo.Responsable}">Responsable</td>
+				<td th:text="${hojatrabajo.gap != null} ? ${hojatrabajo.gap} : 'abierto'">Gap</td>
+				<td th:text="${#dates.format(hojatrabajo.fecha, 'yyyy-MM-dd')}">Fecha</td>
+				<td th:text="${hojatrabajo.Observaciones}">Observaciones</td>
+				<td th:text="${hojatrabajo.seguimiento}">Tiene seguimiento</td>
+				<td th:text="${hojatrabajo.evidencia}">Tiene evidencia</td>
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>

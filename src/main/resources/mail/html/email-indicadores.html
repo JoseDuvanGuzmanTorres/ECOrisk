@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title th:remove="all">Template for HTML email with inline image</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+.customers {
+	font-family: 'Lato', sans-serif;
+}
+
+.customers td, .customers th {
+	border: 1px solid #ddd;
+	padding: 8px;
+}
+
+.customers tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+.customers tr:hover {
+	background-color: #ddd;
+}
+
+.customers th {
+	padding-top: 12px;
+	padding-bottom: 12px;
+	text-align: left;
+	background-color: #A5C800;
+	color: black;
+}
+</style>
+</head>
+<body>
+	<div
+		style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<div
+			style="line-height: 2; font-size: 12px; color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; mso-line-height-alt: 24px;">
+			<img alt="Alternate text" border="0" class="left fixedwidth"
+				src="images/logo.png" data-th-src="|cid:logo|"
+				style="text-decoration: none; -ms-interpolation-mode: bicubic; height: auto; border: 0; width: 100%; max-width: 180px; display: block;"
+				title="Alternate text" width="180" /> <br>
+			<p
+				style="font-size: 24px; line-height: 2; word-break: break-word; text-align: left; mso-line-height-alt: 48px; margin: 0;">
+			<div style="font-size: 1px; line-height: 10px"></div>
+			<span style="font-size: 24px;"> <strong>Estimado usuario</strong>
+			</span>
+			</p>
+			<span style="font-size: 16px;">
+				En el presente email encontrará la tabla de indicadores de todos los proyectos.
+				Debajo de eso se encuentra la tabla de indicadores de todos dueños de los proyectos.
+			</span> 
+			
+		</div>
+		<br>
+	<span style="font-size: 24px;"> <strong>Talleres What-if, TDR/TPR y TCO</strong></span>
+	</div>
+	<table class="customers">
+		<thead>
+			<tr>
+				<th><i class=""></i>Código Proyecto</th>
+				<th><i class=""></i>Nombre Proyecto</th>
+				<th><i class=""></i>Lider Proyecto</th>
+				<th><i class=""></i>Eventos/Peligros Totales Identificados</th>
+				<th><i class=""></i>Riesgos VH</th>
+				<th><i class=""></i>Riesgos H</th>
+				<th><i class=""></i>Riesgos M</th>
+				<th><i class=""></i>Riesgos L</th>
+				<th><i class=""></i>Total Riesgos</th>
+				<th><i class=""></i>Controles Abiertos totales</th>
+				<th><i class=""></i>Controles Abiertos vencidos</th>
+				<th><i class=""></i>Controles Cerrados totales</th>
+				<th><i class=""></i>Promedio de oportunidad de cierre (días)</th>
+				<th><i class=""></i>Cumplimiento de cierre</th>
+				<th><i class=""></i># WHAT-IF</th>
+				<th><i class=""></i># CONSTRUCTABILIDAD</th>
+				<th><i class=""></i># DESIGN REVIEW</th>
+				<th><i class=""></i># PEER REVIEW</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="proyecto:${IndicadoresProyectoList} ">
+				<td><a th:text="${proyecto.Codpro}" ></a></td>
+				<td><a th:text="${proyecto.Nompro}" ></a></td>
+				<td><a th:text="${proyecto.Nomdue}" ></a></td>
+				<td th:text="${proyecto.Eventos}">Eventos Totales Identificados</td>
+				<td><a th:text="${proyecto.Riesgosvh}"></a></td>
+				<td><a th:text="${proyecto.Riesgosh}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosm}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosl}"></a></td>
+				<td th:text="${proyecto.Riesgostotal}">Total Riesgos Identificados</td>
+				<td th:text="${proyecto.Abiertostotal}">Total abiertos</td>
+				<td th:text="${proyecto.Abiertosvencidos}">Abiertos Vencidos</td>
+				<td th:text="${proyecto.Cerradostotal}">Cerrados totales</td>
+				<td th:text="${proyecto.Promgaps}">Promedio de oportunidad de cierre</td>
+				<td th:text="${proyecto.Cumplimiento} + '%'">Cumplimiento de cierre</td>
+				<td th:text="${proyecto.Whatif}">WHAT-IF</td>
+				<td th:text="${proyecto.Constructabilidad}">CONSTRUCTABILIDAD</td>
+				<td th:text="${proyecto.Dreview}">DESIGN REVIEW</td>
+				<td th:text="${proyecto.Preview}">PEER REVIEW</td>
+			</tr>
+		</tbody>
+	</table>
+	
+	<div style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<br>
+		<span style="font-size: 24px;"> <strong>Talleres Lecciones Aprendidas</strong></span>
+	</div>
+	
+								<table	class="customers">
+								<thead>
+									<tr>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Proceso</th>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Código Proyecto</th>
+										<th th:if="${Funcionario} == 'Proyectos'"><i class=""></i>Nombre Proyecto</th>
+										<th><i class=""></i>Lider Proyecto</th>
+										<th><i class=""></i>Eventos/Peligros Totales Identificados</th>
+										<th><i class=""></i>Controles Abiertos totales</th>
+										<th><i class=""></i>Controles Abiertos vencidos</th>
+										<th><i class=""></i>Controles Cerrados totales</th>
+										<th><i class=""></i>Promedio de oportunidad de cierre (días)</th>
+										<th><i class=""></i>Cumplimiento de cierre</th>
+						
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="proyecto:${IndicadoresLA} ">
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Proceso}"></a></td>
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Codpro}"></a></td>
+										<td th:if="${Funcionario} == 'Proyectos'"><a th:text="${proyecto.Nompro}"></a></td>
+										<td><a th:text="${proyecto.Nomdue}" ></a></td>
+										<td th:text="${proyecto.Eventos}">Eventos Totales Identificados</td>
+										<td th:text="${proyecto.Abiertostotal}">Total abiertos</td>
+										<td th:text="${proyecto.Abiertosvencidos}">Abiertos Vencidos</td>
+										<td th:text="${proyecto.Cerradostotal}">Cerrados totales</td>
+										<td th:text="${proyecto.Promgaps}">Promedio de oportunidad de cierre</td>
+										<td th:text="${proyecto.Cumplimiento} + '%'">Cumplimiento de cierre</td>
+
+
+									</tr>
+								</tbody>
+							</table>
+	
+	
+	
+	
+	<div style="color: #34495e; font-family: Montserrat, Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif; line-height: 2; padding-top: 0px; padding-right: 25px; padding-bottom: 10px; padding-left: 25px;">
+		<br>
+		<span style="font-size: 24px;"> <strong>Tabla de indicadores por dueño de proyecto</strong></span>
+	</div>
+	
+	<table class="customers">
+		<thead>
+			<tr>
+				<th><i class=""></i>Lider Proyecto</th>
+				<th><i class=""></i>Eventos/Peligros Totales Identificados</th>
+				<th><i class=""></i>Riesgos VH</th>
+				<th><i class=""></i>Riesgos H</th>
+				<th><i class=""></i>Riesgos M</th>
+				<th><i class=""></i>Riesgos L</th>
+				<th><i class=""></i>Total Riesgos</th>
+				<th><i class=""></i>Controles Abiertos totales</th>
+				<th><i class=""></i>Controles Abiertos vencidos</th>
+				<th><i class=""></i>Controles Cerrados totales</th>
+				<th><i class=""></i>Promedio GAPs</th>
+				<th><i class=""></i>% Cierre de recomendaciones</th>
+				<th><i class=""></i>% Cumplimiento</th>
+				<th><i class=""></i># WHAT-IF</th>
+				<th><i class=""></i># CONSTRUCTABILIDAD</th>
+				<th><i class=""></i># DESIGN REVIEW</th>
+				<th><i class=""></i># PEER REVIEW</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="proyecto:${IndicadoresFuncionarioList} ">
+				<td><a th:text="${proyecto.Nomdue}" ></a></td>
+				<td th:text="${proyecto.Eventos}">Eventos Totales Identificados</td>
+				<td><a th:text="${proyecto.Riesgosvh}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosh}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosm}" ></a></td>
+				<td><a th:text="${proyecto.Riesgosl}" ></a></td>
+				<td th:text="${proyecto.Riesgostotal}">Total Riesgos Identificados</td>
+				<td th:text="${proyecto.Abiertostotal}">Total abiertos</td>
+				<td th:text="${proyecto.Abiertosvencidos}">Abiertos Vencidos</td>
+				<td th:text="${proyecto.Cerradostotal}">Cerrados totales</td>
+				<td th:text="${proyecto.Promgaps}">Promedio GAPs</td>
+				<td th:text="${proyecto.Cumplimiento} + '%'">% Cierre de recomendaciones</td>
+				<td th:text="${proyecto.Cumplimiento} + '%'">% Cumplimiento</td>
+				<td th:text="${proyecto.Whatif}">WHAT-IF</td>
+				<td th:text="${proyecto.Constructabilidad}">CONSTRUCTABILIDAD</td>
+				<td th:text="${proyecto.Dreview}">DESIGN REVIEW</td>
+				<td th:text="${proyecto.Preview}">PEER REVIEW</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

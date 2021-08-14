@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.Users"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Projections.UsersProjection"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erEncabezadoLeccionesA"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erEncabezado"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erTema"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.erTemaRepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.erSubtemaRepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.erAreaConocimientoRepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erAreaConocimiento"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.er_HojaTrabajoLeccionesA"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.er_HojaTrabajoLeccionesARepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Projections.er_HojaTrabajoLeccionesAProjection"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Services.er_HojaTrabajoLeccionesAService"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erSubtema"/>
+    <fullyQualifiedTypeName name="javax.persistence.JoinColumn"/>
+    <fullyQualifiedTypeName name="java.util.List"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.erPortafolioRepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Services.erPortafolioService"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.er_HojaTrabajo"/>
+    <fullyQualifiedTypeName name="javax.persistence.ManyToOne"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Projections.er_HojaTrabajoRMaterializadoProjection"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erPortafolio"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erProceso"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Services.erProcesoService"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Projections.er_HojaTrabajoREmergenteProjection"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erCierre"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Projections.erProyectoProjection"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Controllers.er_EncabezadoController"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.Roles"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erEspecialidad"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Services.erEspecialidadService"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Repositories.erEspecialidadRepository"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erMatrizRAM"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erRiesgos_Consecuencias"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erRiesgos_Probabilidad"/>
+    <fullyQualifiedTypeName name="com.ecopetrol.ECOrisk.Models.erProyecto"/>
+</qualifiedTypeNameHistroy>
