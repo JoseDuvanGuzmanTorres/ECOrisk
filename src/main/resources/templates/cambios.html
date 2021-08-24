@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<!-- Hola prueba -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description"
+	content="Creative - Bootstrap 3 Responsive Admin Template">
+<meta name="author" content="GeeksLabs">
+<meta name="keyword"
+	content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
+<link rel="shortcut icon" href="img/favicon.png">
+
+<title>Administrar Controles</title>
+
+<!-- Bootstrap CSS -->
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap-theme.css" rel="stylesheet">
+<link href="../css/elegant-icons-style.css" rel="stylesheet" />
+<link href="../css/font-awesome.min.css" rel="stylesheet" />
+<link href="../css/style.css" rel="stylesheet">
+<link href="../css/style-responsive.css" rel="stylesheet" />
+<script src="../js/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+
+<!-- DataTable  -->
+<script src="https://kit.fontawesome.com/280b326402.js"
+	crossorigin="anonymous"></script>
+<script src="../js/scripts.js"></script>
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/DataTables-1.10.22/css/dataTables.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/Buttons-1.6.4/css/buttons.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/FixedColumns-3.3.1/css/fixedColumns.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/FixedHeader-3.1.7/css/fixedHeader.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/Responsive-2.2.6/css/responsive.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/RowGroup-1.1.2/css/rowGroup.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/RowReorder-1.2.7/css/rowReorder.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/Scroller-2.0.3/css/scroller.bootstrap4.min.css" />
+<link rel="stylesheet" type="text/css"
+	href="../DataTables/SearchBuilder-1.0.0/css/searchBuilder.bootstrap4.min.css" />
+
+<script type="text/javascript"
+	src="../DataTables/JSZip-2.5.0/jszip.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/pdfmake-0.1.36/pdfmake.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/pdfmake-0.1.36/vfs_fonts.js"></script>
+<script type="text/javascript"
+	src="../DataTables/DataTables-1.10.22/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/DataTables-1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/dataTables.buttons.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/buttons.bootstrap4.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/buttons.colVis.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/buttons.flash.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/buttons.html5.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Buttons-1.6.4/js/buttons.print.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/FixedColumns-3.3.1/js/dataTables.fixedColumns.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/FixedHeader-3.1.7/js/dataTables.fixedHeader.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Responsive-2.2.6/js/dataTables.responsive.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Responsive-2.2.6/js/responsive.bootstrap4.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/RowGroup-1.1.2/js/dataTables.rowGroup.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/RowReorder-1.2.7/js/dataTables.rowReorder.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/Scroller-2.0.3/js/dataTables.scroller.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/SearchBuilder-1.0.0/js/dataTables.searchBuilder.min.js"></script>
+<script type="text/javascript"
+	src="../DataTables/SearchBuilder-1.0.0/js/searchBuilder.bootstrap4.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+	integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+	crossorigin="anonymous"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+<script src="../js/cambios.js"></script>
+<script src="../js/select2.min.js"></script>
+<link href="../css/select2.min.css" rel="stylesheet">
+<!--End DataTable -->
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 -->
+<!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+      <script src="js/lte-ie7.js"></script>
+    <![endif]-->
+
+<script>
+	function toggleField(hideObj, showObj) {
+		hideObj.disabled = true;
+		hideObj.style.display = 'none';
+		showObj.disabled = false;
+		showObj.style.display = 'inline';
+		showObj.focus();
+	}
+</script>
+</head>
+
+<body>
+	<!-- container section start -->
+	<section id="container" class="">
+
+		<!-- header start-->
+		<header class="header dark-bg">
+			<div class="toggle-nav">
+				<div class="icon-reorder tooltips"
+					data-original-title="Toggle Navigation" data-placement="bottom">
+					<i class="icon_menu"></i>
+				</div>
+			</div>
+
+			<!--logo start-->
+			<!-- <a th:href="@{/}" class="logo">ECO<span class="lite">risk</span></a> -->
+			<img alt="" th:src="@{'/img/logo.png'}" style="width: 116px;">
+			<!--logo end-->
+
+			<div class="nav search-row" id="top_menu">
+				<!--  search form start -->
+				<ul class="nav top-menu">
+					<li style="display: none;">
+						<form class="navbar-form">
+							<input class="form-control" placeholder="Search" type="text">
+						</form>
+					</li>
+				</ul>
+				<!--  search form end -->
+			</div>
+
+			<div class="top-nav notification-row">
+				<!-- notificatoin dropdown start-->
+				<ul class="nav pull-right top-menu">
+
+					<!-- task notificatoin start -->
+					<li id="task_notificatoin_bar" class="dropdown"
+						style="display: none;"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i class="icon-task-l"></i>
+							<span class="badge bg-important">6</span>
+					</a>
+						<ul class="dropdown-menu extended tasks-bar">
+							<div class="notify-arrow notify-arrow-blue"></div>
+							<li>
+								<p class="blue">You have 6 pending letter</p>
+							</li>
+							<li><a href="#">
+									<div class="task-info">
+										<div class="desc">Design PSD</div>
+										<div class="percent">90%</div>
+									</div>
+									<div class="progress progress-striped">
+										<div class="progress-bar progress-bar-success"
+											role="progressbar" aria-valuenow="90" aria-valuemin="0"
+											aria-valuemax="100" style="width: 90%">
+											<span class="sr-only">90% Complete (success)</span>
+										</div>
+									</div>
+							</a></li>
+							<li><a href="#">
+									<div class="task-info">
+										<div class="desc">Project 1</div>
+										<div class="percent">30%</div>
+									</div>
+									<div class="progress progress-striped">
+										<div class="progress-bar progress-bar-warning"
+											role="progressbar" aria-valuenow="30" aria-valuemin="0"
+											aria-valuemax="100" style="width: 30%">
+											<span class="sr-only">30% Complete (warning)</span>
+										</div>
+									</div>
+							</a></li>
+							<li><a href="#">
+									<div class="task-info">
+										<div class="desc">Digital Marketing</div>
+										<div class="percent">80%</div>
+									</div>
+									<div class="progress progress-striped">
+										<div class="progress-bar progress-bar-info" role="progressbar"
+											aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"
+											style="width: 80%">
+											<span class="sr-only">80% Complete</span>
+										</div>
+									</div>
+							</a></li>
+							<li><a href="#">
+									<div class="task-info">
+										<div class="desc">Logo Designing</div>
+										<div class="percent">78%</div>
+									</div>
+									<div class="progress progress-striped">
+										<div class="progress-bar progress-bar-danger"
+											role="progressbar" aria-valuenow="78" aria-valuemin="0"
+											aria-valuemax="100" style="width: 78%">
+											<span class="sr-only">78% Complete (danger)</span>
+										</div>
+									</div>
+							</a></li>
+							<li><a href="#">
+									<div class="task-info">
+										<div class="desc">Mobile App</div>
+										<div class="percent">50%</div>
+									</div>
+									<div class="progress progress-striped active">
+										<div class="progress-bar" role="progressbar"
+											aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"
+											style="width: 50%">
+											<span class="sr-only">50% Complete</span>
+										</div>
+									</div>
+
+							</a></li>
+							<li class="external"><a href="#">See All Tasks</a></li>
+						</ul></li>
+					<!-- task notificatoin end -->
+					<!-- inbox notificatoin start-->
+					<li id="mail_notificatoin_bar" class="dropdown"
+						style="display: none;"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i class="icon-envelope-l"></i>
+							<span class="badge bg-important">5</span>
+					</a>
+						<ul class="dropdown-menu extended inbox">
+							<div class="notify-arrow notify-arrow-blue"></div>
+							<li>
+								<p class="blue">You have 5 new messages</p>
+							</li>
+							<li><a href="#"> <span class="photo"><img
+										alt="avatar" src="./img/avatar-mini.jpg"></span> <span
+									class="subject"> <span class="from">Greg Martin</span> <span
+										class="time">1 min</span>
+								</span> <span class="message"> I really like this admin panel. </span>
+							</a></li>
+							<li><a href="#"> <span class="photo"><img
+										alt="avatar" src="./img/avatar-mini2.jpg"></span> <span
+									class="subject"> <span class="from">Bob Mckenzie</span>
+										<span class="time">5 mins</span>
+								</span> <span class="message"> Hi, What is next project plan? </span>
+							</a></li>
+							<li><a href="#"> <span class="photo"><img
+										alt="avatar" src="./img/avatar-mini3.jpg"></span> <span
+									class="subject"> <span class="from">Phillip Park</span>
+										<span class="time">2 hrs</span>
+								</span> <span class="message"> I am like to buy this Admin
+										Template. </span>
+							</a></li>
+							<li><a href="#"> <span class="photo"><img
+										alt="avatar" src="./img/avatar-mini4.jpg"></span> <span
+									class="subject"> <span class="from">Ray Munoz</span> <span
+										class="time">1 day</span>
+								</span> <span class="message"> Icon fonts are great. </span>
+							</a></li>
+							<li><a href="#">See all messages</a></li>
+						</ul></li>
+					<!-- inbox notificatoin end -->
+					<!-- alert notification start-->
+					<li id="alert_notificatoin_bar" class="dropdown"
+						style="display: none;"><a data-toggle="dropdown"
+						class="dropdown-toggle" href="#"> <i class="icon-bell-l"></i>
+							<span class="badge bg-important">7</span>
+					</a>
+						<ul class="dropdown-menu extended notification">
+							<div class="notify-arrow notify-arrow-blue"></div>
+							<li>
+								<p class="blue">You have 4 new notifications</p>
+							</li>
+							<li><a href="#"> <span class="label label-primary"><i
+										class="icon_profile"></i></span> Friend Request <span
+									class="small italic pull-right">5 mins</span>
+							</a></li>
+							<li><a href="#"> <span class="label label-warning"><i
+										class="icon_pin"></i></span> John location. <span
+									class="small italic pull-right">50 mins</span>
+							</a></li>
+							<li><a href="#"> <span class="label label-danger"><i
+										class="icon_book_alt"></i></span> Project 3 Completed. <span
+									class="small italic pull-right">1 hr</span>
+							</a></li>
+							<li><a href="#"> <span class="label label-success"><i
+										class="icon_like"></i></span> Mick appreciated your work. <span
+									class="small italic pull-right"> Today</span>
+							</a></li>
+							<li><a href="#">See all notifications</a></li>
+						</ul></li>
+					<!-- alert notification end-->
+					<!-- user login dropdown start-->
+					<li class="dropdown">
+						<a class="dropdown-toggle"  href="#" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							<span class="profile-ava">
+								<img alt="" th:src="@{'/img/avatar2.png'}" height="38" width="38">
+							</span>
+							<span class="username" th:text="${#authentication.getPrincipal().getUsername()}">
+								User
+							</span>
+						</a>
+						<ul class="dropdown-menu extended logout" role="menu" aria-labelledby="dropdownMenu2">
+							<div class="log-arrow-up"></div>
+							<li class="eborder-top"><a th:href="@{/perfil}"><i
+									class="icon_profile"></i>Mi perfil</a></li>
+							<li><a th:href="@{/logout}"><i class="icon_key_alt"></i>
+									Cerrar sesión</a></li>
+							<li><a href="#"><i class="icon_key_alt"></i>
+									Guía rápida</a></li>
+						</ul></li>
+					<!-- user login dropdown end -->
+				</ul>
+				<!-- notificatoin dropdown end-->
+			</div>
+		</header>
+		<!--header end-->
+
+		<!--sidebar start-->
+		<aside>
+			<div id="sidebar" class="nav-collapse ">
+				<!-- sidebar menu start-->
+				<ul class="sidebar-menu">
+					<li class="active"><a class="" th:href="@{/}"> <i
+							class="icon_house_alt"></i> <span>Inicio</span>
+					</a></li>
+					<li class="sub-menu"
+						th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5'">
+						<a href="javascript:;" class=""> <i class="fa fa-upload"></i>
+							<span>Cargar</span> <span class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" th:href="@{/upload/whatif}">What-If</a></li>
+							<li><a class="" th:href="@{/upload/constructabilidad}">Constructabilidad</a></li>
+							<li><a class="" th:href="@{/upload/designreview}">Design Review</a></li>
+							<li><a class="" th:href="@{/upload/peerreview}">Peer Review</a></li>
+							<li><a class="" th:href="@{/upload/riesgosem}">Riesgos Emergentes</a></li>
+							<li><a class="" th:href="@{/upload/lecciones}">Lecciones Aprendidas</a></li>
+							<li><a class="" th:href="@{/upload/riesgosma}">Riesgos Materializados</a></li>
+						</ul>
+					</li>
+					<li class="sub-menu">
+						<a href="javascript:;" class=""> <i class="fa fa-search"></i>
+							<span>Consultar</span> <span class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" th:href="@{/consultar}">Por talleres</a></li>
+							<li><a class="" th:href="@{/portafolio-capex}">Portafolio Capex</a></li>
+						</ul>
+					</li>
+					<li class="sub-menu"
+						th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'">
+						<a href="javascript:;" class=""> <i class="fa fa-users"></i> <span>Administrar</span>
+							<span class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class="" th:href="@{/users}">Usuarios</a></li>
+							<li><a class="" th:href="@{/load/cambios}">Solicitar cambios</a></li>
+							<li><a class="" th:href="@{/congelar}">Congelar proyectos</a></li>
+							<li><a class="" th:href="@{/portafolio}">Portafolios</a></li>
+							<li><a class="sub-es" th:href="@{/load/emails-enviados}">Trazabilidad de comunicaciones</a></li>
+						</ul>
+					</li>
+					<li class="sub-menu"
+						th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2'  OR ${#authentication.getPrincipal().getUserRole()} == '1'">
+						<a href="javascript:;" class=""> <i class="fa fa-bar-chart"></i>
+							<span>Indicadores</span> <span
+							class="menu-arrow arrow_carrot-right"></span>
+					</a>
+						<ul class="sub">
+							<li><a class=""
+								th:href="@{/indicadores/proyectos}">Proyectos</a></li>
+							<li><a class="" th:href="@{/indicadores/funcionario}">Funcionario</a></li>
+							<li><a class="" th:href="@{/indicadores/semanal}">Semanales</a></li>
+							<li><a class="" href="#">Indirectos</a></li>
+						</ul>
+					</li>
+					<li class="inactive"><a class="" th:href="@{/acerca-de}">
+							<i class="fa fa-info-circle"></i> <span>Acerca de</span>
+					</a></li>
+					<li class="inactive"><a class="" th:href="@{/contactenos}">
+							<i class="fa fa-puzzle-piece"></i> <span>Contáctenos</span>
+					</a></li>
+
+
+				</ul>
+				<!-- sidebar menu end-->
+			</div>
+		</aside>
+		<!--sidebar end-->
+
+		<!--main content start-->
+			<section id="main-content">
+			<section class="wrapper">
+				<div class="row">
+					<div class="col-lg-12">
+						<h3 class="page-header">
+							<i class="fa fa-table"></i>Consulta de riesgos
+						</h3>
+						<ol class="breadcrumb">
+							<li><i class="fa fa-home"></i><a th:href="@{/}">Inicio</a></li>
+							<li><i class="fa fa-table"></i>Riesgos</li>
+							<li><i class="fa fa-th-list"></i></li>
+						</ol>
+					</div>
+				</div>
+				<!-- page start-->
+				
+			<div style="text-align:center" th:if="${successmessage} != null">
+								<div class="alert alert-success">
+								  <strong th:text="${successmessage}"></strong>
+								</div>
+							</div>
+							
+					<div style="text-align:center" th:if="${errormessage} != null">
+								<div class="alert alert-danger">
+								  <strong th:text="${errormessage}"></strong>
+								</div>
+							</div>
+							
+				<div class="row">
+					<div class="col-lg-12">
+						<section class="panel">
+							<header class="panel-heading">Cambios generales de responsable</header>
+							
+				
+							
+							<div style="padding-left: 20px; padding-right: 20px;">
+							
+								<form th:action="@{/cambiogeneral/addNew}" method="post" enctype="multipart/form-data">
+									<div class="row">
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Cambiar los controles del funcionario</h4>
+											<select  class="customselect form-control" id="de" name="de">
+												<option th:each="usuario:${usuariosList}"
+													th:value="${usuario.id}"
+													th:text="${usuario.fullname}"></option>
+											</select> 
+										</div>
+									
+										
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Asignar todos los controles al funcionario</h4>
+											<select class="customselect form-control" id="a" name="a">
+												<option th:each="usuario:${usuariosList}"
+													th:value="${usuario.id}"
+													th:text="${usuario.fullname}"></option>
+											</select> 
+										</div>		
+											
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Seleccione los talleres que desea reasignar del usuario</h4>
+											<select id="cuales" class="customselect form-control" name= "cuales" multiple="">
+											</select> 
+										</div>
+																		
+								</div>
+								
+									<div class="row">
+									
+										
+										<div class="form-group col-sm-3 col-xs-6">
+											<label for="message-text" class="col-form-label">Seguimiento:</label>
+											<textarea class="form-control" id="desc" name="desc"></textarea>
+										</div>
+										
+											<div class="form-group col-sm-2 col-xs-6">
+											<div class="input-group">
+												<div>
+													<h4>Cargar evidencia</h4><br>
+													
+													<div><input type="file" id="evidencia"
+														name="evidencia" multiple="multiple"
+														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>		
+												</div>
+											</div>
+										</div>
+										
+										<div class="form-group col-sm-1 col-xs-12">
+											<button type="submit" style="margin: 30px 50px 75px 180px;" class="btn btn-low">Guardar</button>
+										</div>
+										
+									</div> 
+								</form>
+								
+							</div>
+						</section>
+					</div>
+				</div>
+				
+				<div class="row">
+					<div class="col-lg-12">
+						<section class="panel">
+							<header class="panel-heading">Cambios generales de lider/dueño del proyecto o proceso</header>
+						<!--	<div class="alert alert-success" role="alert"
+								th:if="${successmessage} != null">
+								<strong th:text="${successmessage}"></strong>
+							</div>
+							<div class="alert alert-danger" role="alert"
+								th:if="${errormessage} != null">
+								<strong th:text="${errormessage}"></strong>
+							</div> -->
+							<div style="padding-left: 15px; padding-right: 15px;">
+								<form th:action="@{/cambiodueno/addNew}" method="post" enctype="multipart/form-data">
+									<div class="row">
+									
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Cambiar dueño del taller del funcionario</h4>
+											<select  class="customselect form-control" id="deDue" name="deDue">
+												<option th:each="usuario:${usuariosDuenosList}"
+													th:value="${usuario.id}"
+													th:text="${usuario.fullname}"></option>
+											</select> 
+										</div>
+										
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Asignar nuevo dueño del taller al funcionario</h4>
+											<select class="customselect form-control" id="aDue" name="aDue">
+												<option th:each="usuario:${usuariosDuenosAllList}"
+													th:value="${usuario.id}"
+													th:text="${usuario.fullname}"></option>
+											</select> 
+										</div>
+											
+										<div class="form-group col-sm-4 col-xs-6">
+											<h4>Seleccione los talleres que desea reasignar del usuario</h4>
+											<select id="cualesDue" class="customselect form-control" name="cualesDue" multiple="">
+											</select> 
+										</div>
+										
+									</div>
+									<div class="row">
+									
+										<div class="form-group col-sm-3 col-xs-6">
+											<label for="message-text" class="col-form-label">Seguimiento:</label>
+											<textarea class="form-control" id="descDue" name="descDue"></textarea>
+										</div>
+										
+										<div class="form-group col-sm-2 col-xs-6">
+											<div class="input-group">
+												<div>
+													<h4>Cargar evidencia</h4>
+													
+													<div><input type="file" id="evidenciaDue"
+														name="evidenciaDue" multiple="multiple"
+														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>
+													
+												</div>
+											</div>
+										</div>
+									
+										<div class="form-group col-sm-1 col-xs-12">
+											<button type="submit" style="margin: 30px 50px 75px 180px;" class="btn btn-low">Guardar</button>
+										</div>
+									</div>
+								</form>
+								
+							</div>
+						</section>
+					</div>
+				</div>
+			<!-- Division Eventos -->
+			<div class="row">
+				<div class="col-lg-12">
+					<section class="panel">
+						<header class="panel-heading">Cambios individuales</header>
+						<style type="text/css" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'
+						 OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'">
+							.dt-buttns { display: none; }
+						</style>
+						<table id="hojatrabajo-table"
+							class="table table-striped table-bordered">
+							<thead>
+								<tr>
+								<th
+									th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'"><i
+									class=""></i>Cambios</th>
+									<th th:if="${#authentication.getPrincipal().getUserRole()} == '6'"><i class=""></i>Id</th>
+									<th><i class=""></i>Tipo de taller</th>
+									<th><i class=""></i>Código</th>
+									<th><i class=""></i>Estado</th>
+									<th><i class=""></i>Oportunidad</th>
+									<th><i class=""></i>Qué pasa si...?</th>
+									<th><i class=""></i>Evento</th>
+									<th><i class=""></i>Respuesta del responsable</th>
+									<th><i class=""></i>Especialidad</th>
+									<th><i class=""></i>Matriz RAM</th>
+									<th><i class=""></i>Salvaguardas</th>
+									<th><i class=""></i>Riesgo Actual Consecuencia</th>
+									<th><i class=""></i>Riesgo Actual Probabilidad</th>
+									<th><i class=""></i>Riesgo Actual Valoracion RAM</th>
+									<th><i class=""></i>Control</th>
+									<th><i class=""></i>Riesgo Residual Consecuencia</th>
+									<th><i class=""></i>Riesgo Residual Probabilidad</th>
+									<th><i class=""></i>Riesgo Residual Valoracion RAM</th>
+									<th><i class=""></i>Responsable</th>
+									<th><i class=""></i>GAP</th>
+									<th><i class=""></i>Fecha Planeada Cierre</th>
+									<th><i class=""></i>Fecha de Cierre</th>
+									<th><i class=""></i>Observaciones</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="hojatrabajo:${hojatrabajoList} ">
+									<td th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'">
+										<a class="btn btn-primary add-cambios" th:id="${hojatrabajo.id}" th:href="@{/cambios/findByTrabajoId/(hojatrabajo_id=${hojatrabajo.id})}">
+											<i class="icon_pencil-edit"></i> Ver/ Gestionar Cambios
+										</a>
+									</td>
+									<td th:if="${#authentication.getPrincipal().getUserRole()} == '6'" th:text="${hojatrabajo.id}">ID</td>	
+									<td th:text="${hojatrabajo.tipo}">Tipo taller</td>
+									<td th:text="${hojatrabajo.coddoc}">Cod Doc</td>
+									<td th:text="${hojatrabajo.estado}">Estado</td>
+									<td th:text="${hojatrabajo.oportunidad}">Oportunidad</td>
+									<td th:text="${hojatrabajo.pregunta}">Pregunta</td>
+									<td th:text="${hojatrabajo.evento}">Evento</td>
+									<td th:text="${hojatrabajo.respuesta}">Respuesta</td>
+									<td th:text="${hojatrabajo.especialidad}">Especialidad</td>
+									<td th:text="${hojatrabajo.ram}">Matriz RAM</td>
+									<td th:text="${hojatrabajo.salvaguardas}">Salvaguardas</td>
+									<td th:text="${hojatrabajo.raconsecuencia}">Riesgo Actual Consecuencia</td>
+									<td th:text="${hojatrabajo.raprobabilidad}">Riesgo Actual Probabilidad</td>
+									<td th:text="${hojatrabajo.ravaloracion}">Riesgo Actual Valoración</td>
+									<td th:text="${hojatrabajo.control}">Control</td>
+									<td th:text="${hojatrabajo.reconsecuencia}">Riesgo Residual Consecuencia</td>
+									<td th:text="${hojatrabajo.reprobabilidad}">Riesgo Residual Probabilidad</td>
+									<td th:text="${hojatrabajo.revaloracion}">Riesgo Residual Valoración</td>
+									<td th:text="${hojatrabajo.responsable}">Responsable</td>
+									<td th:text="${hojatrabajo.gap != null} ? ${hojatrabajo.gap} : 'Aún abierto'">Gap</td>
+									<td th:text="${#dates.format(hojatrabajo.fechaplaneada, 'yyyy-MM-dd')}">Fecha planeada de cierre</td>
+									<td th:text="${#dates.format(hojatrabajo.fechacierre, 'yyyy-MM-dd')}">Fecha de cierre</td>
+									<td th:text="${hojatrabajo.observacion}">Observaciones</td>
+								</tr>
+							</tbody>
+						</table>
+					</section>
+				</div>
+			</div>
+
+			<!-- page end-->
+		</section>
+	</section>
+	<!--main content end-->
+	<div class="text-right">
+		<div class="credits">
+			<!--
+            All the links in the footer should remain intact.
+            You can delete the links only if you purchased the pro version.
+            Licensing information: https://bootstrapmade.com/license/
+            Purchase the pro version form: https://bootstrapmade.com/buy/?theme=NiceAdmin
+          -->
+		</div>
+	</div>
+	</section>
+	<!-- container section end -->
+
+	<div class="modal fade" id="addModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<form th:action="@{/countries/addNew}" method="post">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New Country
+							Record</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<div class="form-group">
+							<label for="idAdd" class="col-form-label">Id:</label> <input
+								type="text" class="form-control" id="idAdd" name="id" disabled>
+						</div>
+
+						<div class="form-group">
+							<label for="descriptionAdd" class="col-form-label">Description:</label>
+							<input type="text" class="form-control" id="descriptionAdd"
+								name="description" required>
+						</div>
+
+						<div class="form-group">
+							<label for="txtCodeAdd" class="col-form-label">Code:</label> <input
+								type="text" class="form-control" id="txtCodeAdd" name="code">
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	
+	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
+		aria-labelledby="ModalLabel" aria-hidden="true"
+		th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'">
+		
+		<form id="addChange"  th:action="@{/hojatrabajo/update}"
+			method="post" enctype="multipart/form-data">
+
+			<div class="modal-dialog  modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editModalLabel">Cambios realizados</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+
+						<div class="form-group">
+							<table id="hojacambios-table"
+								class="table table-striped table-bordered" width="95%" style="margin: auto;">
+								<thead>
+									<tr>
+										<th><i class=""></i>Comentario</th>
+										<th><i class=""></i>Funcionario antiguo</th>
+										<th><i class=""></i>Funcionario nuevo</th>
+										<th><i class=""></i>Fecha antigua</th>
+										<th><i class=""></i>Fecha nueva</th>
+										<th><i class=""></i>Evidencia</th>
+										<th><i class=""></i>Responsable del cambio</th>
+
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-4 col-xs-6">
+								<div class="input-group">
+										<h4>Cargar evidencia</h4><br>
+										<input type="file" id="archivo"
+											name="file2" multiple="multiple"
+											accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf">
+								</div>
+							</div>
+						</div>
+						
+						<div class="row">
+							<div class="form-group col-sm-4 col-xs-4" id="cambiosrf"
+								style="display: none;">
+								<h4>¿Qué tipo de cambio desea realizar?</h4>
+								<select data-filter="make"
+									class="filter-make filter form-control" id="cambiosdes"
+									name="cambiosdes">
+									<option value="1">Cambio de fecha</option>
+									<option value="2">Cambio de responsable</option>
+									<option value="3">Cambio de responsable y fecha</option>
+								</select>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-4 col-xs-6" id="cambiofe" >
+								<h4>Nueva fecha comprometida</h4>
+								<input type="date" name="fecha_nueva" id="fecha_nueva" >
+								
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group col-sm-12 col-xs-6 " id="cambiore">
+								<h4>Reasignar los controles al funcionario</h4>
+								<select  class="customselectf2 form-control" id="responsable_nuevo" name="responsable_nuevo" >
+									<option th:each="usuario:${usuariosList}"
+										th:value="${usuario.id}"
+										th:text="${usuario.fullname}"></option>
+								</select> 
+							</div>
+						</div>
+						<div class="row" style="margin:auto;">
+							<div class="form-group">
+							<label for="message-text" class="col-form-label" width="80%">Añadir
+								Seguimiento:</label> 
+							<textarea class="form-control" id="comentario" name="comentario"></textarea>
+									<input type="text" id="open_hojatrabajo" name="ht_id" 
+								style="display: none;"></input>
+						</div>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Cancelar</button>
+						<button type="submit" class="btn btn-low">Guardar</button>
+					</div>
+				</div>
+			</div>
+		</form>
+
+
+</body>
+
+</html>

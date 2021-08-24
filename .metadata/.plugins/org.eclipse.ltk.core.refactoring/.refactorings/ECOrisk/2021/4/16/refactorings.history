@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;erCambiosProjection.java&apos; to &apos;ECOrisk/src/main/java/com.ecopetrol.ECOrisk.Projections&apos;&#x0D;&#x0A;- Original project: &apos;ECOrisk&apos;&#x0D;&#x0A;- Destination element: &apos;ECOrisk/src/main/java/com.ecopetrol.ECOrisk.Projections&apos;&#x0D;&#x0A;- Original element: &apos;com.ecopetrol.ECOrisk.Projections.erCambiosProjection.java&apos;" description="Copy compilation unit" destination="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ecopetrol.ECOrisk.Projections" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;com.ecopetrol.ECOrisk.Projections{erCambiosProjection.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1618311350541" units="1" version="1.0"/>
+</session>
