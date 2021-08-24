@@ -91,7 +91,7 @@ public class er_HojaTrabajoController {
 	public static String uploadDirectory = System.getProperty("user.home") + File.separator + "uploads";
 
 	@RequestMapping(value = ("hojatrabajo/update"), headers = ("content-type=multipart/*"), method = RequestMethod.POST)
-	public ResponseEntity<Object> addNew(@RequestParam("file") MultipartFile[] file,@RequestParam String ht_id,@RequestParam (required = false)String fecha_nueva,
+	public ResponseEntity<Object> addNew(@RequestParam("file2") MultipartFile[] file,@RequestParam String ht_id,@RequestParam (required = false)String fecha_nueva,
 			@RequestParam (required = false)  String  responsable_nuevo,String comentario, Principal principal) {
 		
 		String username = principal.getName();
@@ -105,6 +105,7 @@ public class er_HojaTrabajoController {
 		Date fec_nueva = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		// boolean fecha = false;
+		
 		if (fecha_nueva != null && fecha_nueva != "") {
 			try {
 
@@ -154,7 +155,7 @@ public class er_HojaTrabajoController {
 				Path directorio = Paths.get(uploadDirectory + File.separator + ht_id + File.separator);
 				String rutaabsoluta = directorio.toFile().getAbsolutePath();
 				if (!(archi.isEmpty())) {
-					ruta = "/uploads/seguimiento/" + ht_id  + "/";
+					ruta = "/uploads/cambios/" + nuevoCambio.getEr_cambio_id() + "/";
 					try {
 						direccion = rutaabsoluta + File.separator + archi.getOriginalFilename();
 						Path rutacompleta = Paths.get(direccion);
@@ -192,10 +193,11 @@ public class er_HojaTrabajoController {
 			
 			seguimiento.setHtseg_ruta(ruta);
 			seguimiento.setUser_id(users.getId());
-			
-			Er_HojaSeguimientoService.save(seguimiento);
-		
+			seguimiento.addHojaTrabajo(hoja);
 
+			Er_HojaSeguimientoService.save(seguimiento);
+			
+			
 		}
 
 		return new ResponseEntity<>("Cambio realizado correctamente", HttpStatus.OK);
