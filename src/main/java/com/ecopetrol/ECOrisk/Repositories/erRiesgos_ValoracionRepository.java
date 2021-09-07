@@ -63,6 +63,6 @@ public interface erRiesgos_ValoracionRepository extends JpaRepository<erRiesgos_
         + "			,SUM(CASE WHEN e.ra_rv_id = 3 AND en.er_proceso_id = 1 AND e.er_estado_id = 4 THEN 1 ELSE 0 END) as CRrcM"
         + "			,SUM(CASE WHEN e.ra_rv_id = 2 AND en.er_proceso_id = 1 AND e.er_estado_id = 4 THEN 1 ELSE 0 END) as CRrcL"
     	+ "		    ,SUM(CASE WHEN e.ra_rv_id = 1 AND en.er_proceso_id = 1 AND e.er_estado_id = 4 THEN 1 ELSE 0 END) as CRrcN"
-        + "			FROM er_hoja_trabajo e, er_encabezado en WHERE en.er_encabezado_id = e.er_encabezado_id AND e.er_estado_id != 3", nativeQuery=true)
+        + "			FROM er_hoja_trabajo e, er_encabezado en WHERE en.er_encabezado_id = e.er_encabezado_id", nativeQuery=true)
     erRiesgos_ValoracionProjection findAllProjection();
 }
