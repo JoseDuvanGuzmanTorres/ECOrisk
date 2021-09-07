@@ -138,19 +138,20 @@ public class SendingController {
 		String nombre = "Jose Duvan Guzman Torres";
 		ctx.setVariable("nombre", nombre);
 		
-   		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(43);
+		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
 		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
 		
-		List<er_HojaTrabajoProjection> hojatrabajoList = Er_HojaTrabajoService.getAllProjectionAbiertasByDueno(43);
-		ctx.setVariable("hojatrabajoList", hojatrabajoList);
-		
-  		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(43);
+		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
 		ctx.setVariable("IndicadoresLA", IndicadoresLA);
+
 		
- 		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(43);
+		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
+		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
+		
+		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
 		ctx.setVariable("leccionesAList", leccionesAList);
 		
-		emailService.sendMailIndicadoresLideres(Para,Asunto,ctx);
+		emailService.sendMailIndicadores(Para,Asunto,ctx);
 		System.out.println("Salida controles: "+Para);
 		Thread.sleep(1000);	
     	return "redirect:/";
@@ -173,17 +174,17 @@ public class SendingController {
         		String Para = email;
         		String Asunto = "Reporte de indicadores de ECOrisk";
         		
-        		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(usuario.getId());
+        		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
         		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
         		
-        		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(usuario.getId());
+        		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
         		ctx.setVariable("IndicadoresLA", IndicadoresLA);
         
         		
-        		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(usuario.getId());
+        		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
         		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
         		
-        		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(usuario.getId());
+        		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
         		ctx.setVariable("leccionesAList", leccionesAList);
         		
         		emailService.sendMailIndicadores(Para,Asunto,ctx);

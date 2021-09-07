@@ -31,56 +31,65 @@ public class ApplicationController {
 		
 		erRiesgos_ValoracionProjection valoraciones = ErRiesgos_ValoracionService.getValoracionesProjection();
 		
-		Integer CRaN   = valoraciones.getCRaN();
-		Integer CRaL   = valoraciones.getCRaL();
-		Integer CRaM   = valoraciones.getCRaM();
-		Integer CRaH   = valoraciones.getCRaH();
-		Integer CRaVH  = valoraciones.getCRaVH();
-		Integer CRrN   = valoraciones.getCRrN();
-		Integer CRrL   = valoraciones.getCRrL();
-		Integer CRrM   = valoraciones.getCRrM();
-		Integer CRrH   = valoraciones.getCRrH();
-		Integer CRrVH  = valoraciones.getCRrVH();
-		Integer CRraN  = valoraciones.getCRraN();
-		Integer CRraL  = valoraciones.getCRraL();
-		Integer CRraM  = valoraciones.getCRraM();
-		Integer CRraH  = valoraciones.getCRraH();
-		Integer CRraVH = valoraciones.getCRraVH();
-		Integer CRrcVH = valoraciones.getCRrcVH();//congelados vh capex
+		Integer InicialCapexN   = valoraciones.getInicialCapexN();
+		Integer InicialCapexL   = valoraciones.getInicialCapexL();
+		Integer InicialCapexM   = valoraciones.getInicialCapexM();
+		Integer InicialCapexH   = valoraciones.getInicialCapexH();
+		Integer InicialCapexVH  = valoraciones.getInicialCapexVH();
 		
-		Integer CRrcH = valoraciones.getCRrcH();
-		Integer CRrcM = valoraciones.getCRrcM();
-		Integer CRrcL = valoraciones.getCRrcL();
-		Integer CRrcN = valoraciones.getCRrcN();
-		Integer CRrinVH = valoraciones.getCRrinVH();//inicial vh
-	
-		
-		model.addAttribute("CRaN",   CRaN);
-		model.addAttribute("CRaL",   CRaL);
-		model.addAttribute("CRaM",   CRaM);
-		model.addAttribute("CRaH",   CRaH);
-		model.addAttribute("CRaVH",  CRaVH);
-		
-		model.addAttribute("CRrN",   CRrN);
-		model.addAttribute("CRrL",   CRrL);
-		model.addAttribute("CRrM",   CRrM);
-		model.addAttribute("CRrH",   CRrH);
-		model.addAttribute("CRrVH",  CRrVH);
-		
-		model.addAttribute("CRraN",  CRraN);
-		model.addAttribute("CRraL",  CRraL);
-		model.addAttribute("CRraM",  CRraM);
-		model.addAttribute("CRraH",  CRraH);
-		model.addAttribute("CRraVH", CRraVH);
-		model.addAttribute("CRrcVH", CRrcVH);
-		
-		model.addAttribute("CRrcH", CRrcH);
-		model.addAttribute("CRrcM", CRrcM);
-		model.addAttribute("CRrcL", CRrcL);
-		model.addAttribute("CRrcN", CRrcN);
+		Integer ResidualCapexN   = valoraciones.getResidualCapexN();
+		Integer ResidualCapexL   = valoraciones.getResidualCapexL();
+		Integer ResidualCapexM   = valoraciones.getResidualCapexM();
+		Integer ResidualCapexH   = valoraciones.getResidualCapexH();
+		Integer ResidualCapexVH  = valoraciones.getResidualCapexVH();
 
-		model.addAttribute("CRrinVH", CRrinVH);
+		Integer CerradosN  = valoraciones.getCerradosN();
+		Integer CerradosL  = valoraciones.getCerradosL();
+		Integer CerradosM  = valoraciones.getCerradosM();
+		Integer CerradosH  = valoraciones.getCerradosH();
+		Integer CerradosVH = valoraciones.getCerradosVH();
 		
+		Integer AbiertosN = valoraciones.getAbiertosN();
+		Integer AbiertosL = valoraciones.getAbiertosL();
+		Integer AbiertosM = valoraciones.getAbiertosM();
+		Integer AbiertosH = valoraciones.getAbiertosH();
+		Integer AbiertosVH = valoraciones.getAbiertosVH();
+	
+		Integer CongeladosVH = valoraciones.getCongeladosVH();
+		Integer CongeladosH = valoraciones.getCongeladosH();
+		Integer CongeladosM = valoraciones.getCongeladosM();
+		Integer CongeladosL = valoraciones.getCongeladosL();
+		Integer CongeladosN = valoraciones.getCongeladosN();
+		
+		model.addAttribute("InicialCapexN",   InicialCapexN);
+		model.addAttribute("InicialCapexL",   InicialCapexL);
+		model.addAttribute("InicialCapexM",   InicialCapexM);
+		model.addAttribute("InicialCapexH",   InicialCapexH);
+		model.addAttribute("InicialCapexVH",  InicialCapexVH);
+		
+		model.addAttribute("ResidualCapexN",   ResidualCapexN);
+		model.addAttribute("ResidualCapexL",   ResidualCapexL);
+		model.addAttribute("ResidualCapexM",   ResidualCapexM);
+		model.addAttribute("ResidualCapexH",   ResidualCapexH);
+		model.addAttribute("ResidualCapexVH",  ResidualCapexVH);
+		
+		model.addAttribute("CerradosN",  CerradosN);
+		model.addAttribute("CerradosL",  CerradosL);
+		model.addAttribute("CerradosM",  CerradosM);
+		model.addAttribute("CerradosH",  CerradosH);
+		model.addAttribute("CerradosVH", CerradosVH);
+			
+		model.addAttribute("AbiertosN", AbiertosN);
+		model.addAttribute("AbiertosL", AbiertosL);
+		model.addAttribute("AbiertosM", AbiertosM);
+		model.addAttribute("AbiertosH", AbiertosH);
+		model.addAttribute("AbiertosVH", AbiertosVH);
+		
+		model.addAttribute("CongeladosVH", CongeladosVH);
+		model.addAttribute("CongeladosH", CongeladosH);
+		model.addAttribute("CongeladosM", CongeladosM);
+		model.addAttribute("CongeladosL", CongeladosL);
+		model.addAttribute("CongeladosN", CongeladosN);
 		
 		
 		
