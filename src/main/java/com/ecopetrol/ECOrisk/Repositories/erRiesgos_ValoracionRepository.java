@@ -19,10 +19,10 @@ public interface erRiesgos_ValoracionRepository extends JpaRepository<erRiesgos_
 	@Query(value="select * from er_riesgos_valoracion e ORDER BY e.rv ASC", nativeQuery=true)
     List<erRiesgos_Valoracion> findByAllAsc();
     
-    @Query(value="SELECT SUM(CASE WHEN e.ra_rv_id = 1 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as InicialCapexN" 
-        + "			,SUM(CASE WHEN e.ra_rv_id = 2 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as InicialCapexL"
-        + "			,SUM(CASE WHEN e.ra_rv_id = 3 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as InicialCapexM"
-        + "			,SUM(CASE WHEN e.ra_rv_id = 4 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as InicialCapexH"
+    @Query(value="SELECT SUM(CASE WHEN e.ra_rv_id = 1 AND en.er_proceso_id = 1 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL)  THEN 1 ELSE 0 END) as InicialCapexN" 
+        + "			,SUM(CASE WHEN e.ra_rv_id = 2 AND en.er_proceso_id = 1 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL) THEN 1 ELSE 0 END) as InicialCapexL"
+        + "			,SUM(CASE WHEN e.ra_rv_id = 3 AND en.er_proceso_id = 1 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL) THEN 1 ELSE 0 END) as InicialCapexM"
+        + "			,SUM(CASE WHEN e.ra_rv_id = 4 AND en.er_proceso_id = 1 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL) THEN 1 ELSE 0 END) as InicialCapexH"
         + "			,SUM(CASE WHEN e.ra_rv_id = 5 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as InicialCapexVH"
         + "			,SUM(CASE WHEN e.rr_rv_id = 1 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as ResidualCapexN"
         + "			,SUM(CASE WHEN e.rr_rv_id = 2 AND en.er_proceso_id = 1 THEN 1 ELSE 0 END) as ResidualCapexL"
