@@ -95,9 +95,9 @@ public class SendingController {
     
     	String asunto = "Interrupción en el servicio de ECOrisk";
     	Context ctx = new Context();
-    	String dia = "9/09/2021";
-    	String horainicio = "1:18 pm";
-    	String horafin = "01:25 pm";
+    	String dia = "10/09/2021";
+    	String horainicio = "7:50 am";
+    	String horafin = "08:00 am";
     	ctx.setVariable("dia", dia);
     	ctx.setVariable("horainicio", horainicio);
     	ctx.setVariable("horafin", horafin);

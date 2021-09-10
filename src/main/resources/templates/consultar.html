@@ -1066,7 +1066,7 @@
 						</div>
 						<div class="insertar_alertas">
 						</div>
-						<div class="row">
+						<div class="row" th:if="${#authentication.getPrincipal().getUserRole()} == '6'OR ${#authentication.getPrincipal().getUserRole()} == '3'OR ${#authentication.getPrincipal().getUserRole()} == '4'">
 							<div class="form-group col-sm-4 col-xs-6">
 								<div class="input-group">
 									<div class="custom-file">
@@ -1094,7 +1094,7 @@
 							</div>
 						</div>
 
-						<div class="form-group">
+						<div class="form-group" th:if="${#authentication.getPrincipal().getUserRole()} == '6'OR ${#authentication.getPrincipal().getUserRole()} == '3'OR ${#authentication.getPrincipal().getUserRole()} == '4'">
 							<label for="message-text" class="col-form-label">Añadir
 								Seguimiento:</label> <input type="text" name="au_user" id="au_user"
 								th:value="${#authentication.getPrincipal().getUserId()}"
@@ -1113,8 +1113,5 @@
 			</div>
 		</form>
 	</div>
-
-	
 </body>
-
 </html>
