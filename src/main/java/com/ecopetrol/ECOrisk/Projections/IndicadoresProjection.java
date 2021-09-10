@@ -29,6 +29,6 @@ public interface IndicadoresProjection {
 	Integer getDreview();
 	Integer getPreview();
 	String getProceso();
-	
+	String getLeccionesA();
 	
 }
