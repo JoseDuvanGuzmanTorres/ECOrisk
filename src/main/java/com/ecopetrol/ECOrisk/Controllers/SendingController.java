@@ -159,7 +159,7 @@ public class SendingController {
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes
-    @Scheduled(cron = "0 0 13 */1 * 1")
+    //@Scheduled(cron = "0 0 13 */1 * 1")
     void sendMailComplex() throws MessagingException, InterruptedException {
     	
     	//Envía emails a los usuarios con rol LiderProcesoGir y Administrador de riesgos
