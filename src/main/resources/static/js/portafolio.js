@@ -1,5 +1,4 @@
 $('document').ready(function() {
-
 	$('#portafolio-table thead tr').clone(true).appendTo( '#portafolio-table thead' );
     $('#portafolio-table thead tr:eq(1) th').each( function (i) {
         var title = $(this).text();
@@ -67,7 +66,6 @@ $('document').ready(function() {
 			},
 		]	        
     });
-    
 	$('#portafolio-table').on('click', '.btn-primary', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
