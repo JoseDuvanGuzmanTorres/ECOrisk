@@ -140,16 +140,11 @@ public class SendingController {
 		
 		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
 		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-		
-		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
-		ctx.setVariable("IndicadoresLA", IndicadoresLA);
-
-		
 		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
+		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
 		
-		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
-		ctx.setVariable("leccionesAList", leccionesAList);
+		emailService.sendMailIndicadores(Para,Asunto,ctx);
+		
 		
 		emailService.sendMailIndicadores(Para,Asunto,ctx);
 		System.out.println("Salida controles: "+Para);
@@ -159,7 +154,7 @@ public class SendingController {
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes
-    //@Scheduled(cron = "0 0 13 */1 * 1")
+    @Scheduled(cron = "0 0 13 */1 * 1")
     void sendMailComplex() throws MessagingException, InterruptedException {
     	
     	//Envía emails a los usuarios con rol LiderProcesoGir y Administrador de riesgos
@@ -173,20 +168,12 @@ public class SendingController {
         		Context ctx = new Context();
         		String Para = email;
         		String Asunto = "Reporte de indicadores de ECOrisk";
-        		
-        		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
+				
+				List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
         		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-        		
-        		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
-        		ctx.setVariable("IndicadoresLA", IndicadoresLA);
-        
-        		
         		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-        		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
-        		
-        		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
-        		ctx.setVariable("leccionesAList", leccionesAList);
-        		
+        		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
+
         		emailService.sendMailIndicadores(Para,Asunto,ctx);
         		System.out.println("Salió LiderProcesoGir :"+ email);
         		
