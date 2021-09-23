@@ -25,7 +25,8 @@ public class erPortafolio {
 	private String er_nombre_corto;
 
 	private String er_nombre_proyecto;
-	
+	private String estadop;
+	private String fasep;
 	private String er_mascara;
 	
 	@ManyToOne
@@ -51,6 +52,13 @@ public class erPortafolio {
 
 	public String getEr_nombre_proyecto() {
 		return er_nombre_proyecto;
+	}
+	public String getestadop() {
+		return estadop;
+	}
+
+	public String getfasep() {
+		return fasep;
 	}
 
 	public void setEr_nombre_proyecto(String er_nombre_proyecto) {

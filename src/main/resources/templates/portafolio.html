@@ -490,7 +490,7 @@
 						
 						<div class="form-group">
 							<label for="descriptionAdd" class="col-form-label">Estado del proyecto:</label>
-							<select name="estadop" class="form-control" id="estadop" disabled>
+							<select name="estadop" class="form-control" id="estadop" >
 						    <option value="EnDesarrollo">En Desarrollo</option>
  							  <option value="Finalizado">Finalizado</option>
     						  <option value="Cancelado">Cancelado</option>
@@ -500,7 +500,7 @@
 					
 					<div class="form-group">
 							<label for="descriptionAdd" class="col-form-label">Fase del proyecto:</label>
-							<select name="fasep" class="form-control"  id="fasep" disabled>
+							<select name="fasep" class="form-control"  id="fasep" >
 						    <option value="Formulacion">Formulación</option>
  							  <option value="Planeacion">Planación</option>
     						  <option value="ejecucion">Ejecución</option>
@@ -552,7 +552,11 @@
 							<input type="text" class="form-control" id="mascaraEdit"
 								name="er_mascara">
 						</div>
-						
+						<div class="form-group">
+							<label for="descriptionEdit" class="col-form-label">Codigo proyecto:</label>
+							<input type="text" class="form-control" id="codproEdit"
+								name="er_proyecto_id" required>
+						</div>
 						<div class="form-group">
 							<label for="descriptionEdit" class="col-form-label">Nombre corto:</label>
 							<input type="text" class="form-control" id="nomshortEdit"
@@ -575,20 +579,20 @@
 						</div>
 									<div class="form-group">
 							<label class="col-form-label">Estado del proyecto:</label>
-							<select name="estadopr" class="form-control" id="estadopr" disabled>
-						    <option value="1">En Desarrollo</option>
- 							  <option value="2">Finalizado</option>
-    						  <option value="3">Cancelado</option>
+							<select name="estadopr" class="form-control" id="estadopr">
+						    <option value="1"></option>
+ 							  <option value="2"></option>
+    						  <option value="3"></option>
 							</select>
 						</div>
 						
 							<div class="form-group">
 							<label class="col-form-label">Fase del proyecto:</label>
-							<select name="fasepr" class="form-control"  id="fasepr" disabled>
-						    <option value="1">Formulación</option>
- 							  <option value="2">Planación</option>
-    						  <option value="3">Ejecución</option>
-    						  <option value="4">Cierre</option>
+							<select name="fasepr" class="form-control"  id="fasepr" >
+						    <option value="1"></option>
+ 							  <option value="2"></option>
+    						  <option value="3"></option>
+    						  <option value="4"></option>
 							</select>
 						</div>
 							<div class="form-group col-sm-2 col-xs-6">
@@ -599,10 +603,13 @@
 													<div><input type="file" id="evidenciaDue"
 														name="evidenciaDue" multiple="multiple"
 														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>
-													
 												</div>
 											</div>
 										</div>
+					</div>
+					<div class="form-group col-sm-3 col-xs-6">
+						<label for="message-text" class="col-form-label">Seguimiento:</label>
+						<textarea class="form-control" id="desc" name="desc" style="width: auto;"></textarea>
 					</div>
 					
 					<div class="modal-footer">
