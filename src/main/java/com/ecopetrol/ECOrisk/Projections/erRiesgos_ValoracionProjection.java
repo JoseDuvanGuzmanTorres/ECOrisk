@@ -53,5 +53,15 @@ public interface erRiesgos_ValoracionProjection {
 	Integer getCongeladosOpexM();
 	Integer getCongeladosOpexL();
 	Integer getCongeladosOpexN();
-
+	Integer getCerradoauca();
+	Integer getCerradAutoCapeHV();
+	Integer getCerradAutoCapexH();
+	Integer getCerradAutoCapexM();
+	Integer getCerradAutoCapexL();
+	Integer getCerradAutoCapexN();
+	Integer getCerradAutoOpexHV();
+	Integer getCerradAutoOpexH();
+	Integer getCerradAutoOpexM();
+	Integer getCerradAutoOpexL();
+	Integer getCerradAutoOpexN();
 }

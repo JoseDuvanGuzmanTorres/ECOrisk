@@ -403,6 +403,13 @@
 					</div>
 				</div>
 				<!-- page start-->
+		<div style="text-align:center" th:if="${errormessage} != null">
+					<div class="alert alert-danger">
+					  <strong th:text="${errormessage}"></strong>
+					</div>
+				</div>
+				
+
 
 				<div class="row">
 					<div class="col-lg-12">
@@ -466,9 +473,7 @@
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
-
 					<div class="modal-body">
-
 						<div class="form-group">
 							<label for="descriptionAdd" class="col-form-label">Máscara:</label>
 							<input type="text" class="form-control" id="descriptionAdd"
@@ -530,7 +535,7 @@
 	</div>
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 		aria-labelledby="ModalLabel" aria-hidden="true">
-		<form th:action="@{/portafolio/update}" method="put">
+		<form th:action="@{/portafolio/update}" method="put" >
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -555,7 +560,7 @@
 						<div class="form-group">
 							<label for="descriptionEdit" class="col-form-label">Codigo proyecto:</label>
 							<input type="text" class="form-control" id="codproEdit"
-								name="er_proyecto_id" required>
+								name="er_proyecto_id">
 						</div>
 						<div class="form-group">
 							<label for="descriptionEdit" class="col-form-label">Nombre corto:</label>
@@ -580,19 +585,19 @@
 									<div class="form-group">
 							<label class="col-form-label">Estado del proyecto:</label>
 							<select name="estadopr" class="form-control" id="estadopr">
-						    <option value="1"></option>
- 							  <option value="2"></option>
-    						  <option value="3"></option>
+						    <option value="1">En Desarrollo</option>
+ 							<option value="2">Finalizado</option>
+    						<option value="3">Cancelado</option>
 							</select>
 						</div>
 						
 							<div class="form-group">
 							<label class="col-form-label">Fase del proyecto:</label>
-							<select name="fasepr" class="form-control"  id="fasepr" >
-						    <option value="1"></option>
- 							  <option value="2"></option>
-    						  <option value="3"></option>
-    						  <option value="4"></option>
+							<select name="fasepr" class="form-control"  id="fasepr">
+						    <option value="1">Planeación</option>
+ 							<option value="2">Formulación</option>
+    						<option value="3">Ejecución</option>
+    						<option value="4">Cierre</option>
 							</select>
 						</div>
 							<div class="form-group col-sm-2 col-xs-6">
@@ -610,18 +615,16 @@
 					<div class="form-group col-sm-3 col-xs-6">
 						<label for="message-text" class="col-form-label">Seguimiento:</label>
 						<textarea class="form-control" id="desc" name="desc" style="width: auto;"></textarea>
-					</div>
-					
+					</div>					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal" data-confirm="desea cancelar?">Cancelar</button>
-						<button type="submit" class="btn btn-primary" onclick="return confirm('Esta seguro de realizar los cambios?');">Guardar</button>
+							data-dismiss="modal" onClick="window.location.reload()">Cancelar</button>
+						<button class="btn btn-primary" onclick="return confirm('Esta seguro de realizar los cambios?');">Guardar</button>
 					</div>
 				</div>
 			</div>
 		</form>
 	</div>
-
 	<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
@@ -633,7 +636,7 @@
 					</button>
 				</div>
 				<div class="modal-body">
-					<p>Esta seguro de eliminar este registro??</p>
+					<p>Esta seguro de eliminar este registro?</p>
 				</div>
 				<div class="modal-footer">
 					<a href="" class="btn btn-primary" id="delRef">Si, Borrar</a>
@@ -644,5 +647,4 @@
 		</div>
 	</div>
 </body>
-
 </html>

@@ -31,66 +31,32 @@ public class ApplicationController {
 		
 		erRiesgos_ValoracionProjection valoraciones = ErRiesgos_ValoracionService.getValoracionesProjection();
 		
-		Integer InicialCapexN   = valoraciones.getInicialCapexN();
-		Integer InicialCapexL   = valoraciones.getInicialCapexL();
-		Integer InicialCapexM   = valoraciones.getInicialCapexM();
-		Integer InicialCapexH   = valoraciones.getInicialCapexH();
-		Integer InicialCapexVH  = valoraciones.getInicialCapexVH();
-		
-		Integer ResidualCapexN   = valoraciones.getResidualCapexN();
-		Integer ResidualCapexL   = valoraciones.getResidualCapexL();
-		Integer ResidualCapexM   = valoraciones.getResidualCapexM();
-		Integer ResidualCapexH   = valoraciones.getResidualCapexH();
-		Integer ResidualCapexVH  = valoraciones.getResidualCapexVH();
-
-		Integer CerradosCapexN  = valoraciones.getCerradosCapexN();
-		Integer CerradosCapexL  = valoraciones.getCerradosCapexL();
-		Integer CerradosCapexM  = valoraciones.getCerradosCapexM();
-		Integer CerradosCapexH  = valoraciones.getCerradosCapexH();
-		Integer CerradosCapexVH = valoraciones.getCerradosCapexVH();
-		
+		Integer InicialCapexN = valoraciones.getInicialCapexN();
+		Integer InicialCapexL = valoraciones.getInicialCapexL();
+		Integer InicialCapexM = valoraciones.getInicialCapexM();
+		Integer InicialCapexH = valoraciones.getInicialCapexH();
+		Integer InicialCapexVH  = valoraciones.getInicialCapexVH();		
+		Integer ResidualCapexN  = valoraciones.getResidualCapexN();
+		Integer ResidualCapexL = valoraciones.getResidualCapexL();
+		Integer ResidualCapexM = valoraciones.getResidualCapexM();
+		Integer ResidualCapexH = valoraciones.getResidualCapexH();
+		Integer ResidualCapexVH = valoraciones.getResidualCapexVH();
+		Integer CerradosCapexN = valoraciones.getCerradosCapexN();
+		Integer CerradosCapexL = valoraciones.getCerradosCapexL();
+		Integer CerradosCapexM = valoraciones.getCerradosCapexM();
+		Integer CerradosCapexH = valoraciones.getCerradosCapexH();
+		Integer CerradosCapexVH = valoraciones.getCerradosCapexVH();		
 		Integer AbiertosCapexN = valoraciones.getAbiertosCapexN();
 		Integer AbiertosCapexL = valoraciones.getAbiertosCapexL();
 		Integer AbiertosCapexM = valoraciones.getAbiertosCapexM();
 		Integer AbiertosCapexH = valoraciones.getAbiertosCapexH();
 		Integer AbiertosCapexVH = valoraciones.getAbiertosCapexVH();
-	
 		Integer CongeladosCapexVH = valoraciones.getCongeladosCapexVH();
 		Integer CongeladosCapexH = valoraciones.getCongeladosCapexH();
 		Integer CongeladosCapexM = valoraciones.getCongeladosCapexM();
 		Integer CongeladosCapexL = valoraciones.getCongeladosCapexL();
 		Integer CongeladosCapexN = valoraciones.getCongeladosCapexN();
-		
-		model.addAttribute("InicialCapexN",   InicialCapexN);
-		model.addAttribute("InicialCapexL",   InicialCapexL);
-		model.addAttribute("InicialCapexM",   InicialCapexM);
-		model.addAttribute("InicialCapexH",   InicialCapexH);
-		model.addAttribute("InicialCapexVH",  InicialCapexVH);
-		
-		model.addAttribute("ResidualCapexN",   ResidualCapexN);
-		model.addAttribute("ResidualCapexL",   ResidualCapexL);
-		model.addAttribute("ResidualCapexM",   ResidualCapexM);
-		model.addAttribute("ResidualCapexH",   ResidualCapexH);
-		model.addAttribute("ResidualCapexVH",  ResidualCapexVH);
-		
-		model.addAttribute("CerradosCapexN",  CerradosCapexN);
-		model.addAttribute("CerradosCapexL",  CerradosCapexL);
-		model.addAttribute("CerradosCapexM",  CerradosCapexM);
-		model.addAttribute("CerradosCapexH",  CerradosCapexH);
-		model.addAttribute("CerradosCapexVH", CerradosCapexVH);
-			
-		model.addAttribute("AbiertosCapexN", AbiertosCapexN);
-		model.addAttribute("AbiertosCapexL", AbiertosCapexL);
-		model.addAttribute("AbiertosCapexM", AbiertosCapexM);
-		model.addAttribute("AbiertosCapexH", AbiertosCapexH);
-		model.addAttribute("AbiertosCapexVH", AbiertosCapexVH);
-		
-		model.addAttribute("CongeladosCapexVH", CongeladosCapexVH);
-		model.addAttribute("CongeladosCapexH", CongeladosCapexH);
-		model.addAttribute("CongeladosCapexM", CongeladosCapexM);
-		model.addAttribute("CongeladosCapexL", CongeladosCapexL);
-		model.addAttribute("CongeladosCapexN", CongeladosCapexN);
-	
+		Integer Cerradoauca1 = valoraciones.getCerradoauca();
 		Integer InicialOpexN = valoraciones.getInicialOpexN();
 		Integer InicialOpexL = valoraciones.getInicialOpexL();
 		Integer InicialOpexM = valoraciones.getInicialOpexM();
@@ -116,8 +82,42 @@ public class ApplicationController {
 		Integer CongeladosOpexM = valoraciones.getCongeladosOpexM();
 		Integer CongeladosOpexL = valoraciones.getCongeladosOpexL();
 		Integer CongeladosOpexN = valoraciones.getCongeladosOpexN();
+		Integer CerradAutoCapeHV = valoraciones.getCerradAutoCapeHV();
+		Integer CerradAutoCapexH = valoraciones.getCerradAutoCapexH();
+		Integer CerradAutoCapexM = valoraciones.getCerradAutoCapexM();
+		Integer CerradAutoCapexL = valoraciones.getCerradAutoCapexL();
+		Integer CerradAutoCapexN = valoraciones.getCerradAutoCapexN();
+		Integer CerradAutoOpexHV = valoraciones.getCerradAutoOpexHV();
+		Integer CerradAutoOpexH = valoraciones.getCerradAutoOpexH();
+		Integer CerradAutoOpexM = valoraciones.getCerradAutoOpexM();
+		Integer CerradAutoOpexL = valoraciones.getCerradAutoOpexL();
+		Integer CerradAutoOpexN = valoraciones.getCerradAutoOpexN();
 
-		
+		model.addAttribute("InicialCapexN",   InicialCapexN);
+		model.addAttribute("InicialCapexL",   InicialCapexL);
+		model.addAttribute("InicialCapexM",   InicialCapexM);
+		model.addAttribute("InicialCapexH",   InicialCapexH);
+		model.addAttribute("InicialCapexVH",  InicialCapexVH);		
+		model.addAttribute("ResidualCapexN",   ResidualCapexN);
+		model.addAttribute("ResidualCapexL",   ResidualCapexL);
+		model.addAttribute("ResidualCapexM",   ResidualCapexM);
+		model.addAttribute("ResidualCapexH",   ResidualCapexH);
+		model.addAttribute("ResidualCapexVH",  ResidualCapexVH);		
+		model.addAttribute("CerradosCapexN",  CerradosCapexN);
+		model.addAttribute("CerradosCapexL",  CerradosCapexL);
+		model.addAttribute("CerradosCapexM",  CerradosCapexM);
+		model.addAttribute("CerradosCapexH",  CerradosCapexH);
+		model.addAttribute("CerradosCapexVH", CerradosCapexVH);			
+		model.addAttribute("AbiertosCapexN", AbiertosCapexN);
+		model.addAttribute("AbiertosCapexL", AbiertosCapexL);
+		model.addAttribute("AbiertosCapexM", AbiertosCapexM);
+		model.addAttribute("AbiertosCapexH", AbiertosCapexH);
+		model.addAttribute("AbiertosCapexVH", AbiertosCapexVH);		
+		model.addAttribute("CongeladosCapexVH", CongeladosCapexVH);
+		model.addAttribute("CongeladosCapexH", CongeladosCapexH);
+		model.addAttribute("CongeladosCapexM", CongeladosCapexM);
+		model.addAttribute("CongeladosCapexL", CongeladosCapexL);
+		model.addAttribute("CongeladosCapexN", CongeladosCapexN);			
 		model.addAttribute("InicialOpexN", InicialOpexN );
 		model.addAttribute("InicialOpexL", InicialOpexL );
 		model.addAttribute("InicialOpexM", InicialOpexM );
@@ -143,12 +143,16 @@ public class ApplicationController {
 		model.addAttribute("CongeladosOpexM", CongeladosOpexM);
 		model.addAttribute("CongeladosOpexL", CongeladosOpexL);
 		model.addAttribute("CongeladosOpexN", CongeladosOpexN);
-
-		
-
-
-		
-		
+		model.addAttribute("CerradAutoCapeHV", CerradAutoCapeHV);
+		model.addAttribute("CerradAutoCapexH", CerradAutoCapexH);
+		model.addAttribute("CerradAutoCapexM", CerradAutoCapexM);
+		model.addAttribute("CerradAutoCapexL", CerradAutoCapexL);
+		model.addAttribute("CerradAutoCapexN", CerradAutoCapexN);
+		model.addAttribute("CerradAutoOpexHV", CerradAutoOpexHV);
+		model.addAttribute("CerradAutoOpexH", CerradAutoOpexH);
+		model.addAttribute("CerradAutoOpexM", CerradAutoOpexM);
+		model.addAttribute("CerradAutoOpexL", CerradAutoOpexL);
+		model.addAttribute("CerradAutoOpexN", CerradAutoOpexN);
 		
 		ContadorTalleresProjection contadores = Er_EncabezadoService.getContadorTalleres();
 		Integer Whatifca = contadores.getWhatifca();

@@ -569,26 +569,4 @@ $(document).ready( function () {
 		$('#filter_cierre').val(cierre);
 		$('#filter_cierre').keyup();
 	}
-	
-	var tipoes = $('#tipoestudio').val();
-     if(tipoes == 1){
-     	document.getElementById("TLeccionesA").style.display = "block";
-     	document.getElementById("TTodos").style.display = "block";    	
-     }
-     $('#tipoestudio').change(function (){
-     	var tipoes = $('#tipoestudio').val();
-     	if(tipoes == 1){
-	    	document.getElementById("TLeccionesA").style.display = "block";
-     		document.getElementById("TTodos").style.display = "block";
-	    }else if (tipocambio == 2){
-		document.getElementById("TLeccionesA").style.display = "none";
-     		document.getElementById("TTodos").style.display = "block";
-	    }else if (tipocambio == 6){
-			document.getElementById("TLeccionesA").style.display = "block";
-     		document.getElementById("TTodos").style.display = "none"; 
-	    }
-     	
-     });
-    
-   
 } );
