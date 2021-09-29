@@ -144,13 +144,12 @@ public class SendingController {
 		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
 		
 		emailService.sendMailIndicadores(Para,Asunto,ctx);
-		
-		
+				
 		emailService.sendMailIndicadores(Para,Asunto,ctx);
 		System.out.println("Salida controles: "+Para);
 		Thread.sleep(1000);	
     	return "redirect:/";
-    } 
+    }
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes
