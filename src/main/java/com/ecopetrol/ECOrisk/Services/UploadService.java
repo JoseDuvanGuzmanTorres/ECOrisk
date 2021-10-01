@@ -1,6 +1,7 @@
 package com.ecopetrol.ECOrisk.Services;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,6 +57,8 @@ import com.ecopetrol.ECOrisk.Repositories.erSubtemaRepository;
 import com.ecopetrol.ECOrisk.Repositories.erTemaRepository;
 import com.ecopetrol.ECOrisk.Repositories.erEncabezadoRepository;
 
+import com.ecopetrol.ECOrisk.Services.UserService;
+
 @Service
 public class UploadService {
 
@@ -95,6 +98,9 @@ public class UploadService {
 	private erTemaRepository ErTemaRepository;
 	@Autowired
 	private erSubtemaRepository ErSubtemaRepository;
+	
+	@Autowired
+	private UserService UserService;
 
 	public List<String> saveDataFromUploadFile(MultipartFile file, Integer TipoEstudio) {
 		List<String> getError = new ArrayList<String>();
@@ -404,25 +410,34 @@ public class UploadService {
 
 						// Dueño proceso o Lider proyecto
 						num = 5;
+						
 						TempError = getErrores(row, num, 255, "Dueño del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
-							if (Asistentes.containsKey(Temp)) {
-								Users usuario = Asistentes.get(Temp);
-								encabezado.setE_liderproyecto(usuario.getId());
-								if (usuario.getRoles_id() != 2 && usuario.getRoles_id() != 3
-										&& usuario.getRoles_id() != 6) {
-									usuario.setRoles_id(1);
-									userRepository.save(usuario);
-								}
-
-							} else {
-								Error.add("El usuario \"" + Temp + "\" no se encuentra en la lista de participantes");
-							}
-						} else {
+							String Correo = row.getCell(5).getStringCellValue();
+							
+							
+							
+							Users usuarioN = new Users();
+							usuarioN.setFullname(Temp);
+							usuarioN.setUsername(Correo);
+							UserService.save(usuarioN);
+							encabezado.setE_liderproyecto(usuarioN.getId()); 
+							
+							//comprovaciones antiguas de dueno de proyecto
+							/*
+							 * if (Asistentes.containsKey(Temp)) { Users usuario = Asistentes.get(Temp);
+							 * encabezado.setE_liderproyecto(usuario.getId()); if (usuario.getRoles_id() !=
+							 * 2 && usuario.getRoles_id() != 3 && usuario.getRoles_id() != 6) {
+							 * usuario.setRoles_id(1); userRepository.save(usuario); }
+							 * 
+							 * } else { Error.add("El usuario \"" + Temp +
+							 * "\" no se encuentra en la lista de participantes"); }
+							 */
+							
+	 					} else {
 							Error.addAll(TempError);
 						}
-
 						// Departamento
 						num = 11;
 						TempError = getErrores(row, num, 255, "Departamento del proyecto", rowcount);
@@ -443,12 +458,35 @@ public class UploadService {
 						break;
 
 					case 9:
+						//correo electronico dueño de taller
+						//coordinacion cliente
+						num = 11;
+						TempError = getErrores(row, num, 255, "Coordinacion del proyecto", rowcount);
+						if (TempError.isEmpty()) {
+							String Temp = row.getCell(num).getStringCellValue();
+							erDepartamentos Tempo = ErDepartamentosRepository.findByDepartamento(Temp);
+							if (Tempo == null) {
+								Error.add("Coordinacion Inválida.");
+							} else {
+								encabezado.setEd_coordcliente_id(Tempo.getEd_deptocliente_id());
+							}
+						} else {
+							if (TipoEstudio != 5) {
+								Error.addAll(TempError);
+							}
+						}
+						
 
+						break;
+
+					case 10:
 						// Lider Taller
 						num = 5;
 						TempError = getErrores(row, num, 255, "Lider Taller", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
+
+							
 							if (Asistentes.containsKey(Temp)) {
 								Users usuario = Asistentes.get(Temp);
 								encabezado.setE_lidertaller(usuario.getId());
@@ -476,8 +514,7 @@ public class UploadService {
 						}
 
 						break;
-
-					case 10:
+					case 11:
 
 						// Fecha taller
 						num = 5;
@@ -576,8 +613,8 @@ public class UploadService {
 							} else {
 								Error.add("El tipo de taller no válido o está vacío.");
 							}
-								
 						}
+						break;
 					}
 					rowcount++;
 				}

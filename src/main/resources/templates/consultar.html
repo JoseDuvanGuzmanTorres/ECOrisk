@@ -597,6 +597,7 @@
 											<th><i class=""></i>Regional</th>
 											<th><i class=""></i>Gerencia</th>
 											<th><i class=""></i>Dueño</th>
+											<th><i class=""></i>Coordinacion</th>
 											<th><i class=""></i>Dependencia 1</th>
 											<th><i class=""></i>Dependencia 2</th>
 											<th><i class=""></i>Dependencia 3</th>
@@ -620,6 +621,7 @@
 											<td th:text="${encabezado.regional}">Regional</td>
 											<td th:text="${encabezado.gerencia}">Gerencia</td>
 											<td th:text="${encabezado.dueno}">Dueño</td>
+											<td>
 											<td th:text="${encabezado.depar}">Departamento</td>
 											<td th:text="${encabezado.depar2}">Departamento</td>
 											<td th:text="${encabezado.depar3}">Departamento</td>
@@ -632,10 +634,6 @@
 												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver participantes
 												</a>
 												<br>
-												<a class="btn btn-low ver-participantes" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5' OR ${#authentication.getPrincipal().getUserRole()} == '4' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'"
-												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver seguimiento
-												</a>
-												
 											</td>
 										</tr>
 									</tbody>
