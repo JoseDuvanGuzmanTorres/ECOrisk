@@ -138,10 +138,17 @@ public class SendingController {
 		String nombre = "Jose Duvan Guzman Torres";
 		ctx.setVariable("nombre", nombre);
 		
-		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
+		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(29);
 		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
+		
+		List<er_HojaTrabajoProjection> hojatrabajoList = Er_HojaTrabajoService.getAllProjectionAbiertasByDueno(29);
+		ctx.setVariable("hojatrabajoList", hojatrabajoList);
+		
+		  List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(29);
+		ctx.setVariable("IndicadoresLA", IndicadoresLA);
+		
+		 List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(29);
+		ctx.setVariable("leccionesAList", leccionesAList);
 		
 		emailService.sendMailIndicadores(Para,Asunto,ctx);
 				

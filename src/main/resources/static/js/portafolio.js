@@ -115,6 +115,9 @@ $('document').ready(function() {
 			},
 		]	        
     });
+    
+    $('.insertar_alertas' ).empty();
+    $(".insertar_alertas" ).append( '<div class="alert alert-danger alert-dismissible fade show"><strong>Tiene que agregar seguimiento</strong></div>');
 
     $('#Editar').submit(function(e){ 
         var deVal = $('#fasepr').val();        

@@ -634,7 +634,12 @@
 												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver participantes
 												</a>
 												<br>
+												<a class="btn btn-low ver-participantes" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5' OR ${#authentication.getPrincipal().getUserRole()} == '4' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'"
+												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver seguimiento
+												</a>
+												<br>
 											</td>
+											
 										</tr>
 									</tbody>
 								</table>
