@@ -1,6 +1,7 @@
 package com.ecopetrol.ECOrisk.Services;
 
 import java.util.ArrayList;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -56,6 +57,8 @@ import com.ecopetrol.ECOrisk.Repositories.erSubtemaRepository;
 import com.ecopetrol.ECOrisk.Repositories.erTemaRepository;
 import com.ecopetrol.ECOrisk.Repositories.erEncabezadoRepository;
 
+import com.ecopetrol.ECOrisk.Services.UserService;
+
 @Service
 public class UploadService {
 
@@ -95,6 +98,9 @@ public class UploadService {
 	private erTemaRepository ErTemaRepository;
 	@Autowired
 	private erSubtemaRepository ErSubtemaRepository;
+	
+	@Autowired
+	private UserService UserService;
 
 	public List<String> saveDataFromUploadFile(MultipartFile file, Integer TipoEstudio) {
 		List<String> getError = new ArrayList<String>();
@@ -293,10 +299,10 @@ public class UploadService {
 		Integer num;
 		List<String> PosiblesErrores = new ArrayList<String>();
 		if (!rows.hasNext()) {
-
 			Error.add("Formato Incorrecto o archivo vacío. \n");
 		} else {
 			try {
+				
 				while (rows.hasNext()) {
 					Row row = rows.next();
 					switch (rowcount) {
@@ -307,6 +313,7 @@ public class UploadService {
 						TempError = getErrores(row, num, 255, "Nombre del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String TempNom = row.getCell(num).getStringCellValue();
+
 							encabezado.setE_nombreproyecto(TempNom);
 						} else {
 							Error.addAll(TempError);
@@ -317,6 +324,7 @@ public class UploadService {
 						TempError = getErrores(row, num, 255, "Objetivo del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
+
 							encabezado.setE_objetivoproyecto(Temp);
 						} else {
 							PosiblesErrores.addAll(TempError);
@@ -336,6 +344,7 @@ public class UploadService {
 								Error.add("Etapa Inválida.");
 							} else {
 								encabezado.setEe_etapaproyecto_id(Tempo.getEe_etapaproyecto_id());
+								
 							}
 						} else {
 							if (TipoEstudio != 5) {
@@ -364,7 +373,6 @@ public class UploadService {
 					case 7:
 
 						// Codigo documento
-
 						num = 5;
 						TempError = getErrores(row, num, 255, "Código del documento", rowcount);
 						if (TempError.isEmpty()) {
@@ -402,25 +410,34 @@ public class UploadService {
 
 						// Dueño proceso o Lider proyecto
 						num = 5;
+						
 						TempError = getErrores(row, num, 255, "Dueño del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
-							if (Asistentes.containsKey(Temp)) {
-								Users usuario = Asistentes.get(Temp);
-								encabezado.setE_liderproyecto(usuario.getId());
-								if (usuario.getRoles_id() != 2 && usuario.getRoles_id() != 3
-										&& usuario.getRoles_id() != 6) {
-									usuario.setRoles_id(1);
-									userRepository.save(usuario);
-								}
-
-							} else {
-								Error.add("El usuario \"" + Temp + "\" no se encuentra en la lista de participantes");
-							}
-						} else {
+							String Correo = row.getCell(5).getStringCellValue();
+							
+							
+							
+							Users usuarioN = new Users();
+							usuarioN.setFullname(Temp);
+							usuarioN.setUsername(Correo);
+							UserService.save(usuarioN);
+							encabezado.setE_liderproyecto(usuarioN.getId()); 
+							
+							//comprovaciones antiguas de dueno de proyecto
+							/*
+							 * if (Asistentes.containsKey(Temp)) { Users usuario = Asistentes.get(Temp);
+							 * encabezado.setE_liderproyecto(usuario.getId()); if (usuario.getRoles_id() !=
+							 * 2 && usuario.getRoles_id() != 3 && usuario.getRoles_id() != 6) {
+							 * usuario.setRoles_id(1); userRepository.save(usuario); }
+							 * 
+							 * } else { Error.add("El usuario \"" + Temp +
+							 * "\" no se encuentra en la lista de participantes"); }
+							 */
+							
+	 					} else {
 							Error.addAll(TempError);
 						}
-
 						// Departamento
 						num = 11;
 						TempError = getErrores(row, num, 255, "Departamento del proyecto", rowcount);
@@ -441,12 +458,35 @@ public class UploadService {
 						break;
 
 					case 9:
+						//correo electronico dueño de taller
+						//coordinacion cliente
+						num = 11;
+						TempError = getErrores(row, num, 255, "Coordinacion del proyecto", rowcount);
+						if (TempError.isEmpty()) {
+							String Temp = row.getCell(num).getStringCellValue();
+							erDepartamentos Tempo = ErDepartamentosRepository.findByDepartamento(Temp);
+							if (Tempo == null) {
+								Error.add("Coordinacion Inválida.");
+							} else {
+								encabezado.setEd_coordcliente_id(Tempo.getEd_deptocliente_id());
+							}
+						} else {
+							if (TipoEstudio != 5) {
+								Error.addAll(TempError);
+							}
+						}
+						
 
+						break;
+
+					case 10:
 						// Lider Taller
 						num = 5;
 						TempError = getErrores(row, num, 255, "Lider Taller", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
+
+							
 							if (Asistentes.containsKey(Temp)) {
 								Users usuario = Asistentes.get(Temp);
 								encabezado.setE_lidertaller(usuario.getId());
@@ -474,8 +514,7 @@ public class UploadService {
 						}
 
 						break;
-
-					case 10:
+					case 11:
 
 						// Fecha taller
 						num = 5;
@@ -553,9 +592,11 @@ public class UploadService {
 						if (TipoEstudio == 2 || TipoEstudio == 3 || TipoEstudio == 4) {
 							// TIPO TALLER
 							if (row.getCell(num).getCellType() == CellType.STRING) {
+							
 								String tipotaller = row.getCell(num).getStringCellValue();
+						
 								if (tipotaller.equals("")) {
-
+									
 									Error.add("El tipo de taller está vacío");
 
 								}else if (tipotaller.equals("Design Review") && TipoEstudio == 4) {
@@ -564,7 +605,7 @@ public class UploadService {
 											"El tipo de taller no corresponde, usted seleccionó un PeerReview en el cargue de Design Review");
 
 								} else if (tipotaller.equals("Peer Review") && TipoEstudio == 3) {
-
+										
 									Error.add(
 											"El tipo de taller no corresponde, usted seleccionó un Design Review en el cargue de PeerReview");
 
@@ -573,13 +614,12 @@ public class UploadService {
 								Error.add("El tipo de taller no válido o está vacío.");
 							}
 						}
-
+						break;
 					}
-
 					rowcount++;
 				}
 			} catch (Exception e) {
-				Error.add("Formato incorrecto");
+				Error.add("Error Inesperado en la hoja \"Agenda\", revisar la informacion y sus formatos.");
 			}
 		}
 
@@ -623,7 +663,6 @@ public class UploadService {
 						TempError = getErrores(row, num, 255, "Nombre del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String TempNom = row.getCell(num).getStringCellValue();
-							System.out.println("Etapa : "+ TempNom);
 							encabezado.setE_nombreproyecto(TempNom);
 						} else {
 							Error.addAll(TempError);
@@ -683,7 +722,6 @@ public class UploadService {
 						TempError = getErrores(row, num, 255, "Etapa del proyecto", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(num).getStringCellValue();
-							System.out.println("Etapa : "+ Temp);
 							erEtapas Tempo = ErEtapasRepository.findByEtapa(Temp);
 							if (Tempo == null) {
 								Error.add("Etapa Inválida. : " + Temp);
@@ -1249,7 +1287,7 @@ public class UploadService {
 						}
 
 					}
-
+					
 					// Fecha
 					if (fecha != -1) {
 						TempError = getErrores(row, fecha, 255, "La fecha", rowcount);
@@ -1298,10 +1336,14 @@ public class UploadService {
 				if (hojatrabajo.getEr_estado_id() == null) {
 					hojatrabajo.setEr_estado_id(1);// 1 Abierto, 2 Cerrado.
 				}
-				if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+				if (hojatrabajo.getHt_fechaplaneadacierre() != null) {
+					if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+						hojatrabajo.setEr_oportunidad_id(2);
+					} else {
+						hojatrabajo.setEr_oportunidad_id(1);
+					}
+				}else {
 					hojatrabajo.setEr_oportunidad_id(2);
-				} else {
-					hojatrabajo.setEr_oportunidad_id(1);
 				}
 			}
 			Er_HojaTrabajoRepository.saveAll(HojaTrabajoList);
@@ -1598,10 +1640,14 @@ public class UploadService {
 				if (hojatrabajo.getEr_estado_id() == null) {
 					hojatrabajo.setEr_estado_id(1);// 1 Abierto, 2 Cerrado.
 				}
-				if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+				if (hojatrabajo.getHt_fechaplaneadacierre() != null) {
+					if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+						hojatrabajo.setEr_oportunidad_id(2);
+					} else {
+						hojatrabajo.setEr_oportunidad_id(1);
+					}
+				}else {
 					hojatrabajo.setEr_oportunidad_id(2);
-				} else {
-					hojatrabajo.setEr_oportunidad_id(1);
 				}
 			}
 			Er_HojaTrabajoRepository.saveAll(HojaTrabajoList);
@@ -1693,6 +1739,7 @@ public class UploadService {
 			rr_rp_id = 15;
 			rr_rv_id = 16;
 			ht_observacionesacta = 17;
+			
 			break;
 		case 5:
 			altura = 13;
@@ -1751,16 +1798,19 @@ public class UploadService {
 						// Observaciones
 						if (ht_observacionesacta != -1) {
 							TempError = getErrores(row, ht_observacionesacta, 2000, "La observación", rowcount);
+							
 							if (TempError.isEmpty())
 							{
 								String Temp = row.getCell(ht_observacionesacta).getStringCellValue();
 
 								if (Temp.startsWith("Cerrado") || Temp.startsWith("cerrado")) {
 									cerrado = true;
+									
 									hojatrabajo.setEr_estado_id(3);
 									hojatrabajo.setHt_fechacierre(encabezado.getE_fechataller());
 									hojatrabajo.setEr_cierre_id(1);
 								}
+							
 								hojatrabajo.setHt_observacionesacta(Temp);
 							} else {
 								if (row.getCell(ht_observacionesacta).getCellType() == CellType.STRING) {
@@ -1775,8 +1825,7 @@ public class UploadService {
 						if (ht_pregunta != -1) {
 							TempError = getErrores(row, ht_pregunta, 2000, "La pregunta", rowcount);
 							if (TempError.isEmpty()) {
-								String Temp = row.getCell(ht_pregunta).getStringCellValue();
-								System.out.println("Pregunta : "+ Temp);
+								String Temp = row.getCell(ht_pregunta).getStringCellValue();							
 								hojatrabajo.setHt_pregunta(Temp);
 							} else {
 								if (row.getCell(ht_pregunta).getCellType() == CellType.STRING) {
@@ -1795,7 +1844,7 @@ public class UploadService {
 							TempError = getErrores(row, ht_respuestaresp, 2000, "La respuesta del responsable",
 									rowcount);
 							if (TempError.isEmpty()) {
-								String Temp = row.getCell(ht_respuestaresp).getStringCellValue();
+								String Temp = row.getCell(ht_respuestaresp).getStringCellValue();								
 								hojatrabajo.setHt_respuestaresp(Temp);
 							} else {
 								if (row.getCell(ht_respuestaresp).getCellType() == CellType.STRING) {
@@ -1845,7 +1894,7 @@ public class UploadService {
 								}
 								if (TempEs == null) {
 									Error.add("Especialidad inválida. FILA (" + (rowcount + 1) + ")");
-								} else {
+								} else {									
 									hojatrabajo.setEs_especialidad_id(TempEs.getEs_especialidad_id());
 								}
 							} else {
@@ -1904,7 +1953,6 @@ public class UploadService {
 								if (row.getCell(ra_rv_id).getCellType() == CellType.STRING) {
 									String valoracion = row.getCell(ra_rv_id).getStringCellValue();
 									TempRies = ErRiesgos_ValoracionRepository.findByValoracion(valoracion);
-									System.out.println("Actual Valoracion : "+ valoracion);
 								} else if (row.getCell(ra_rv_id).getCellType() == CellType.NUMERIC) {
 
 									Integer valoracion = (int) row.getCell(ra_rv_id).getNumericCellValue();
@@ -2000,7 +2048,7 @@ public class UploadService {
 									rowcount);
 							if (TempError.isEmpty()) {
 								try {
-									Date Temp = row.getCell(ht_fechaplaneadacierre).getDateCellValue();
+									Date Temp = row.getCell(ht_fechaplaneadacierre).getDateCellValue();		
 									hojatrabajo.setHt_fechaplaneadacierre(Temp);
 								} catch (Exception e) {
 									Error.add("Formato de fecha incorrecto FILA(" + (rowcount + 1) + ")");
@@ -2084,7 +2132,6 @@ public class UploadService {
 								erRiesgos_Probabilidad TempRies = null;
 								if (row.getCell(ra_rp_id).getCellType() == CellType.STRING) {
 									String Probabilidad = row.getCell(ra_rp_id).getStringCellValue();
-									System.out.println("Actual Probabilidad : "+ Probabilidad);
 									TempRies = ErRiesgos_ProbabilidadRepository.findByValoracion(Probabilidad);
 								} else if (row.getCell(ra_rp_id).getCellType() == CellType.NUMERIC) {
 
@@ -2105,8 +2152,6 @@ public class UploadService {
 							}
 
 						}
-
-						
 
 						// Riesgo Residual
 						// Consecuencias
@@ -2152,7 +2197,6 @@ public class UploadService {
 									String Probabilida = "" + Probabilidad;
 									TempRies = ErRiesgos_ProbabilidadRepository.findByValoracion(Probabilida);
 								}
-
 								if (TempRies != null) {
 									hojatrabajo.setRr_rp_id(TempRies.getRp_id());
 								} else {
@@ -2222,7 +2266,6 @@ public class UploadService {
 		} catch (Exception e) {
 			Error.add(
 					"Error Inesperado, Revise la información de la hoja de trabajo, corrija e intente cargarla nuevamente.");
-			System.out.println(e);
 		}
 
 
@@ -2243,10 +2286,14 @@ public class UploadService {
 				if (hojatrabajo.getEr_estado_id() == null) {
 					hojatrabajo.setEr_estado_id(1);// 1 Abierto, 2 Cerrado.
 				}
-				if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+				if (hojatrabajo.getHt_fechaplaneadacierre() != null) {
+					if (hojatrabajo.getHt_fechaplaneadacierre().compareTo(ahora) >= 0) {
+						hojatrabajo.setEr_oportunidad_id(2);
+					} else {
+						hojatrabajo.setEr_oportunidad_id(1);
+					}
+				}else {
 					hojatrabajo.setEr_oportunidad_id(2);
-				} else {
-					hojatrabajo.setEr_oportunidad_id(1);
 				}
 			}
 			Er_HojaTrabajoRepository.saveAll(HojaTrabajoList);
@@ -2262,9 +2309,12 @@ public class UploadService {
 	public List<String> getErrores(Row row, Integer num, Integer limite, String NomCol, Integer rowcount) {
 		List<String> Error = new ArrayList<String>();
 		CellType Tipo = row.getCell(num).getCellType();
-
+		
 		if (Tipo == CellType.NUMERIC) {
-
+			/*	Date temporalDate = row.getCell(num).getDateCellValue();
+				if (temporalDate == null) {
+				Error.add("Formato de " + NomCol + " incorrecto o está vacío FILA(" + (rowcount + 1) + ")");
+			}*/
 		} else if (Tipo == CellType.STRING) {
 			String Temp = row.getCell(num).getStringCellValue();
 			if (Temp == null || Temp.equals("") || Temp.equals(" ")) {

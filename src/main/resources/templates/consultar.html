@@ -133,7 +133,7 @@
 			<div class="nav search-row" id="top_menu">
 				<!--  search form start -->
 				<ul class="nav top-menu">
-					<li style="display: none;">
+					<li>
 						<form class="navbar-form">
 							<input class="form-control" placeholder="Search" type="text">
 						</form>
@@ -578,8 +578,8 @@
 								</form>
 							</div>
 							<style type="text/css" th:if="${#authentication.getPrincipal().getUsername()} == 'invitado'">
-							 .dt-buttons { display: none; }
-							</style>
+								.dt-buttons { display: none; }
+							   </style>
 							<div class="form-group col-sm-12 col-xs-12">
 								
 								<table id="encabezado-table"
@@ -597,6 +597,7 @@
 											<th><i class=""></i>Regional</th>
 											<th><i class=""></i>Gerencia</th>
 											<th><i class=""></i>Dueño</th>
+											<th><i class=""></i>Coordinacion</th>
 											<th><i class=""></i>Dependencia 1</th>
 											<th><i class=""></i>Dependencia 2</th>
 											<th><i class=""></i>Dependencia 3</th>
@@ -620,6 +621,7 @@
 											<td th:text="${encabezado.regional}">Regional</td>
 											<td th:text="${encabezado.gerencia}">Gerencia</td>
 											<td th:text="${encabezado.dueno}">Dueño</td>
+											<td>
 											<td th:text="${encabezado.depar}">Departamento</td>
 											<td th:text="${encabezado.depar2}">Departamento</td>
 											<td th:text="${encabezado.depar3}">Departamento</td>
@@ -635,8 +637,9 @@
 												<a class="btn btn-low ver-participantes" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5' OR ${#authentication.getPrincipal().getUserRole()} == '4' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'"
 												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver seguimiento
 												</a>
-												
+												<br>
 											</td>
+											
 										</tr>
 									</tbody>
 								</table>
@@ -645,14 +648,16 @@
 					</div>
 				</div>
 				<!-- Master Table -->
-				<div class="row" name=>
+				
+				<div id="TTodos">
+				<div class="row" name="TT">
 					
 					<div class="col-lg-12">
 						<section class="panel">
 							<header class="panel-heading"> Talleres What-if, TDR/TPR y TCO </header>
 							<style type="text/css" th:if="${#authentication.getPrincipal().getUsername()} == 'invitado'">
-								.dt-buttns { display: none; }
-							</style>
+								.dt-buttons { display: none; }
+							   </style>
 							<table id="masterhojatrabajo-table"
 								class="table table-striped table-bordered">
 								<thead>
@@ -731,15 +736,16 @@
 						</section>
 					</div>
 				</div>
-
-				<div class="row">
+			</div>	
+	<div >
+				<div class="row" name="TLA" id="TLeccionesA">
 					
 					<div class="col-lg-12">
 						<section class="panel">
 							<header class="panel-heading"> Talleres Lecciones aprendidas </header>
 							<style type="text/css" th:if="${#authentication.getPrincipal().getUsername()} == 'invitado'">
-								.dt-buttns { display: none; }
-							</style>
+								.dt-buttons { display: none; }
+							   </style>
 							<table id="masterhojatrabajo-table2"
 								class="table table-striped table-bordered">
 								<thead>
@@ -763,7 +769,7 @@
 										<th><i class=""></i>Causa raíz</th>
 										<th><i class=""></i>Qué se aprendió</th>
 										<th><i class=""></i>Descriptores</th>
-										<th><i class=""></i>Acción a desa	rrollar</th>
+										<th><i class=""></i>Control</th>
 										<th><i class=""></i>Responsable</th>
 										<th><i class=""></i>Gap</th>
 										<th><i class=""></i>Fecha</th>
@@ -779,7 +785,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="hojatrabajo:${LeccioneshojatrabajoList} ">
+									<tr th:each="hojatrabajo:${LeccioneshojatrabajoList}">
 									 	<td th:if="${#authentication.getPrincipal().getUserRole()} == '6'" th:text="${hojatrabajo.id}">ID</td>
 									 	<td th:text="${hojatrabajo.tipo}">Tipo taller</td>
 										<td th:text="${hojatrabajo.nompro}">Nom pro</td>
@@ -819,7 +825,7 @@
 						</section>
 					</div>
 				</div>
-				
+			</div>	
 				<!-- Master Table -->
 				<div class="row">
 					
@@ -827,8 +833,8 @@
 						<section class="panel">
 							<header class="panel-heading">Riesgos Emergentes</header>
 							<style type="text/css" th:if="${#authentication.getPrincipal().getUsername()} == 'invitado'">
-								.dt-buttns { display: none; }
-							</style>
+								.dt-buttons { display: none; }
+							   </style>
 							<table id="masterhojatrabajo-table4"
 								class="table table-striped table-bordered">
 								<thead>
@@ -908,8 +914,8 @@
 						<section class="panel">
 							<header class="panel-heading"> Riesgos Materializados </header>
 							<style type="text/css" th:if="${#authentication.getPrincipal().getUsername()} == 'invitado'">
-								.dt-buttns { display: none; }
-							</style>
+								.dt-buttons { display: none; }
+							   </style>
 							<table id="masterhojatrabajo-table3"
 								class="table table-striped table-bordered">
 								<thead>
@@ -929,7 +935,7 @@
 										<th><i class=""></i>Impacto en tiempo</th>
 										<th><i class=""></i>Área</th>
 										<th><i class=""></i>Descriptores</th>
-										<th><i class=""></i>AcciÃ³n desarrollada</th>
+										<th><i class=""></i>Acción desarrollada</th>
 										<th><i class=""></i>Responsable</th>
 										<th><i class=""></i>Gap</th>
 										<th><i class=""></i>Fecha</th>
@@ -1113,8 +1119,5 @@
 			</div>
 		</form>
 	</div>
-
-	
 </body>
-
 </html>

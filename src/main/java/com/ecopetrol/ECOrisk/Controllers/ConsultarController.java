@@ -289,7 +289,7 @@ public class ConsultarController {
 		model.addAttribute("MasterhojatrabajoList", MasterhojatrabajoList2);
 
 		List<er_HojaTrabajoLeccionesAProjection> LeccioneshojatrabajoList = Er_HojaTrabajoService
-				.getAllHojaTrabajoLAProjectionByEncabezado(id_encabeList, Id);
+				.getAllHojaTrabajoLAProjectionByEncabezado(id_encabeList, null);
 		model.addAttribute("LeccioneshojatrabajoList", LeccioneshojatrabajoList);
 
 		List<er_HojaTrabajoREmergenteProjection> REhojatrabajoList = Er_HojaTrabajoService

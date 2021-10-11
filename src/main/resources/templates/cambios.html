@@ -587,7 +587,7 @@
 								<th
 									th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '3'"><i
 									class=""></i>Cambios</th>
-									<th th:if="${#authentication.getPrincipal().getUserRole()} == '6'"><i class=""></i>Id</th>
+									<th><i class=""></i>Id</th>
 									<th><i class=""></i>Tipo de taller</th>
 									<th><i class=""></i>Código</th>
 									<th><i class=""></i>Estado</th>
@@ -619,7 +619,7 @@
 											<i class="icon_pencil-edit"></i> Ver/ Gestionar Cambios
 										</a>
 									</td>
-									<td th:if="${#authentication.getPrincipal().getUserRole()} == '6'" th:text="${hojatrabajo.id}">ID</td>	
+									<td th:text="${hojatrabajo.id}">ID</td>	
 									<td th:text="${hojatrabajo.tipo}">Tipo taller</td>
 									<td th:text="${hojatrabajo.coddoc}">Cod Doc</td>
 									<td th:text="${hojatrabajo.estado}">Estado</td>

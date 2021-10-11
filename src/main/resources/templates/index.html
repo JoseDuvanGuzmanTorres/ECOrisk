@@ -429,6 +429,7 @@
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>RIESGOS EN GESTION</th>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>RIESGOS GESTIONADOS</th>
 											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>RIESGOS CONGELADOS</th>
+											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>RIESGOS CERRADOS AUTOMATICAMENTE</th>
 										</tr>
 											<tr>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i></th>
@@ -437,6 +438,7 @@
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>Controles Abiertos</th>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>Controles Cerrados</th>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i></th>
+											<th class="riesgos" style= "font-size: 13px;"><i class=""></i></th>
 										</tr>
 									</thead>
 									<tbody>
@@ -444,58 +446,64 @@
 											<td class="bg-vhigh riesgos" style= "font-size: 13px;" >VH</td>
 											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH'" th:text="${InicialCapexVH}">Inicial</a></td>
 											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=VH'" th:text="${ResidualCapexVH}">Residual Esperado</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Abierto'" th:text="${AbiertosVH}">controles abiertos</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Cerrado'"  th:text="${CerradosVH}">controles cerrados</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Congelado'"  th:text="${CongeladosVH}">controles congelados</a></td>
-											
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Abierto'" th:text="${AbiertosCapexVH}">controles abiertos</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Cerrado'"  th:text="${CerradosCapexVH}">controles cerrados</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Congelado'"  th:text="${CongeladosCapexVH}">controles congelados</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=VH&estado=Congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-high riesgos" style= "font-size: 13px;">H</td>
 											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H'"  th:text="${InicialCapexH}">Inicial</a></td>
 											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=H'"  th:text="${ResidualCapexH}">Residual Esperado</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=abierto'"  th:text="${AbiertosH}">controles abiertos</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=Cerrado'"  th:text="${CerradosH}">controles cerrados</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=congelado'"  th:text="${CongeladosH}">controles congelados</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=abierto'"  th:text="${AbiertosCapexH}">controles abiertos</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=Cerrado'"  th:text="${CerradosCapexH}">controles cerrados</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=congelado'"  th:text="${CongeladosCapexH}">controles congelados</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=H&estado=congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-medium riesgos" style= "font-size: 13px;">M</td>
 											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M'"  th:text="${InicialCapexM}">Inicial</a></td>
 											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=M'"  th:text="${ResidualCapexM}">Residual Esperado</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=abierto'"  th:text="${AbiertosM}">controles abiertos</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=Cerrado'" th:text="${CerradosM}">controles cerrados</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=congelado'" th:text="${CongeladosM}">controles congelados</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=abierto'"  th:text="${AbiertosCapexM}">controles abiertos</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=Cerrado'" th:text="${CerradosCapexM}">controles cerrados</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=congelado'" th:text="${CongeladosCapexM}">controles congelados</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=M&estado=congelado'" th:text="${0}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-low riesgos" style= "font-size: 13px;">L</td>
 											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L'" th:text="${InicialCapexL}">Inicial</a></td>
 											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=L'" th:text="${ResidualCapexL}">Residual Esperado</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=Abierto'" th:text="${AbiertosL}">controles abiertos</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=Cerrado'"  th:text="${CerradosL}">controles cerrados</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=congelado'"  th:text="${CongeladosL}">controles congelados</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=Abierto'" th:text="${AbiertosCapexL}">controles abiertos</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=Cerrado'"  th:text="${CerradosCapexL}">controles cerrados</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=congelado'"  th:text="${CongeladosCapexL}">controles congelados</a></td>
+														<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=L&estado=congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-none riesgos" style= "font-size: 13px;">N</td>
 											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N'" th:text="${InicialCapexN}">Inicial</a></td>
 											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=N'" th:text="${ResidualCapexN}">Residual Esperado</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=Abierto'" th:text="${AbiertosN}">controles abiertos</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=Cerrado'"  th:text="${CerradosN}">controles cerrados</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=congelado'"  th:text="${CongeladosN}">controles congelados</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=Abierto'" th:text="${AbiertosCapexN}">controles abiertos</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=Cerrado'"  th:text="${CerradosCapexN}">controles cerrados</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=congelado'"  th:text="${CongeladosCapexN}">controles congelados</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&riesgo=N&estado=congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 											<tr>
 											<td class="riesgos" style= "font-size: 13px;">Residual no Valorado</td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" >N/A</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=N'" >96</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&residual=N'" >93</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" >N/A</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Cerrado'"  th:text="${34}">controles cerrados</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Cerrado'"  th:text="${39}">controles cerrados</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=congelado'" >N/A</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=congelado'" >N/A</a></td>
 										</tr>
 												<tr>
 											<td class="riesgos" style= "font-size: 13px;">TOTAL</td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" th:text="${233}">Inicial</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" th:text="${233}">Residual</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Abierto'" >67</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Cerrado'"  th:text="${89}">controles cerrados</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" th:text="${240}">Inicial</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1'" th:text="${270}">Residual</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Abierto'" >104</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=Cerrado'"  th:text="${99}">controles cerrados</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=congelado'"  th:text="${67}">controles congelados</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=1&estado=congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 									</tbody>
 								</table>
@@ -528,43 +536,43 @@
 									<tbody>
 										<tr>
 											<td class="bg-vhigh riesgos" style= "font-size: 13px;" >VH</td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=VH'" th:text="${3}">Inicial</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH'" th:text="${ORrVH}">Residual Esperado</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=VH&estado=Abierto'" th:text="${0}">controles abiertos</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH&estado=Cerrado'"  th:text="${3}">controles cerrados</a></td>
-											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH&estado=Congelado'"  th:text="${0}">controles congelados</a></td>		
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=VH'" th:text="${InicialOpexVH}">Inicial</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH'" th:text="${ResidualOpexVH}">Residual Esperado</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=VH&estado=Abierto'" th:text="${AbiertosOpexVH}">controles abiertos</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH&estado=Cerrado'"  th:text="${CerradosOpexVH}">controles cerrados</a></td>
+											<td class="bg-vhigh riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=VH&estado=Congelado'"  th:text="${CongeladosOpexVH}">controles congelados</a></td>		
 										</tr>
 										<tr>
 											<td class="bg-high riesgos" style= "font-size: 13px;">H</td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H'"  th:text="${3}">Inicial</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=H'"  th:text="${ORrH}">Residual Esperado</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=abierto'"  th:text="${0}">controles abiertos</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=Cerrado'"  th:text="${3}">controles cerrados</a></td>
-											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=Cerrado'"  th:text="${0}">controles congelados</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H'"  th:text="${InicialOpexH}">Inicial</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=H'"  th:text="${ResidualOpexH}">Residual Esperado</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=abierto'"  th:text="${AbiertosOpexH}">controles abiertos</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=Cerrado'"  th:text="${CerradosOpexH}">controles cerrados</a></td>
+											<td class="bg-high riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=H&estado=Cerrado'"  th:text="${CongeladosOpexH}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-medium riesgos" style= "font-size: 13px;">M</td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M'"  th:text="${5}">Inicial</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=M'"  th:text="${ORrM}">Residual Esperado</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=abierto'"  th:text="${1}">controles abiertos</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=Cerrado'" th:text="${4}">controles cerrados</a></td>
-											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=Cerrado'" th:text="${0}">controles congelados</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M'"  th:text="${InicialOpexM}">Inicial</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=M'" th:text="${ResidualOpexM}">Residual Esperado</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=abierto'"  th:text="${AbiertosOpexM}">controles abiertos</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=Cerrado'" th:text="${CerradosOpexM}">controles cerrados</a></td>
+											<td class="bg-medium riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=M&estado=Cerrado'" th:text="${CongeladosOpexM}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-low riesgos" style= "font-size: 13px;">L</td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L'" th:text="${7}">Inicial</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=L'"   th:text="${ORrL}">Residual Esperado</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Abierto'" th:text="${0}">controles abiertos</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Cerrado'"  th:text="${7}">controles cerrados</a></td>
-											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Cerrado'"  th:text="${0}">controles congelados</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L'" th:text="${InicialOpexL}">Inicial</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=L'" th:text="${ResidualOpexL}">Residual Esperado</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Abierto'" th:text="${AbiertosOpexL}">controles abiertos</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Cerrado'"  th:text="${CerradosOpexL}">controles cerrados</a></td>
+											<td class="bg-low riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=L&estado=Cerrado'"  th:text="${CongeladosOpexL}">controles congelados</a></td>
 										</tr>
 										<tr>
 											<td class="bg-none riesgos" style= "font-size: 13px;">N</td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N'" th:text="${3}">Inicial</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=N'" th:text="${ORrN}">Residual Esperado</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=Abierto'" th:text="${0}">controles abiertos</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=Cerrado'"  th:text="${3}">controles cerrados</a></td>
-											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=congelado'"  th:text="${0}">controles congelados</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N'" th:text="${InicialOpexN}">Inicial</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&residual=N'" th:text="${ResidualOpexN}">Residual Esperado</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=Abierto'" th:text="${AbiertosOpexN}">controles abiertos</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=Cerrado'"  th:text="${CerradosOpexN}">controles cerrados</a></td>
+											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=congelado'"  th:text="${CongeladosOpexN}">controles congelados</a></td>
 										</tr>
 											<tr>
 											<td class="riesgos" style= "font-size: 13px;">Residual no Valorado</td>
@@ -576,10 +584,10 @@
 										</tr>
 											<tr>
 											<td class="riesgos" style= "font-size: 13px;">TOTAL</td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${21}">Inicial</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${21}">Residual</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Abierto'"  th:text="${1}">controles abiertos</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Cerrado'"  th:text="${20}">controles cerrados</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${47}">Inicial</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${46}">Residual</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Abierto'"  th:text="${29}">controles abiertos</a></td>
+											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Cerrado'"  th:text="${18}">controles cerrados</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=congelado'"  th:text="${0}">controles congelados</a></td>
 										</tr>
 									</tbody>

@@ -193,8 +193,7 @@ $(document).ready(function() {
 		     	$(".insertar_alertas" ).append( '<div class="alert alert-danger insertados"><strong>No se pueden agregar más de 3 archivos</strong></div>');
 		     	$('#archivo').val("");
 		     }
-	     }
-	     
+	     }     
 	    //$('#hojatrabajo-table').DataTable().ajax.reload();							     			
 	});
 	
@@ -283,8 +282,7 @@ $(document).ready(function() {
 	            for(var i=0; i<result.length; i++){
 	            	s += '<option value="' + result[i].id + '"> [' + result[i].tipo + '] (' + result[i].coddoc + ') ' + result[i].nompro + '</option>';
 	            }
-	           $('#cuales').html(s);
-	           
+	           $('#cuales').html(s);           
 	      }
     });
     	var user_id = $('#de').val();

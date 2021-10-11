@@ -95,9 +95,9 @@ public class SendingController {
     
     	String asunto = "Interrupción en el servicio de ECOrisk";
     	Context ctx = new Context();
-    	String dia = "10/06/2021";
-    	String horainicio = "06:40 am";
-    	String horafin = "06:50 am";
+    	String dia = "10/09/2021";
+    	String horainicio = "7:50 am";
+    	String horafin = "08:00 am";
     	ctx.setVariable("dia", dia);
     	ctx.setVariable("horainicio", horainicio);
     	ctx.setVariable("horafin", horafin);
@@ -138,24 +138,25 @@ public class SendingController {
 		String nombre = "Jose Duvan Guzman Torres";
 		ctx.setVariable("nombre", nombre);
 		
-		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
+		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(29);
 		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
 		
-		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
+		List<er_HojaTrabajoProjection> hojatrabajoList = Er_HojaTrabajoService.getAllProjectionAbiertasByDueno(29);
+		ctx.setVariable("hojatrabajoList", hojatrabajoList);
+		
+		  List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(29);
 		ctx.setVariable("IndicadoresLA", IndicadoresLA);
-
 		
-		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
-		
-		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
+		 List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(29);
 		ctx.setVariable("leccionesAList", leccionesAList);
 		
+		emailService.sendMailIndicadores(Para,Asunto,ctx);
+				
 		emailService.sendMailIndicadores(Para,Asunto,ctx);
 		System.out.println("Salida controles: "+Para);
 		Thread.sleep(1000);	
     	return "redirect:/";
-    } 
+    }
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes
@@ -173,20 +174,12 @@ public class SendingController {
         		Context ctx = new Context();
         		String Para = email;
         		String Asunto = "Reporte de indicadores de ECOrisk";
-        		
-        		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
+				
+				List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
         		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-        		
-        		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(null);
-        		ctx.setVariable("IndicadoresLA", IndicadoresLA);
-        
-        		
         		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-        		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList); 
-        		
-        		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(null);
-        		ctx.setVariable("leccionesAList", leccionesAList);
-        		
+        		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
+
         		emailService.sendMailIndicadores(Para,Asunto,ctx);
         		System.out.println("Salió LiderProcesoGir :"+ email);
         		

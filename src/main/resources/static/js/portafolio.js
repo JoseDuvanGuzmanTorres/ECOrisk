@@ -1,5 +1,53 @@
 $('document').ready(function() {
 
+    var tipocambio = $('#estadopr').val();
+    if(tipocambio == 1){
+        $('#fasepr').show();
+        $('#estadopr').show();
+    }
+    $('#estadopr').change(function (){
+        var tipocambio = $('#estadopr').val();
+        if(tipocambio == 1){
+           $('#estadopr').show();
+           document.getElementById("fasepr").disabled = false;
+       }else if (tipocambio == 2){
+         
+           document.getElementById("fasepr").disabled = true;
+           document.getElementById("estadopr").disabled = false;
+           $('#estadopr').show();
+       }else if (tipocambio == 3){
+       
+        document.getElementById("fasepr").disabled = true;
+        document.getElementById("estadopr").disabled = false;
+        $('#estadopr').show();
+       }  
+    });    
+    var tipocambio2 = $('#fasepr').val();
+    if(tipocambio2 == 1){
+        $('#fasepr').show();
+        $('#estadopr').show();
+    }
+    $('#fasepr').change(function (){
+        var tipocambio2 = $('#fasepr').val();
+        if(tipocambio2 == 1){        
+           document.getElementById("estadopr").disabled = false;
+           document.getElementById("fasepr").disabled = false;
+       }else if (tipocambio2 == 2){
+           $('#fasepr').show();
+           document.getElementById("fasepr").disabled = false;
+           document.getElementById("estadopr").disabled = true;           
+       }else if (tipocambio2 == 3){
+        $('#fasepr').show();
+        document.getElementById("fasepr").disabled = false;
+        document.getElementById("estadopr").disabled = true;      
+       } else if (tipocambio2 == 4){
+        $('#fasepr').show();
+        document.getElementById("fasepr").disabled = false;
+        document.getElementById("estadopr").disabled = true;        
+       }  
+    });
+    
+
 	$('#portafolio-table thead tr').clone(true).appendTo( '#portafolio-table thead' );
     $('#portafolio-table thead tr:eq(1) th').each( function (i) {
         var title = $(this).text();
@@ -68,12 +116,25 @@ $('document').ready(function() {
 		]	        
     });
     
+    $('.insertar_alertas' ).empty();
+    $(".insertar_alertas" ).append( '<div class="alert alert-danger alert-dismissible fade show"><strong>Tiene que agregar seguimiento</strong></div>');
+
+    $('#Editar').submit(function(e){ 
+        var deVal = $('#fasepr').val();        
+        if(deVal == aVal){
+			alert("No se puede seleccionar al mismo usuario para el cambio");
+		//	$('#a').val('');
+		//	$('#a').select2();
+		}                
+					     			
+	});	
 	$('#portafolio-table').on('click', '.btn-primary', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
 		$.get(href, function(er_portafolio, status) {
 			$('#idEdit').val(er_portafolio.er_portafolio_id);
 			$('#mascaraEdit').val(er_portafolio.er_mascara);
+            $('#codproEdit').val(er_portafolio.estadop);
 			$('#nomshortEdit').val(er_portafolio.er_nombre_corto);
 			$('#nomproEdit').val(er_portafolio.er_nombre_proyecto);
 			$('#procesoEdit').val(er_portafolio.er_proceso);

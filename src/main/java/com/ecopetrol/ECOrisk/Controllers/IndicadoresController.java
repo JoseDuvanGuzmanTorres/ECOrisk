@@ -102,7 +102,7 @@ public class IndicadoresController {
 			 nuevo.setConstructabilidad(indicador.getConstructabilidad());
 			 nuevo.setDreview(indicador.getDreview());
 			 nuevo.setPreview(indicador.getPreview());
-			 
+		
 			 Semanal.add(nuevo);
 		 }
 		 

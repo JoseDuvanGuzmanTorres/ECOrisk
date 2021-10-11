@@ -50,6 +50,12 @@ public class erEncabezado {
 	private Integer ed_deptocliente_id;
 	
 	@ManyToOne
+	@JoinColumn(name="ed_coordcliente_id",insertable = false, updatable = false)
+	private erDepartamentos departamentos1;
+	private Integer ed_coordcliente_id;
+	
+	
+	@ManyToOne
 	@JoinColumn(name="ed_deptocliente_id2",insertable = false, updatable = false)
 	private erDepartamentos departamentos2;
 	private Integer ed_deptocliente_id2;
@@ -136,9 +142,18 @@ public class erEncabezado {
 	public Integer getEd_deptocliente_id() {
 		return ed_deptocliente_id;
 	}
-	public void setEd_deptocliente_id(Integer ed_deptocliente_id) {
+	public void setEd_deptocliente_id(Integer ed_deptocliente_id) { 
 		this.ed_deptocliente_id = ed_deptocliente_id;
 	}
+	
+	public Integer getEd_coordcliente_id() {
+		return ed_coordcliente_id;
+	}
+	public void setEd_coordcliente_id(Integer ed_coordcliente_id) { //
+		this.ed_coordcliente_id = ed_coordcliente_id;
+	}
+	
+	
 	public String getE_instalacioncliente() {
 		return e_instalacioncliente;
 	}

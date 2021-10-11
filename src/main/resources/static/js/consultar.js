@@ -35,7 +35,6 @@ $(document).ready( function () {
 			},
 		]	        
     });
-    
     //Crea Tabla de seguimiento usando AJAX
     $('#encabezado-table').on('click','.ver-participantes',function(event){		
 		event.preventDefault();
@@ -389,7 +388,6 @@ $(document).ready( function () {
     });
     
     //Fin Hoja Trabajo Riesgos Emergentes
-      
     //Crea Tabla de seguimiento usando AJAX
     $('#masterhojatrabajo-table, #masterhojatrabajo-table2, #masterhojatrabajo-table3, #masterhojatrabajo-table4 ').on('click','.add-seguimiento',function(event){		
 		event.preventDefault();
@@ -571,7 +569,4 @@ $(document).ready( function () {
 		$('#filter_cierre').val(cierre);
 		$('#filter_cierre').keyup();
 	}
-	
-    
-   
 } );
