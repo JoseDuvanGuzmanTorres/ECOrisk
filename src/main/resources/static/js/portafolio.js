@@ -116,8 +116,7 @@ $('document').ready(function() {
 		]	        
     });
     
-    $('.insertar_alertas' ).empty();
-    $(".insertar_alertas" ).append( '<div class="alert alert-danger alert-dismissible fade show"><strong>Tiene que agregar seguimiento</strong></div>');
+ 
 
     $('#Editar').submit(function(e){ 
         var deVal = $('#fasepr').val();        
@@ -131,6 +130,8 @@ $('document').ready(function() {
 	$('#portafolio-table').on('click', '.btn-primary', function(event) {
 		event.preventDefault();
 		var href = $(this).attr('href');
+
+        
 		$.get(href, function(er_portafolio, status) {
 			$('#idEdit').val(er_portafolio.er_portafolio_id);
 			$('#mascaraEdit').val(er_portafolio.er_mascara);

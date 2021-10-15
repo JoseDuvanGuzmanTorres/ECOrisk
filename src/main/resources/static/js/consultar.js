@@ -74,6 +74,45 @@ $(document).ready( function () {
           
 		$('#participantesModal').modal();		
 	});
+	
+	    $('#encabezado-table').on('click','.ver-participantes',function(event){		
+		event.preventDefault();
+		var href= $(this).attr('href');
+		var table = $('#participantes-table').DataTable( {
+			"searching": true,
+			language: {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron participantes",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+			     },
+			     "sProcessing":"Procesando...",
+            },
+		    clear: true,
+            destroy: true,
+            "ajax":{
+            	"method" : "POST",
+                "url": href,
+                "dataSrc": ""
+            },
+            "columns":[
+                {data: "nombre"},
+                {data: "rol"},
+			    {data: "dependencia"},
+			    {data: "correo"}
+            ]  
+          });
+          $('#participantes-table').wrap('<div class="dataTables_scroll" style="overflow:auto;" />');
+          
+		$('#participantesModal').modal();		
+	});
     
     //Hoja Trabajo MASTER
     $('#masterhojatrabajo-table thead tr').clone(true).appendTo( '#masterhojatrabajo-table thead' );
@@ -389,7 +428,7 @@ $(document).ready( function () {
     
     //Fin Hoja Trabajo Riesgos Emergentes
     //Crea Tabla de seguimiento usando AJAX
-    $('#masterhojatrabajo-table, #masterhojatrabajo-table2, #masterhojatrabajo-table3, #masterhojatrabajo-table4 ').on('click','.add-seguimiento',function(event){		
+    $('#masterhojatrabajo-table, #masterhojatrabajo-table2, #masterhojatrabajo-table3, #masterhojatrabajo-table4 , #encabezado-table').on('click','.add-seguimiento',function(event){		
 		event.preventDefault();
 		$('#cierreplan').hide();
 		$('#archivo').val("");

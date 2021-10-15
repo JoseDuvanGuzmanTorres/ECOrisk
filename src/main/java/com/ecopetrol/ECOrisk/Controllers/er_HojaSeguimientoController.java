@@ -44,6 +44,12 @@ public class er_HojaSeguimientoController {
 		return Er_HojaSeguimientoService.getSeguimientoProjectionByTrabajoId(hojatrabajo_id);
 	}
 
+	@RequestMapping("hojacomentarios/findByEncabeId")
+	@ResponseBody
+	public List<er_HojaSeguimientoProjection> findByEncabeId(int encabezado_id) {
+		return Er_HojaSeguimientoService.getSeguimientoProjectionByTrabajoId(encabezado_id);
+	}
+
 	// public static String uploadDirectory =
 	// System.getProperty("user.home")+File.separator+"uploads";
 
