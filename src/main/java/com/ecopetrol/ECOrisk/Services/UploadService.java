@@ -157,7 +157,7 @@ public class UploadService {
 			Error.add("Formato Incorrecto o archivo vacío. \n");
 		} else {
 			try {
-				Integer altura = 12;
+				Integer altura = 13;
 				Integer nombre = 3;
 				Integer rol = 5;
 				Integer dependencia = 7;
@@ -1686,7 +1686,7 @@ public class UploadService {
 
 		switch (TipoEstudio) {
 		case 1:
-			altura = 13;
+			altura = 14;
 			ht_pregunta = 2;
 			ht_evento = 4;
 			es_especialidad_id = 6;
@@ -1723,7 +1723,7 @@ public class UploadService {
 		case 2:
 		case 3:
 		case 4:
-			altura = 13;
+			altura = 14;
 			allowfase = true;
 			ht_pregunta = 3;
 			ht_respuestaresp = 5;
@@ -1742,7 +1742,7 @@ public class UploadService {
 			
 			break;
 		case 5:
-			altura = 13;
+			altura = 14;
 			ht_evento = 2;
 			es_especialidad_id = 4;
 			er_matrizram_id = 5;
