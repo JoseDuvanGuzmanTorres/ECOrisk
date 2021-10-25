@@ -6,5 +6,6 @@ public interface erProyectoProjection {
 	String getNombre();
 	String getCodigo();
 	String getProceso();
-		
+	String getestadop();
+	String getfasep();
 }

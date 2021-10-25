@@ -116,29 +116,32 @@ $('document').ready(function() {
 		]	        
     });
     
- 
-
-    $('#Editar').submit(function(e){ 
-        var deVal = $('#fasepr').val();        
-        if(deVal == aVal){
-			alert("No se puede seleccionar al mismo usuario para el cambio");
-		//	$('#a').val('');
-		//	$('#a').select2();
-		}                
-					     			
-	});	
+	
 	$('#portafolio-table').on('click', '.btn-primary', function(event) {
 		event.preventDefault();
+		$('.alertas2' ).empty();
+		$('.alertas1' ).empty();
+		$('#archivo').val("");
+		$('#comentario').val("");
+		
+		comentario = $.trim($('#comentario').val());
+		archivo = $.trim($('#archivo').val());
+		
+		if(comentario == ""){
+	    	$(".alertas1" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un comentario vacío</strong></div>');
+	    }
+	    if(archivo == ""){
+	    	$(".alertas2" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un seguimiento sin evidencia.</strong></div>');
+	    }
 		var href = $(this).attr('href');
-
-        
 		$.get(href, function(er_portafolio, status) {
 			$('#idEdit').val(er_portafolio.er_portafolio_id);
 			$('#mascaraEdit').val(er_portafolio.er_mascara);
-            $('#codproEdit').val(er_portafolio.estadop);
 			$('#nomshortEdit').val(er_portafolio.er_nombre_corto);
 			$('#nomproEdit').val(er_portafolio.er_nombre_proyecto);
 			$('#procesoEdit').val(er_portafolio.er_proceso);
+			$('#estadoprEdit').val(er_portafolio.estadop);
+			$('#faseEdit').val(er_portafolio.fasep);
 			$('#editModal').modal();
 		});
 

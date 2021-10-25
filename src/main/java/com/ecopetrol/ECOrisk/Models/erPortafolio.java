@@ -50,17 +50,27 @@ public class erPortafolio {
 		this.er_nombre_corto = er_nombre_corto;
 	}
 
+
+	public String getEstadop() {
+		return estadop;
+	}
+	
+	public void setEstadop(String estadop) {
+		this.estadop = estadop;
+	}
+
+
+	public String getFasep() {
+		return fasep;
+	}
+	
+	public void setFasep(String fasep) {
+		this.fasep = fasep;
+	}
+	
 	public String getEr_nombre_proyecto() {
 		return er_nombre_proyecto;
 	}
-	public String getestadop() {
-		return estadop;
-	}
-
-	public String getfasep() {
-		return fasep;
-	}
-
 	public void setEr_nombre_proyecto(String er_nombre_proyecto) {
 		this.er_nombre_proyecto = er_nombre_proyecto;
 	}

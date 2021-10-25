@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.ecopetrol.ECOrisk.Models.erEstadopro;
 import com.ecopetrol.ECOrisk.Models.erPortafolio;
 import com.ecopetrol.ECOrisk.Models.erProceso;
+import com.ecopetrol.ECOrisk.Services.erEstadoproyectoService;
 import com.ecopetrol.ECOrisk.Services.erPortafolioService;
 import com.ecopetrol.ECOrisk.Services.erProcesoService;
 
@@ -24,15 +27,18 @@ public class erPortafolioController {
 	private erPortafolioService ErPortafolioService;
 	@Autowired
 	private erProcesoService ErProcesoService;
+	@Autowired
+	private erEstadoproyectoService erEstadoproyectoService;
 
 	//Get All Users
 	@GetMapping("/portafolio")
 	public String Portafolio(Model model,Principal principal) {
 		List<erPortafolio> portafolioc = ErPortafolioService.findAll();
+		List<erEstadopro> faseproyecto = erEstadoproyectoService.getEstadoproyecto();
 		List<erProceso> procesos = ErProcesoService.getProcesos();
 		model.addAttribute("portafolioc", portafolioc);
 		model.addAttribute("procesos", procesos);
-
+		model.addAttribute("faseproyecto", faseproyecto);
 		return "portafolio";
 	}
 	

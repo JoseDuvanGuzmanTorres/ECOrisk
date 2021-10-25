@@ -433,9 +433,10 @@
 										<tr th:each="porta:${portafolioc}">
 											<td th:text="${porta.er_mascara}">Id</td>
 											<td th:text="${porta.er_nombre_corto}">Nombres</td>
-											<td th:text="${porta.er_nombre_proyecto}">Usuario</td>
-											<td ></td>
-											<td ></td>
+											<td th:text="${porta.er_nombre_proyecto}">Nombre proyecto</td>
+											<td th:text="${porta.estadop}">Estado proyecto</td>	
+											<td th:text="${porta.fasep}">Fase proyecto</td>	
+
 											<td>
 												<div class="btn-group">
 													<a class="btn btn-primary"
@@ -491,28 +492,6 @@
 							<input type="text" class="form-control" id="descriptionAdd"
 								name="er_nombre_proyecto" required>
 						</div>
-						
-						<div class="form-group">
-							<label for="descriptionAdd" class="col-form-label">Estado del proyecto:</label>
-							<select name="estadop" class="form-control" id="estadop" >
-						    <option value="EnDesarrollo">En Desarrollo</option>
- 							  <option value="Finalizado">Finalizado</option>
-    						  <option value="Cancelado">Cancelado</option>
-							</select>
-						</div>
-					</div>
-					
-					<div class="form-group">
-							<label for="descriptionAdd" class="col-form-label">Fase del proyecto:</label>
-							<select name="fasep" class="form-control"  id="fasep" >
-						    <option value="Formulacion">Formulación</option>
- 							  <option value="Planeacion">Planación</option>
-    						  <option value="ejecucion">Ejecución</option>
-    						  <option value="Cierre">Cierre</option>
-							</select>
-						</div>
-					</div>
-						
 						<div class="form-group">
 							<label for="descriptionAdd" class="col-form-label">Proceso:</label>
 							<select name="er_proceso_id" class="form-control">
@@ -540,7 +519,7 @@
 					<div class="modal-header">
 						<h5 class="modal-title" id="editModalLabel">Editar item portafolio</h5>
 						<button type="button" class="close" data-dismiss="modal"
-							aria-label="Close">
+							aria-label="Close"  style="margin: auto;">
 							<span aria-hidden="true">&times;</span>
 						</button>
 					</div>
@@ -578,24 +557,19 @@
 						</div>
 									<div class="form-group">
 							<label class="col-form-label">Estado del proyecto:</label>
-							<select name="estadopr" class="form-control" id="estadopr">
-						    <option value="1">En Desarrollo</option>
- 							<option value="2">Finalizado</option>
-    						<option value="3">Cancelado</option>
-							</select>
+								<input type="text" class="form-control" id="estadoprEdit"
+								name="estadop">
 						</div>
 						
 							<div class="form-group">
 							<label class="col-form-label">Fase del proyecto:</label>
-							<select name="fasepr" class="form-control"  id="fasepr">
-						    <option value="1">Planeación</option>
- 							<option value="2">Formulación</option>
-    						<option value="3">Ejecución</option>
-    						<option value="4">Cierre</option>
-							</select>
+							<input type="text" class="form-control" id="faseEdit"
+								name="fasep">
 						</div>
 						
-							<div class="insertar_alertas"> </div>
+							<div class="alertas1"> </div>
+							<div class="alertas2"> </div>
+							<br>
 							<div class="form-group col-sm-2 col-xs-6">
 											<div class="input-group">
 												<div>
@@ -610,7 +584,7 @@
 					</div>
 					<div class="form-group col-sm-3 col-xs-6">
 						<label for="message-text" class="col-form-label">Seguimiento:</label>
-						<textarea class="form-control" id="desc" name="desc" style="width: auto;"></textarea>
+						<textarea class="form-control" id="coment" name="desc" style="width: auto;"></textarea>
 					</div>					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"
@@ -621,6 +595,9 @@
 			</div>
 		</form>
 	</div>
+	
+
+	
 	<div class="modal" tabindex="-1" role="dialog" id="deleteModal">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
