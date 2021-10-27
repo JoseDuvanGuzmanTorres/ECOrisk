@@ -1,52 +1,52 @@
 $('document').ready(function() {
 
-    var tipocambio = $('#estadopr').val();
+    var tipocambio = $('#estadoprEdit').val();
     if(tipocambio == 1){
-        $('#fasepr').show();
-        $('#estadopr').show();
+        $('#faseEdit').show();
+        $('#estadoprEdit').show();
     }
-    $('#estadopr').change(function (){
-        var tipocambio = $('#estadopr').val();
-        if(tipocambio == 1){
-           $('#estadopr').show();
-           document.getElementById("fasepr").disabled = false;
-       }else if (tipocambio == 2){
-         
-           document.getElementById("fasepr").disabled = true;
-           document.getElementById("estadopr").disabled = false;
-           $('#estadopr').show();
-       }else if (tipocambio == 3){
+    $('#estadoprEdit').change(function (){
+        var tipocambio = $('#estadoprEdit').val();
+        if(tipocambio == "En Desarrollo"){
+           $('#estadoprEdit').show();
+           $("#faseEdit").show();
+       }else if (tipocambio == "Finalizado"){
+           $("#faseEdit").hide();
+           $("#fasetexto").hide();
+           $('#estadoprEdit').show();
+       }else if (tipocambio == "Cancelado"){
        
-        document.getElementById("fasepr").disabled = true;
-        document.getElementById("estadopr").disabled = false;
-        $('#estadopr').show();
+        $("#faseEdit").hide();
+        $("#fasetexto").hide();
+        $("#estadoprEditEdit").show();
+        $('#estadoprEdit').show();
        }  
     });    
-    var tipocambio2 = $('#fasepr').val();
-    if(tipocambio2 == 1){
-        $('#fasepr').show();
-        $('#estadopr').show();
+    var tipocambio2 = $('#faseEdit').val();
+    if(tipocambio2 == "Formulacion"){
+        $('#faseEdit').show();
+        $('#estadoprEdit').show();
     }
-    $('#fasepr').change(function (){
-        var tipocambio2 = $('#fasepr').val();
-        if(tipocambio2 == 1){        
-           document.getElementById("estadopr").disabled = false;
-           document.getElementById("fasepr").disabled = false;
-       }else if (tipocambio2 == 2){
-           $('#fasepr').show();
-           document.getElementById("fasepr").disabled = false;
-           document.getElementById("estadopr").disabled = true;           
-       }else if (tipocambio2 == 3){
-        $('#fasepr').show();
-        document.getElementById("fasepr").disabled = false;
-        document.getElementById("estadopr").disabled = true;      
-       } else if (tipocambio2 == 4){
-        $('#fasepr').show();
-        document.getElementById("fasepr").disabled = false;
-        document.getElementById("estadopr").disabled = true;        
+    $('#faseEdit').change(function (){
+        var tipocambio2 = $('#faseEdit').val();
+        if(tipocambio2 == "Formulacion"){        
+       $("#estadoprEdit").show();
+       $("#faseEdit").show();
+       }else if (tipocambio2 == "Planeacion"){
+           $('#faseEdit').show();
+           $("#estadotexto").hide();
+           $("#estadoprEdit").hide();           
+       }else if (tipocambio2 == "ejecucion"){
+        $('#faseEdit').show();
+        $("estadoprEdit").hide();  
+        $("#estadotexto").hide();    
+       } else if (tipocambio2 == "Cierre"){
+        $('#faseEdit').show();
+        $("#estadoprEdit").hide(); 
+        $("#estadotexto").hide();       
        }  
     });
-    
+
 
 	$('#portafolio-table thead tr').clone(true).appendTo( '#portafolio-table thead' );
     $('#portafolio-table thead tr:eq(1) th').each( function (i) {
@@ -116,33 +116,65 @@ $('document').ready(function() {
 		]	        
     });
     
-	
+    
+ /*   $('#addComment').on('click', '.btn-primary', function(event) {                         
+	    event.preventDefault();
+	    comentario = $.trim($('#comentario').val());
+	    
+	    if(comentario == ""){
+	    	$(".alertas1" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un comentario vacío</strong></div>');
+	    }else{
+		
+		
+		
+		
+	    	files = $('#archivo').get(0).files;
+	    	if(files.length <4){
+		         $('#comentario').val("");
+			     $('#archivo').val("");
+			     $('#editModal').modal('toggle');
+		     }else{
+		     	$(".alertas1" ).append( '<div class="alert alert-danger insertados"><strong>No se pueden agregar más de 3 archivos</strong></div>');
+		     	$('#archivo').val("");
+		     }
+	     }
+	     
+	    comentario = $.trim($('#comentario').val());
+	    //$('#hojatrabajo-table').DataTable().ajax.reload();    							     			
+	});
+*/
+    
+  /*  	if(comentario == ""){
+	    	$(".alertas1" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un comentario vacío</strong></div>');
+	    }
+	    if(archivo == ""){
+	    	$(".alertas2" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un seguimiento sin evidencia.</strong></div>');
+	    }*/
+
+
 	$('#portafolio-table').on('click', '.btn-primary', function(event) {
 		event.preventDefault();
 		$('.alertas2' ).empty();
 		$('.alertas1' ).empty();
 		$('#archivo').val("");
 		$('#comentario').val("");
-		
-		comentario = $.trim($('#comentario').val());
-		archivo = $.trim($('#archivo').val());
-		
-		if(comentario == ""){
-	    	$(".alertas1" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un comentario vacío</strong></div>');
-	    }
-	    if(archivo == ""){
-	    	$(".alertas2" ).append( '<div class="alert alert-danger insertados"><strong>No puede agregar un seguimiento sin evidencia.</strong></div>');
-	    }
+		$('#portafolio-table').on('click', '.btn-primary', function(event) {
+		event.preventDefault();
+		$('.alertas2' ).empty();
+		$('.alertas1' ).empty();
+		$('#archivo').val("");
+		$('#comentario').val("");
 		var href = $(this).attr('href');
 		$.get(href, function(er_portafolio, status) {
 			$('#idEdit').val(er_portafolio.er_portafolio_id);
 			$('#mascaraEdit').val(er_portafolio.er_mascara);
 			$('#nomshortEdit').val(er_portafolio.er_nombre_corto);
 			$('#nomproEdit').val(er_portafolio.er_nombre_proyecto);
-			$('#procesoEdit').val(er_portafolio.er_proceso);
+			//$('#procesoEdit').val(er_portafolio.er_proceso);
 			$('#estadoprEdit').val(er_portafolio.estadop);
 			$('#faseEdit').val(er_portafolio.fasep);
 			$('#editModal').modal();
+			$('#procesoEdit').val("1");
 		});
 
 		$('#portafolio-table').on('click','.deleteButton',function(event) {
@@ -152,4 +184,30 @@ $('document').ready(function() {
 			$('#deleteModal').modal();
 		});
 	});
+		
+		
+		
+		
+		var href = $(this).attr('href');
+		$.get(href, function(er_portafolio, status) {
+			$('#idEdit').val(er_portafolio.er_portafolio_id);
+			$('#mascaraEdit').val(er_portafolio.er_mascara);
+			$('#nomshortEdit').val(er_portafolio.er_nombre_corto);
+			$('#nomproEdit').val(er_portafolio.er_nombre_proyecto);
+			//$('#procesoEdit').val(er_portafolio.er_proceso);
+			$('#estadoprEdit').val(er_portafolio.estadop);
+			$('#faseEdit').val(er_portafolio.fasep);
+			$('#editModal').modal();
+			$('#procesoEdit').val("1");
+		});
+
+		$('#portafolio-table').on('click','.deleteButton',function(event) {
+			event.preventDefault();
+			var href = $(this).attr('href');
+			$('#deleteModal #delRef').attr('href', href);
+			$('#deleteModal').modal();
+		});
+		
+	});
+	
 });

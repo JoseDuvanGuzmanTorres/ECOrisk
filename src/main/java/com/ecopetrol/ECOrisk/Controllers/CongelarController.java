@@ -189,7 +189,7 @@ public class CongelarController {
 			seguimiento.addAllHojaTrabajo(controles);
 			Er_HojaSeguimientoService.save(seguimiento);
 			for(er_HojaTrabajo control : controles) {
-				control.setEr_estado_id(4);
+				control.setEr_estado_id(5);
 				Date d1 = control.getHt_fechaplaneadacierre();
 				Date d2 = Fcongelamiento;
 				LocalDateTime date1 = d1.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();

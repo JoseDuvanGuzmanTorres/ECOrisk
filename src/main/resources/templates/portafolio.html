@@ -513,7 +513,7 @@
 	</div>
 	<div class="modal fade" id="editModal" tabindex="-1" role="dialog"
 		aria-labelledby="ModalLabel" aria-hidden="true">
-		<form th:action="@{/portafolio/update}" method="put" >
+		<form id="addComment" th:action="@{/portafolio/update}" method="put" >
 			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -556,15 +556,24 @@
 							</select>
 						</div>
 									<div class="form-group">
-							<label class="col-form-label">Estado del proyecto:</label>
-								<input type="text" class="form-control" id="estadoprEdit"
-								name="estadop">
+							<label id="estadotexto" class="col-form-label">Estado del proyecto:</label>
+						<select name="estadop" class="form-control" id="estadoprEdit" >
+						    <option value="En Desarrollo">En Desarrollo</option>
+ 							  <option value="Finalizado">Finalizado</option>
+    						  <option value="Cancelado">Cancelado</option>
+							</select>
+								
+								
 						</div>
 						
 							<div class="form-group">
-							<label class="col-form-label">Fase del proyecto:</label>
-							<input type="text" class="form-control" id="faseEdit"
-								name="fasep">
+							<label id="fasetexto" class="col-form-label">Fase del proyecto:</label>
+						<select name="fasep" class="form-control"  id="faseEdit" >
+						    <option value="Formulacion">Formulación</option>
+ 							  <option value="Planeacion">Planeación</option>
+    						  <option value="Ejecucion">Ejecución</option>
+    						  <option value="Cierre">Cierre</option>
+							</select>
 						</div>
 						
 							<div class="alertas1"> </div>
@@ -584,7 +593,7 @@
 					</div>
 					<div class="form-group col-sm-3 col-xs-6">
 						<label for="message-text" class="col-form-label">Seguimiento:</label>
-						<textarea class="form-control" id="coment" name="desc" style="width: auto;"></textarea>
+						<textarea class="form-control" id="comentario" name="desc" style="width: auto;"></textarea>
 					</div>					
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary"

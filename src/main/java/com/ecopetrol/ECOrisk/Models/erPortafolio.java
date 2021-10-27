@@ -50,7 +50,6 @@ public class erPortafolio {
 		this.er_nombre_corto = er_nombre_corto;
 	}
 
-
 	public String getEstadop() {
 		return estadop;
 	}
