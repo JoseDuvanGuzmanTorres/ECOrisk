@@ -92,6 +92,14 @@ public class ApplicationController {
 		Integer CerradAutoOpexM = valoraciones.getCerradAutoOpexM();
 		Integer CerradAutoOpexL = valoraciones.getCerradAutoOpexL();
 		Integer CerradAutoOpexN = valoraciones.getCerradAutoOpexN();
+		Integer TotalInicialCapex  = valoraciones.getTotalInicialCapex();
+		Integer TotalAbiertosCapex  = valoraciones.getTotalAbiertosCapex();
+		Integer TotalCerradosCapex  = valoraciones.getTotalCerradosCapex();
+		Integer TotalCongeladosCapex  = valoraciones.getTotalCongeladosCapex();
+		Integer TotalInicialOpex    = valoraciones.getTotalInicialOpex();
+		Integer TotalAbiertosOpex    = valoraciones.getTotalAbiertosOpex();
+		Integer TotalCerradosOpex    = valoraciones.getTotalCerradosOpex();
+		Integer TotalCongeladosOpex    = valoraciones.getTotalCongeladosOpex();
 
 		model.addAttribute("InicialCapexN",   InicialCapexN);
 		model.addAttribute("InicialCapexL",   InicialCapexL);
@@ -153,6 +161,14 @@ public class ApplicationController {
 		model.addAttribute("CerradAutoOpexM", CerradAutoOpexM);
 		model.addAttribute("CerradAutoOpexL", CerradAutoOpexL);
 		model.addAttribute("CerradAutoOpexN", CerradAutoOpexN);
+		model.addAttribute("TotalInicialCapex", TotalInicialCapex);
+		model.addAttribute("TotalAbiertosCapex", TotalAbiertosCapex);
+		model.addAttribute("TotalCerradosCapex", TotalCerradosCapex);
+		model.addAttribute("TotalCongeladosCapex", TotalCongeladosCapex );
+		model.addAttribute("TotalInicialOpex", TotalInicialOpex);
+		model.addAttribute("TotalAbiertosOpex", TotalAbiertosOpex);
+		model.addAttribute("TotalCerradosOpex", TotalCerradosOpex);
+		model.addAttribute("TotalCongeladosOpex", TotalCongeladosOpex);
 		
 		ContadorTalleresProjection contadores = Er_EncabezadoService.getContadorTalleres();
 		Integer Whatifca = contadores.getWhatifca();

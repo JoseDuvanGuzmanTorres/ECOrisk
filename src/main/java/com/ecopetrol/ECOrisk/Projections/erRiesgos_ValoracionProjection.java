@@ -64,4 +64,12 @@ public interface erRiesgos_ValoracionProjection {
 	Integer getCerradAutoOpexM();
 	Integer getCerradAutoOpexL();
 	Integer getCerradAutoOpexN();
+	Integer getTotalInicialCapex(); 
+	Integer getTotalAbiertosCapex(); 
+	Integer getTotalCerradosCapex(); 
+	Integer getTotalCongeladosCapex(); 
+	Integer getTotalInicialOpex(); 
+	Integer getTotalAbiertosOpex(); 
+	Integer getTotalCerradosOpex(); 
+	Integer getTotalCongeladosOpex (); 
 }

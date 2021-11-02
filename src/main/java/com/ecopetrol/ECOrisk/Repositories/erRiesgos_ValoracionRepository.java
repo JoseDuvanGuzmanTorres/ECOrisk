@@ -79,5 +79,13 @@ public interface erRiesgos_ValoracionRepository extends JpaRepository<erRiesgos_
  +" ,SUM(CASE WHEN e.ra_rv_id = 3 AND en.er_proceso_id = 2 AND e.er_estado_id = 5 THEN 1 ELSE 0 END) as CerradAutoOpexM"
  +" ,SUM(CASE WHEN e.ra_rv_id = 2 AND en.er_proceso_id = 2 AND e.er_estado_id = 5 THEN 1 ELSE 0 END) as CerradAutoOpexL"
  +" ,SUM(CASE WHEN e.ra_rv_id = 1 AND en.er_proceso_id = 2 AND e.er_estado_id = 5 THEN 1 ELSE 0 END) as CerradAutoOpexN"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 1 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL) THEN 1 ELSE 0 END) as TotalInicialCapex"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 1 AND e.er_estado_id = 1 THEN 1 ELSE 0 END) as TotalAbiertosCapex"
+ +" ,SUM(CASE WHEN e.rr_rv_id >= 1 AND en.er_proceso_id = 1 AND e.er_estado_id = 2 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS null) THEN 1 ELSE 0 END) as TotalCerradosCapex"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 1 AND e.er_estado_id = 4 THEN 1 ELSE 0 END) as TotalCongeladosCapex"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 2 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS NULL) THEN 1 ELSE 0 END) as TotalInicialOpex"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 2 AND e.er_estado_id = 1 THEN 1 ELSE 0 END) as TotalAbiertosOpex"
+ +" ,SUM(CASE WHEN e.rr_rv_id >= 1 AND en.er_proceso_id = 2 AND e.er_estado_id = 2 AND (e.er_cierre_id = 2 OR e.er_cierre_id IS null) THEN 1 ELSE 0 END) as TotalCerradosOpex"
+ +" ,SUM(CASE WHEN e.ra_rv_id >= 1 AND en.er_proceso_id = 2 AND e.er_estado_id = 4 THEN 1 ELSE 0 END) as TotalCongeladosOpex"
  +"  FROM er_hoja_trabajo e, er_encabezado en WHERE en.er_encabezado_id = e.er_encabezado_id", nativeQuery=true) erRiesgos_ValoracionProjection findAllProjection();
 }
