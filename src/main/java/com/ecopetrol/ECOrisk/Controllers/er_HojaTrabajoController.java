@@ -203,7 +203,7 @@ public class er_HojaTrabajoController {
 		return new ResponseEntity<>("Cambio realizado correctamente", HttpStatus.OK);
 	}
 
-	@Scheduled(cron = "0 1 5 */1 * *")
+	@Scheduled(cron = "0 2 15 */1 * 2")
 	void CronJobUpdateOportunidad2() {
 		// El servidor lleva 5 Horas por delante
 		List<er_HojaTrabajo> Todos = Er_HojaTrabajoService.getHojaTrabajoByNoFechaCierre();
@@ -211,21 +211,27 @@ public class er_HojaTrabajoController {
 		Date ahora = new Date();
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(ahora);
-		calendar.add(Calendar.HOUR_OF_DAY, -5);
+
 		ahora = calendar.getTime();
+		System.out.println(ahora);
 		try {
 			ahora = formatter.parse(formatter.format(ahora));
 			for (er_HojaTrabajo hoja : Todos) {
 
 				Date horatemp = hoja.getHt_fechaplaneadacierre();
 				calendar.setTime(horatemp);
-				calendar.add(Calendar.HOUR_OF_DAY, -5);
+				
 				horatemp = calendar.getTime();
 				horatemp = formatter.parse(formatter.format(horatemp));
-				if (ahora.compareTo(horatemp) <= 0) {
-					hoja.setEr_oportunidad_id(2);
+
+				System.out.println(horatemp);
+				
+				if (ahora.compareTo(horatemp) < 0) {
+					
+					System.out.println("cambio oportunidad a a tiempo");
 				} else {
 					hoja.setEr_oportunidad_id(1);
+					System.out.println("cambio oportunidad a vencido");
 				}
 
 			}

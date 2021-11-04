@@ -829,27 +829,20 @@ public class UploadService {
 
 						}
 
-						// Contacto
-						num = 11;
-						TempError = getErrores(row, num, 255, "Contacto", rowcount);
-						if (TempError.isEmpty()) {
-							String Temp = row.getCell(num).getStringCellValue();
-							if (Asistentes.containsKey(Temp)) {
-								Users usuario = Asistentes.get(Temp);
-								encabezado.setE_contacto(usuario.getId());
-								if (usuario.getRoles_id() != 1 && usuario.getRoles_id() != 2
-										&& usuario.getRoles_id() != 3 && usuario.getRoles_id() != 6
-										&& usuario.getRoles_id() != 5) {
-									usuario.setRoles_id(4);
-									userRepository.save(usuario);
-								}
-
-							} else {
-								Error.add("El usuario \"" + Temp + "\" no se encuentra en la lista de participantes");
-							}
-						} else {
-							Error.addAll(TempError);
-						}
+						/*
+						 * // Contacto num = 11; TempError = getErrores(row, num, 255, "Contacto",
+						 * rowcount); if (TempError.isEmpty()) { String Temp =
+						 * row.getCell(num).getStringCellValue(); if (Asistentes.containsKey(Temp)) {
+						 * Users usuario = Asistentes.get(Temp);
+						 * encabezado.setE_contacto(usuario.getId()); if (usuario.getRoles_id() != 1 &&
+						 * usuario.getRoles_id() != 2 && usuario.getRoles_id() != 3 &&
+						 * usuario.getRoles_id() != 6 && usuario.getRoles_id() != 5) {
+						 * usuario.setRoles_id(4); userRepository.save(usuario); }
+						 * 
+						 * } else { Error.add("El usuario \"" + Temp +
+						 * "\" no se encuentra en la lista de participantes"); } } else {
+						 * Error.addAll(TempError); }
+						 */
 
 						break;
 
@@ -875,6 +868,22 @@ public class UploadService {
 						} else {
 							Error.addAll(TempError);
 						}
+						
+						// Codigo documento
+
+						num = 11;
+						TempError = getErrores(row, num, 255, "Código del documento", rowcount);
+						if (TempError.isEmpty()) {
+							String Temp = row.getCell(num).getStringCellValue();
+							erEncabezado Tempo = ErEncabezadoRepository.findByCodDoc(Temp);
+							if (Tempo == null) {
+								encabezado.setE_codigodocumento(Temp);
+							} else {
+								Error.add("Ya hay un documento registrado con el código " + Temp);
+							}
+						} else {
+							Error.addAll(TempError);
+						}
 
 						break;
 
@@ -895,21 +904,7 @@ public class UploadService {
 							Error.addAll(TempError);
 						}
 
-						// Codigo documento
 
-						num = 11;
-						TempError = getErrores(row, num, 255, "Código del documento", rowcount);
-						if (TempError.isEmpty()) {
-							String Temp = row.getCell(num).getStringCellValue();
-							erEncabezado Tempo = ErEncabezadoRepository.findByCodDoc(Temp);
-							if (Tempo == null) {
-								encabezado.setE_codigodocumento(Temp);
-							} else {
-								Error.add("Ya hay un documento registrado con el código " + Temp);
-							}
-						} else {
-							Error.addAll(TempError);
-						}
 
 						// Proceso
 						boolean opex = false;
@@ -1818,8 +1813,6 @@ public class UploadService {
 								}
 							}
 						}
-						
-						
 						// Pregunta
 						boolean tempPregunta = false;
 						if (ht_pregunta != -1) {
