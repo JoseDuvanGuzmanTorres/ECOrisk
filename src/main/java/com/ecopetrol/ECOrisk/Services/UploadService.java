@@ -157,7 +157,7 @@ public class UploadService {
 			Error.add("Formato Incorrecto o archivo vacío. \n");
 		} else {
 			try {
-				Integer altura = 13;
+				Integer altura = 12;
 				Integer nombre = 3;
 				Integer rol = 5;
 				Integer dependencia = 7;
