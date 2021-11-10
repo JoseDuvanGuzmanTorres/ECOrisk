@@ -1,5 +1,11 @@
 $('document').ready(function() {
 
+	 var mascaraEdit = $('#mascaraEdit').val();
+	if (mascaraEdit == "IC-9102" || "IC-9000" || "IC-9101"){
+	 document.getElementById("checkboxedit").checked=true;
+	}else{
+		document.getElementById("checkboxedit").checked=false;
+	};
     var tipocambio = $('#estadoprEdit').val();
     if(tipocambio == 1){
         $('#faseEdit').show();
@@ -185,9 +191,6 @@ $('document').ready(function() {
 		});
 	});
 		
-		
-		
-		
 		var href = $(this).attr('href');
 		$.get(href, function(er_portafolio, status) {
 			$('#idEdit').val(er_portafolio.er_portafolio_id);
@@ -199,6 +202,7 @@ $('document').ready(function() {
 			$('#faseEdit').val(er_portafolio.fasep);
 			$('#editModal').modal();
 			$('#procesoEdit').val("1");
+
 		});
 
 		$('#portafolio-table').on('click','.deleteButton',function(event) {
@@ -207,7 +211,5 @@ $('document').ready(function() {
 			$('#deleteModal #delRef').attr('href', href);
 			$('#deleteModal').modal();
 		});
-		
 	});
-	
 });
