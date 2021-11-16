@@ -367,7 +367,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" th:href="@{/users}">Usuarios</a></li>
-							<li><a class="" th:href="@{/load/cambios}">Solicitar cambios</a></li>
+							<li><a class="" th:href="@{/load/cambios}">Gestión de cambios</a></li>
 							<li><a class="" th:href="@{/congelar}">Congelar proyectos</a></li>
 							<li><a class="" th:href="@{/portafolio}">Portafolios</a></li>
 							<li><a class="sub-es" th:href="@{/load/emails-enviados}">Trazabilidad de comunicaciones</a></li>
@@ -423,7 +423,7 @@
 						<section class="panel">
 							<header class="panel-heading">Congelar proyectos</header>
 							
-							<div th:if="${successmessage} != null">
+						<!--	<div th:if="${successmessage} != null">
 								<div class="alert alert-success">
 								  <strong th:text="${successmessage}"></strong>
 								</div>
@@ -433,14 +433,14 @@
 								<div class="alert alert-danger">
 								  <strong th:text="${errormessage}"></strong>
 								</div>
-							</div>
+							</div>-->
 							
 							<div style="padding-left: 15px; padding-right: 15px;">
 								<form th:action="@{/congelar/addNew}" method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Seleccione el proyecto a congelar</h4>
-											<select  class="customselect form-control" id="de" name="de">
+											<select  class="customselect form-control" id="dex" name="dex">
 												<option th:each="proyecto:${ProyectosList}"
 													th:value="${proyecto.Codigo}"
 													th:text="'(' + ${proyecto.Proceso} + ')' + ${proyecto.Nombre} + '[' + ${proyecto.Codigo} + ']'"></option>
@@ -448,12 +448,12 @@
 										</div>
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Seleccione los talleres que desea congelar</h4>
-											<select id="cuales" class="customselect form-control" name="cuales" multiple="">
+											<select id="cualesx" class="customselect form-control" name="cualesx" multiple="">
 											</select> 
 										</div>
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Fecha de congelamiento</h4>
-											<input type="text" class="form-control" id="a" name="a" placeholder="1998-09-15" required>
+											<input type="text" class="form-control" id="ax" name="ax" placeholder="1998-09-15" >
 										</div>
 										
 									</div>
@@ -463,8 +463,8 @@
 												<div>
 													<h4>Cargar evidencia</h4>
 													
-													<div><input type="file" id="evidencia"
-														name="evidencia" multiple="multiple"
+													<div><input type="file" id="evidenciax"
+														name="evidenciax" multiple="multiple"
 														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>
 													
 												</div>
@@ -472,11 +472,11 @@
 										</div>
 										<div class="form-group col-sm-3 col-xs-6">
 											<label for="message-text" class="col-form-label">Seguimiento:</label>
-											<textarea class="form-control" id="desc" name="desc"></textarea>
+											<textarea class="form-control" id="descx" name="descx">Congelamiento de proyecto : (CAPEX)Paquete de proyectos Rubiales Etapa 2 (CDA)[IC-0065/1-90]</textarea>
 										</div>
 										
 										<div class="form-group col-sm-1 col-xs-12">
-											<button type="submit" class="btn btn-low">Guardar</button>
+											<button type="submitx" class="btn btn-low">Guardar</button>
 										</div>
 									</div>
 								</form>
@@ -504,11 +504,11 @@
 							</div>-->
 							
 							<div style="padding-left: 15px; padding-right: 15px;">
-								<form th:action="@{/descongelar/addNew}" method="post" enctype="multipart/form-data">
+								<form  method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Seleccione el proyecto a descongelar</h4>
-											<select  class="customselect form-control" id="ddce" name="dec">
+											<select  class="customselect form-control" id="ddcea" name="deca">
 												<option th:each="proyecto:${ProyectosList}"
 													th:value="${proyecto.Codigo}"
 													th:text="'(' + ${proyecto.Proceso} + ')' + ${proyecto.Nombre} + '[' + ${proyecto.Codigo} + ']'"></option>
@@ -516,12 +516,12 @@
 										</div>
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Seleccione los talleres que desea descongelar</h4>
-											<select id="dcualces" class="customselect form-control" name="cualecs" multiple="">
+											<select id="dcualcesa" class="customselect form-control" name="cualecsa" multiple="">
 											</select> 
 										</div>
 										<div class="form-group col-sm-4 col-xs-6">
 											<h4>Fecha de descongelamiento</h4>
-											<input type="text" class="form-control" id="dac" name="ca" placeholder="1998-09-15" required>
+											<input type="text" class="form-control" id="dacc" name="caa" placeholder="1998-09-15" required>
 										</div>
 										
 									</div>
@@ -531,7 +531,7 @@
 												<div>
 													<h4>Cargar evidencia</h4>
 													
-													<div><input type="file" id="devidenciax"
+													<div><input type="file" id="devidenciaxc"
 														name="evidenciac" multiple="multiple"
 														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>
 													
@@ -540,11 +540,11 @@
 										</div>
 										<div class="form-group col-sm-3 col-xs-6">
 											<label for="message-text" class="col-form-label">Seguimiento:</label>
-											<textarea class="form-control" id="ddesccx" name="descc">Descongelamiento de proyecto : (CAPEX)Paquete de proyectos Rubiales Etapa 2 (CDA)[IC-0065/1-90]</textarea>
+											<textarea class="form-control" id="ddesccsx" name="desccs">Descongelamiento de proyecto : (CAPEX)Paquete de proyectos Rubiales Etapa 2 (CDA)[IC-0065/1-90]</textarea>
 										</div>
 										
 										<div class="form-group col-sm-1 col-xs-12">
-											<button type="submitt" class="btn btn-low">Guardar</button>
+											<button type="submitst" class="btn btn-low">Guardar</button>
 										</div>
 									</div>
 								</form>
@@ -554,42 +554,42 @@
 					</div>
 				</div>
 				
-				<div class="row">
+<div class="row">
 					<div class="col-lg-12">
 						<section class="panel">
-							<header class="panel-heading">Cierre automático de controles</header>
+							<header class="panel-heading">Cierre automático de controles </header>
 							
-					<!--		<div th:if="${successmessage} != null">
+							<div th:if="${successmessage} != null">
 								<div class="alert alert-success">
-								  <strong th:text="${successmessage2}"></strong>
+								  <strong th:text="${successmessage}"></strong>
 								</div>
 							</div>
 							
 							<div th:if="${errormessage} != null">
 								<div class="alert alert-danger">
-								  <strong th:text="${errormessage2}"></strong>
+								  <strong th:text="${errormessage}"></strong>
 								</div>
-							</div>-->
+							</div>
 							
 							<div style="padding-left: 15px; padding-right: 15px;">
-								<form th:action="@{/descongelar/addNew}" method="post" enctype="multipart/form-data">
+								<form th:action="@{/congelar/addNew}" method="post" enctype="multipart/form-data">
 									<div class="row">
 										<div class="form-group col-sm-4 col-xs-6">
-											<h4>Seleccione el proyecto en el cual desea cerrar controles automáticamente</h4>
-											<select  class="customselect form-control" id="dde" name="de">
+											<h4>Seleccione el proyecto en el que quiere cerrar controles automáticamente</h4>
+											<select  class="customselect form-control" id="de" name="de">
 												<option th:each="proyecto:${ProyectosList}"
 													th:value="${proyecto.Codigo}"
 													th:text="'(' + ${proyecto.Proceso} + ')' + ${proyecto.Nombre} + '[' + ${proyecto.Codigo} + ']'"></option>
 											</select> 
 										</div>
 										<div class="form-group col-sm-4 col-xs-6">
-											<h4>Seleccione los talleres en los cual desea cerrar controles automáticamente</h4>
-											<select id="dcuales" class="customselect form-control" name="cuales" multiple="">
+											<h4>Seleccione los talleres que desea cerrar automáticamente sus controles</h4>
+											<select id="cuales" class="customselect form-control" name="cuales" multiple="">
 											</select> 
 										</div>
 										<div class="form-group col-sm-4 col-xs-6" hidden>
-											<h4>Fecha de descongelamiento</h4>
-											<input type="text" class="form-control" id="da" name="a" value="2021-11-11">
+											<h4>Fecha de congelamiento</h4>
+											<input type="text" class="form-control" id="a" name="a" value="2021-11-16">
 										</div>
 										
 									</div>
@@ -599,7 +599,7 @@
 												<div>
 													<h4>Cargar evidencia</h4>
 													
-													<div><input type="file" id="devidencia"
+													<div><input type="file" id="evidencia"
 														name="evidencia" multiple="multiple"
 														accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf, .eml"></div>
 													
@@ -608,7 +608,7 @@
 										</div>
 										<div class="form-group col-sm-3 col-xs-6">
 											<label for="message-text" class="col-form-label">Seguimiento:</label>
-											<textarea class="form-control" id="ddesc" name="desc"></textarea>
+											<textarea class="form-control" id="desc" name="desc"></textarea>
 										</div>
 										
 										<div class="form-group col-sm-1 col-xs-12">

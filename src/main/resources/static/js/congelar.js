@@ -262,7 +262,7 @@ $(document).ready(function() {
 	      }
     });
 	
-	var soli = "Congelamiento de proyecto : ";
+	var soli = "Cierre automático  de controles en el proyecto : ";
     var de = $('#de').select2('data')[0].text;
     var a = '';
    	$('#desc').val(soli + de);

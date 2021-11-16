@@ -374,7 +374,7 @@
 					</a>
 						<ul class="sub">
 							<li><a class="" th:href="@{/users}">Usuarios</a></li>
-							<li><a class="" th:href="@{/load/cambios}">Solicitar cambios</a></li>
+							<li><a class="" th:href="@{/load/cambios}">Gestión de cambios</a></li>
 							<li><a class="" th:href="@{/congelar}">Congelar proyectos</a></li>
 							<li><a class="" th:href="@{/portafolio}">Portafolios</a></li>
 							<li><a class="sub-es" th:href="@{/load/emails-enviados}">Trazabilidad de comunicaciones</a></li>
@@ -429,7 +429,7 @@
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>RIESGOS EN GESTION</th>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i>RIESGOS GESTIONADOS</th>
 											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>RIESGOS CONGELADOS</th>
-											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>RIESGOS CERRADOS AUTOMATICAMENTE</th>
+											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>CERRADOS AUTOMATICAMENTE</th>
 										</tr>
 											<tr>
 											<th class="riesgos" style= "font-size: 13px;"><i class=""></i></th>
@@ -515,8 +515,25 @@
 								<section class="panel" style="background: none;margin: 10px auto 1px;">
 							<header class="panel-heading riesgos" style="border-radius: 20px;font-size: 13px;font-weight: bold;">PANORAMA DE RIESGO OPEX</header>
 							<div class="panel-body" style="border-radius: 20px; background-color: white; ">
-										<table class="table table-striped table-advance table-hover" width="500" >
+										<table class="table  table-advance table-hover" width="500" style="margin-left: auto; margin-right: auto;">
+											
 									<thead>
+											<tr style="border:1px solid rgb(255, 255, 255);">
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+										</tr>
+											<tr style="border:1px solid rgb(255, 255, 255);">
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+										</tr>
 										<tr>
 											<th class="riesgos" style= "font-size: 13px;" ><i class=""></i>VALORACION DE RIESGO</th>
 											<th class="riesgos" style= "font-size: 13px;" colspan="2"><i class=""></i>RIESGOS EVIDENCIADOS EN TALLERES </th>
@@ -575,21 +592,29 @@
 											<td class="bg-none riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=congelado'"  th:text="${CongeladosOpexN}">controles congelados</a></td>
 										</tr>
 											<tr>
-											<td class="riesgos" style= "font-size: 13px;">Residual no Valorado</td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${0}">Inicial</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${0}">Residual</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" >N/A</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Cerrado'"  th:text="${0}">controles cerrados</a></td>
-											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&riesgo=N&estado=congelado'" >N/A</a></td>
-										</tr>
-											<tr>
 											<td class="riesgos" style= "font-size: 13px;">TOTAL</td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${TotalInicialOpex}">Inicial</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2'" th:text="${TotalInicialOpex}">Residual</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Abierto'"  th:text="${TotalAbiertosOpex}">controles abiertos</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=Cerrado'"  th:text="${TotalCerradosOpex}">controles cerrados</a></td>
 											<td class="riesgos" style= "font-size: 13px;"><a style= "font-size: 13px;" th:href="@{consultar} + '?proceso=2&estado=congelado'"  th:text="${TotalCongeladosOpex}">controles congelados</a></td>
+											<tr style="border:1px solid rgb(255, 255, 255);">
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
 										</tr>
+										<tr style="border:1px solid rgb(255, 255, 255);">
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+													<td style="border:1px solid rgb(255, 255, 255);"></td>
+										</tr>
+									
 									</tbody>
 								</table>
 							</div>
