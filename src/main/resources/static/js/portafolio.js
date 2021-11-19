@@ -6,6 +6,8 @@ $('document').ready(function() {
 	}else{
 		document.getElementById("checkboxedit").checked=false;
 	};
+	
+	
     var tipocambio = $('#estadoprEdit').val();
     if(tipocambio == 1){
         $('#faseEdit').show();

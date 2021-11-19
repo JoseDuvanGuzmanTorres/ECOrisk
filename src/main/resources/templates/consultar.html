@@ -439,7 +439,7 @@
 									<div class="row">
 										<div class="form-group col-sm-2 col-xs-6">
 											<h4>Tipo de Estudio</h4>
-											<select class="customselect form-control" name="tipoestudio">
+											<select class="customselect form-control" >
 												<option value="">Todos</option>
 												<option th:each="tipoestudio:${tiposestudioList}"
 													th:value="${tipoestudio.er_tipoestudio_id}"
@@ -649,8 +649,8 @@
 				</div>
 				<!-- Master Table -->
 				
-				<div id="TTodos">
-				<div class="row" name="TT">
+				<div id="TTodos" name="TTodos" >
+				<div class="row">
 					
 					<div class="col-lg-12">
 						<section class="panel">
@@ -738,7 +738,7 @@
 				</div>
 			</div>	
 	<div >
-				<div class="row" name="TLA" id="TLeccionesA">
+				<div class="row" name="TLeccionesA" id="TLeccionesA">
 					
 					<div class="col-lg-12">
 						<section class="panel">
@@ -827,7 +827,7 @@
 				</div>
 			</div>	
 				<!-- Master Table -->
-				<div class="row">
+				<div class="row" name="TriesgosE" id="TriesgosE">
 					
 					<div class="col-lg-12">
 						<section class="panel">
@@ -908,7 +908,7 @@
 					</div>
 				</div>
 				
-				<div class="row">
+				<div class="row" name="TriesgosM" id="TriesgosM">
 					
 					<div class="col-lg-12">
 						<section class="panel">

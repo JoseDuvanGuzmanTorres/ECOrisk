@@ -1,5 +1,58 @@
 $(document).ready( function () {
+	
+	
 
+	
+   var tipoestudio = $('#TipoEstudioC').val();
+    if(tipoestudio == ""){
+         $('#TTodos').hide();
+         $('#TLeccionesA').show();
+         $('#TriesgosE').show();
+         $('#TriesgosM').show();
+    }else if (tipoestudio == "1"){
+	     $('#TTodos').show();
+         $('#TLeccionesA').hide();
+         $('#TriesgosE').hide();
+         $('#TriesgosM').hide();
+			}else if (tipoestudio == "2"){
+	     $('#TTodos').show();
+         $('#TLeccionesA').hide();
+         $('#TriesgosE').hide();
+         $('#TriesgosM').hide();
+			}
+			else if (tipoestudio == "3"){
+	     $('#TTodos').hide();
+         $('#TLeccionesA').show();
+         $('#TriesgosE').show();
+         $('#TriesgosM').show();
+			}
+			else if (tipoestudio == "4"){
+	     $('#TTodos').show();
+         $('#TLeccionesA').hide();
+         $('#TriesgosE').hide();
+         $('#TriesgosM').hide();
+			}
+			else if (tipoestudio == "5"){
+	     $('#TTodos').hide();
+         $('#TLeccionesA').hide();
+         $('#TriesgosE').show();
+         $('#TriesgosM').hide();
+			}else if (tipoestudio == "6"){
+	     $('#TTodos').hide();
+         $('#TLeccionesA').show();
+         $('#TriesgosE').hide();
+         $('#TriesgosM').hide();
+			}else if (tipoestudio == "7"){
+	     $('#TTodos').hide();
+         $('#TLeccionesA').hide();
+         $('#TriesgosE').hide();
+         $('#TriesgosM').show();
+			}
+			
+			
+			
+			
+			
 	$('.customselect').select2();
     $('#encabezado-table').DataTable({        
         language: {
