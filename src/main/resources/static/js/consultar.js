@@ -3,9 +3,9 @@ $(document).ready( function () {
 	
 
 	
-   var tipoestudio = $('#TipoEstudioC').val();
+ var tipoestudio = $('#tipoestudio').val();
     if(tipoestudio == ""){
-         $('#TTodos').hide();
+        document.getElementById("TTodos").hidden = false;
          $('#TLeccionesA').show();
          $('#TriesgosE').show();
          $('#TriesgosM').show();
@@ -49,7 +49,38 @@ $(document).ready( function () {
          $('#TriesgosM').show();
 			}
 			
+				
+ 		/*		var tipoestudio = $('#tipoestudio').val();
+    					if(tipoestudio == ""){
+			}
+			*/
+/*			$("#tipoestudio").change(function(){
+	  var valor = $(this).val();
+  
+  				console.log(valor);
+				});
+			*/
 			
+			
+/*	
+	    var tipocambio = $('#tipoestudio').val();
+    if(tipocambio == ""){
+	 document.getElementById("TTodos").hidden = true;
+     
+    }
+    $('#tipoestudio').change(function (){
+        var tipocambio = $('#tipoestudio').val();
+        if(tipocambio == 2){
+            document.getElementById("TTodos").hidden = true;
+       }else if (tipocambio == 3){
+  					document.getElementById("TLeccionesA").hidden = true;
+       }else if (tipocambio == "4"){
+			document.getElementById("TLeccionesA").hidden = true;
+       }  
+    }); 		
+			
+			
+	*/		
 			
 			
 			

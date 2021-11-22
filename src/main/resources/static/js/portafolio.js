@@ -30,6 +30,7 @@ $('document').ready(function() {
         $('#estadoprEdit').show();
        }  
     });    
+    
     var tipocambio2 = $('#faseEdit').val();
     if(tipocambio2 == "Formulacion"){
         $('#faseEdit').show();
