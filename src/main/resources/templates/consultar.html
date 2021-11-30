@@ -1078,12 +1078,14 @@
 								<div class="input-group">
 									<div class="custom-file">
 										<h4>Cargar evidencia</h4>
-										<div>
+										<div id="archivos" >
 											<input class="form-group" type="file" id="archivo"
-												name="file" multiple="multiple"
-												accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf">
+												name="file" 
+												accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf" multiple>
 										</div>
 										
+								<!--		<input class="form-group"  type="button" value="+ Subir más archivos" onclick="anadirArchivo()"> 
+										-->
 									</div>
 								</div>
 							</div>
@@ -1120,5 +1122,52 @@
 			</div>
 		</form>
 	</div>
+	
 </body>
 </html>
+
+<script>
+    var contArchivos = 1;
+ 
+ function anadirArchivo() { 
+        //Sumamos a la variable el número de archivos.
+        contArchivos=contArchivos+1;
+        
+        //Agregamos el componente de tipo input
+        var div = document.createElement("div");
+        var input = document.createElement("input");
+        var a = document.createElement("a");
+        
+        //Añadimos los atributos de div
+        div.id ='archivo'+contArchivos;
+        
+        //Añadimos los atributos de input
+        input.type = 'file';
+        input.name = 'file';
+        
+        //Añadimos los atributos del enlace a eliminar
+         a.href = "#";
+         a.id = 'archivo'+contArchivos;
+         a.onclick = function() {
+             borrarArchivo(a.id);
+         }
+         a.text ="Eliminar archivo";
+        
+        //Agreamos el input y enlace en el div
+        document.getElementById("archivos").appendChild(div);    
+        document.getElementById(a.id).appendChild(input);          
+        document.getElementById(a.id).appendChild(a);    
+ }
+  
+ function borrarArchivo(id){
+     //Restamos el número de archivos
+     contArchivos=contArchivos-1;
+     
+     var archivo = document.getElementById(id);    
+     // Si existe el campo a eliminar...
+     if (archivo){
+         divPadre = archivo.parentNode;
+         divPadre.removeChild(archivo);
+     }
+ }
+</script>

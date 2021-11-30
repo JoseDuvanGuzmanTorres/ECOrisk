@@ -1,6 +1,6 @@
 $(document).ready( function () {
 	
-	
+
 
 	
  var tipoestudio = $('#tipoestudio').val();
