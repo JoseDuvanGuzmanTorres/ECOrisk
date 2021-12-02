@@ -40,5 +40,8 @@ public class er_HojaSeguimientoService {
 	public List<er_HojaSeguimientoProjection> getSeguimientoProjectionByTrabajoId(Integer hojatrabajo_id){
 		return Er_HojaSeguimientoRepository.findByHojaTrabajoIdProjection(hojatrabajo_id);
 	}
+	public List<er_HojaSeguimientoProjection> getSeguimientoProjectionByEncabeId(Integer encabezado_id){
+		return Er_HojaSeguimientoRepository.findByEncabezadoIdProjection(encabezado_id);
+	}
 }
 

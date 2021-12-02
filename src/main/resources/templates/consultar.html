@@ -635,7 +635,7 @@
 												 	th:href="@{/participantes/findByEncabezadoId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver participantes
 												</a>
 												<br>
-												<a class="btn btn-low add-seguimiento" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5' OR ${#authentication.getPrincipal().getUserRole()} == '4' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'"
+												<a class="btn btn-low ver-seguimientoencabe" th:if="${#authentication.getPrincipal().getUserRole()} == '6' OR ${#authentication.getPrincipal().getUserRole()} == '5' OR ${#authentication.getPrincipal().getUserRole()} == '4' OR ${#authentication.getPrincipal().getUserRole()} == '3' OR ${#authentication.getPrincipal().getUserRole()} == '2' OR ${#authentication.getPrincipal().getUserRole()} == '1'"
 												 th:id="${encabezado.id}"	th:href="@{/hojacomentarios/findByEncabeId/(encabezado_id=${encabezado.id})}"><i class="icon_pencil-edit"></i> Ver seguimiento
 												</a>
 												<br>
@@ -1004,7 +1004,7 @@
 		</div>
 	</section>
 	<!-- container section end -->
-	
+	<!--tabla participantes-->
 	<div th:unless="${#authentication.getPrincipal().getUserRole()} == '7'" class="modal fade" id="participantesModal" tabindex="-1" role="dialog"
 		aria-labelledby="ModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-lg" role="document">
@@ -1019,6 +1019,42 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<table id="participantes-table"
+								class="table table-striped table-bordered" width="95%" style="margin: auto;">
+								<thead>
+									<tr>
+										<th><i class=""></i>Nombre</th>
+										<th><i class=""></i>Rol</th>
+										<th><i class=""></i>Dependencia</th>
+										<th><i class=""></i>Correo</th>
+									</tr>
+								</thead>
+								<tbody>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-dismiss="modal">Atras</button>
+					</div>
+				</div>
+			</div>
+	</div>
+	
+	<!--tabla seguimiento Talleres	-->
+		<div th:unless="${#authentication.getPrincipal().getUserRole()} == '7'" class="modal fade" id="EncabeModal" tabindex="-1" role="dialog"
+		aria-labelledby="ModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="EncabeModalLabel">Participantes</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<div class="form-group">
+							<table id="seguimientotalleres-table"
 								class="table table-striped table-bordered" width="95%" style="margin: auto;">
 								<thead>
 									<tr>
@@ -1040,6 +1076,7 @@
 			</div>
 	</div>
 	
+	<!--tabla seguimiento controles	-->
 	<div th:unless="${#authentication.getPrincipal().getUserRole()} == '7'" class="modal fade" id="editModal" tabindex="-1" role="dialog"
 		aria-labelledby="ModalLabel" aria-hidden="true">
 		<form id="addComment" th:action="@{/hojacomentarios/addNew}"
@@ -1073,19 +1110,21 @@
 						</div>
 						<div class="insertar_alertas">
 						</div>
+						<h4>Cargar evidencia
+						</h4>
 						<div class="row">
 							<div class="form-group col-sm-4 col-xs-6">
 								<div class="input-group">
 									<div class="custom-file">
-										<h4>Cargar evidencia</h4>
-										<div id="archivos" >
-											<input class="form-group" type="file" id="archivo"
+										
+										<div id="archivos">
+											<input  type="file" id="archivo"
 												name="file" 
 												accept=".xlsx,.xls,.doc,.docx,.ppt,.pptx,.mpp,.pdf" multiple>
 										</div>
-										
-								<!--		<input class="form-group"  type="button" value="+ Subir más archivos" onclick="anadirArchivo()"> 
-										-->
+										<br>
+										<br>
+										<!--<input class="form-group"  type="button" value="Subir más archivos" onclick="anadirArchivo()"> -->
 									</div>
 								</div>
 							</div>
@@ -1144,19 +1183,23 @@
         //Añadimos los atributos de input
         input.type = 'file';
         input.name = 'file';
+      
         
         //Añadimos los atributos del enlace a eliminar
          a.href = "#";
          a.id = 'archivo'+contArchivos;
+         
          a.onclick = function() {
              borrarArchivo(a.id);
          }
          a.text ="Eliminar archivo";
         
         //Agreamos el input y enlace en el div
-        document.getElementById("archivos").appendChild(div);    
+        document.getElementById("archivos").appendChild(div);
+        document.getElementById("archivos").classList.add("form-group");;
         document.getElementById(a.id).appendChild(input);          
-        document.getElementById(a.id).appendChild(a);    
+        document.getElementById(a.id).appendChild(a);
+            
  }
   
  function borrarArchivo(id){

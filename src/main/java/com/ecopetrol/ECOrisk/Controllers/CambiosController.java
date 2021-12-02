@@ -255,13 +255,18 @@ public class CambiosController {
 			seguimiento.setHtseg_fechaescrita(date);
 			seguimiento.setHtseg_comentario(descDue);
 			seguimiento.setHtseg_ruta(ruta);
+			
 			seguimiento.setUser_id(user.getId());
+			
 			seguimiento.setEr_cambio_id(nuevoCambio.getEr_cambio_id());
+			
 			seguimiento.setHtseg_evidencia1(archi1);
 			seguimiento.setHtseg_evidencia2(archi2);
 			seguimiento.setHtseg_evidencia3(archi3);
 			seguimiento.addAllHojaTrabajo(controles);
+			
 			Er_HojaSeguimientoService.save(seguimiento);
+			
 			for(erEncabezado encabezado : encabezados) {
 				encabezado.setE_liderproyecto(aDue);
 				ErEncabezadoService.save(encabezado);

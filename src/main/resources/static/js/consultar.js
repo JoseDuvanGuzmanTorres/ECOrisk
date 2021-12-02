@@ -119,84 +119,8 @@ $(document).ready( function () {
 			},
 		]	        
     });
-    //Crea Tabla de seguimiento usando AJAX
-    $('#encabezado-table').on('click','.ver-participantes',function(event){		
-		event.preventDefault();
-		var href= $(this).attr('href');
-		var table = $('#participantes-table').DataTable( {
-			"searching": true,
-			language: {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron participantes",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando...",
-            },
-		    clear: true,
-            destroy: true,
-            "ajax":{
-            	"method" : "POST",
-                "url": href,
-                "dataSrc": ""
-            },
-            "columns":[
-                {data: "nombre"},
-                {data: "rol"},
-			    {data: "dependencia"},
-			    {data: "correo"}
-            ]  
-          });
-          $('#participantes-table').wrap('<div class="dataTables_scroll" style="overflow:auto;" />');
-          
-		$('#participantesModal').modal();		
-	});
-	
-	    $('#encabezado-table').on('click','.ver-participantes',function(event){		
-		event.preventDefault();
-		var href= $(this).attr('href');
-		var table = $('#participantes-table').DataTable( {
-			"searching": true,
-			language: {
-                "lengthMenu": "Mostrar _MENU_ registros",
-                "zeroRecords": "No se encontraron participantes",
-                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sSearch": "Buscar:",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast":"Último",
-                    "sNext":"Siguiente",
-                    "sPrevious": "Anterior"
-			     },
-			     "sProcessing":"Procesando...",
-            },
-		    clear: true,
-            destroy: true,
-            "ajax":{
-            	"method" : "POST",
-                "url": href,
-                "dataSrc": ""
-            },
-            "columns":[
-                {data: "nombre"},
-                {data: "rol"},
-			    {data: "dependencia"},
-			    {data: "correo"}
-            ]  
-          });
-          $('#participantes-table').wrap('<div class="dataTables_scroll" style="overflow:auto;" />');
-          
-		$('#participantesModal').modal();		
-	});
+    
+
     
     //Hoja Trabajo MASTER
     $('#masterhojatrabajo-table thead tr').clone(true).appendTo( '#masterhojatrabajo-table thead' );
@@ -511,7 +435,7 @@ $(document).ready( function () {
     });
     
     //Fin Hoja Trabajo Riesgos Emergentes
-    //Crea Tabla de seguimiento usando AJAX
+    //Crea Tabla de seguimiento de los controles usando AJAX
     $('#masterhojatrabajo-table, #masterhojatrabajo-table2, #masterhojatrabajo-table3, #masterhojatrabajo-table4 , #encabezado-table').on('click','.add-seguimiento',function(event){		
 		event.preventDefault();
 		$('#cierreplan').hide();
@@ -583,6 +507,117 @@ $(document).ready( function () {
           
 		$('#editModal').modal();
 		
+	});
+	
+	
+	    //Crea Tabla de participantes usando AJAX
+    $('#encabezado-table').on('click','.ver-participantes',function(event){		
+		event.preventDefault();
+		var href= $(this).attr('href');
+		var table = $('#participantes-table').DataTable( {
+			"searching": true,
+			language: {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron participantes",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+			     },
+			     "sProcessing":"Procesando...",
+            },
+		    clear: true,
+            destroy: true,
+            "ajax":{
+            	"method" : "POST",
+                "url": href,
+                "dataSrc": ""
+            },
+            "columns":[
+                {data: "nombre"},
+                {data: "rol"},
+			    {data: "dependencia"},
+			    {data: "correo"}
+            ]  
+          });
+          
+          $('#participantes-table').wrap('<div class="dataTables_scroll" style="overflow:auto;" />');
+          
+		$('#participantesModal').modal();		
+	});
+
+	
+	
+  //Crea Tabla de seguimiento de los encabezados usando AJAX
+	    $('#encabezado-table').on('click','.ver-seguimientoencabe',function(event){		
+		event.preventDefault();
+		
+		
+			var href= $(this).attr('href');
+			var table = $('#seguimientotalleres-table').DataTable( {
+			"searching": true,
+			language: {
+                "lengthMenu": "Mostrar _MENU_ registros",
+                "zeroRecords": "No se encontraron seguimientos",
+                "info": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                "infoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+                "sSearch": "Buscar:",
+                "oPaginate": {
+                    "sFirst": "Primero",
+                    "sLast":"Último",
+                    "sNext":"Siguiente",
+                    "sPrevious": "Anterior"
+			     },
+			     "sProcessing":"Procesando...",
+            },
+             columnDefs: [
+            {targets:0, render:function(data){
+		      return moment(data).format('YYYY-MM-DD <br> HH:mm');
+		    }}
+		    ],
+		    clear: true,
+            destroy: true,
+            "ajax":{
+            	"method" : "POST",
+                "url": href,
+                "dataSrc": ""
+            },
+            "columns":[
+                {data: "fecha"},
+                {data: "comentario"},
+			    {data: "ruta",
+                render: function(data, type, row, meta){
+		           	if(type === 'display'){
+		            		data = '';
+		            		if(row.archi1 != null){
+		            			data = data + '<a href="' + (row.ruta+row.archi1) + '"download >' + row.archi1 + '</a>'
+		            		}
+		            		if(row.archi2 != null){
+		            			data = data + '<br><a href="' + (row.ruta+row.archi2) + '"download >' + row.archi2 + '</a>'
+		            		}
+		            		if(row.archi3 != null){
+		            			data = data + '<br><a href="' + (row.ruta+row.archi3) + '"download >' + row.archi3 + '</a>'
+		            		}
+		            }
+		            if(row.ruta !== ""){
+		            	return data;
+		            }
+		            
+		         }
+		         ,defaultContent: ""
+			    },
+			    {data: "usuario"}
+            ]  
+          });
+          $('#seguimientotalleres-table').wrap('<div class="dataTables_scroll" style="overflow:auto;" />');
+          
+		$('#EncabeModal').modal();		
 	});
 	
 	$('#archivo').change(function (){

@@ -181,7 +181,6 @@ public class er_HojaTrabajo {
 	
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
 	@JoinTable(name = "er_hojas_x_er_seguimiento")
-	
 	private Set<er_HojaSeguimiento> seguimientos = new HashSet<er_HojaSeguimiento>();
 	
 	public int getHt_id() {

@@ -18,4 +18,7 @@ public interface er_HojaSeguimientoRepository extends JpaRepository<er_HojaSegui
 	
 	@Query(value="SELECT seg.htseg_id as id, seg.htseg_comentario as comentario, seg.htseg_fechaescrita as fecha, seg.htseg_ruta as ruta, seg.htseg_evidencia1 as archi1, seg.htseg_evidencia2 as archi2, seg.htseg_evidencia3 as archi3, u.fullname as usuario from er_hoja_seguimiento seg, er_hoja_trabajo ho, er_hojas_x_er_seguimiento x, users u where ho.ht_id = x.hojas_ht_id AND seg.htseg_id = x.seguimientos_htseg_id AND seg.user_id = u.id AND ho.ht_id = :hojatrabajo_id" , nativeQuery=true)
 	List<er_HojaSeguimientoProjection> findByHojaTrabajoIdProjection(@Param("hojatrabajo_id") Integer hojatrabajo_id);
+
+	@Query(value="SELECT seg.htseg_id as id, seg.htseg_comentario as comentario, seg.htseg_fechaescrita as fecha, seg.htseg_ruta as ruta, seg.htseg_evidencia1 as archi1, seg.htseg_evidencia2 as archi2, seg.htseg_evidencia3 as archi3, u.fullname as usuario from er_hoja_seguimiento seg, er_encabezado ee, er_encabezado_x_er_seguimiento x, users u where ee.er_encabezado_id = x.Encabe_Id AND seg.htseg_id = x.seguimientos_Encabeseg_id AND seg.user_id = u.id AND ee.er_encabezado_id = :encabezado_id" , nativeQuery=true)
+	List<er_HojaSeguimientoProjection> findByEncabezadoIdProjection(@Param("encabezado_id") Integer encabezado_id);
 }

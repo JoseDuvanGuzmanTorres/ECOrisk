@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ecopetrol.ECOrisk.Models.er_HojaSeguimiento;
 import com.ecopetrol.ECOrisk.Models.er_HojaTrabajo;
 import com.ecopetrol.ECOrisk.Projections.er_HojaSeguimientoProjection;
+import com.ecopetrol.ECOrisk.Services.erEncabezadoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaSeguimientoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
@@ -37,6 +38,9 @@ public class er_HojaSeguimientoController {
 
 	@Autowired
 	private er_HojaTrabajoService Er_HojaTrabajoService;
+	
+	@Autowired 
+	private erEncabezadoService ErEncabezadoService;
 
 	@RequestMapping("hojacomentarios/findByTrabajoId")
 	@ResponseBody
@@ -47,7 +51,7 @@ public class er_HojaSeguimientoController {
 	@RequestMapping("hojacomentarios/findByEncabeId")
 	@ResponseBody
 	public List<er_HojaSeguimientoProjection> findByEncabeId(int encabezado_id) {
-		return Er_HojaSeguimientoService.getSeguimientoProjectionByTrabajoId(encabezado_id);
+		return Er_HojaSeguimientoService.getSeguimientoProjectionByEncabeId(encabezado_id);
 	}
 
 	// public static String uploadDirectory =

@@ -12,10 +12,12 @@ import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 @Entity
 @Data
+@EqualsAndHashCode(exclude="seguimientos")
 @NoArgsConstructor
 @AllArgsConstructor
 public class erEncabezado {
@@ -107,6 +109,10 @@ public class erEncabezado {
 	
 	private Date e_fechacongelamiento;
 	private Date e_fechadescongelamiento;
+	
+	
+	
+	
 	
 	public int getEr_encabezado_id() {
 		return er_encabezado_id;

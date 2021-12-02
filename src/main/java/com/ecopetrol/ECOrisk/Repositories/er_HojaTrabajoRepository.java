@@ -243,3 +243,4 @@ public interface er_HojaTrabajoRepository extends JpaRepository<er_HojaTrabajo, 
 	List<er_HojaTrabajoREmergenteProjection> findHojaTrabajoREProjectionByEncabezado(@Param("id_encabeList") List<Integer> id_encabeList,@Param("userId") Integer userId);
 	
 }
+
