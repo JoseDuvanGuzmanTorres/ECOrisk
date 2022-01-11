@@ -589,7 +589,7 @@ public class UploadService {
 						}
 
 						num = 11;
-						if (TipoEstudio == 2 || TipoEstudio == 3 || TipoEstudio == 4) {
+						if (TipoEstudio == 3 || TipoEstudio == 4) {
 							// TIPO TALLER
 							if (row.getCell(num).getCellType() == CellType.STRING) {
 							
