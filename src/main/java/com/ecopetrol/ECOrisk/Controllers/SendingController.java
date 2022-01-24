@@ -129,6 +129,7 @@ public class SendingController {
     }
     
     //Pruebas
+    
     @RequestMapping(value = "/emailPruebas")
     public String sendMailTest() throws MessagingException, InterruptedException {
     	
@@ -157,6 +158,7 @@ public class SendingController {
 		Thread.sleep(1000);	
     	return "redirect:/";
     }
+    
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes

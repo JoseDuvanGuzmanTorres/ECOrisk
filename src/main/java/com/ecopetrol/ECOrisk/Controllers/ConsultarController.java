@@ -58,6 +58,8 @@ public class ConsultarController {
 	@Autowired
 	private UserService userService;
 
+	
+	
 	// encabezadosList = ErEncabezadoService.getProjectionByUser(null, null, null,
 	// null, null, null, null, null, null, null, null, null, Finicial,
 	// Ffinal,users.getId());
@@ -261,6 +263,7 @@ public class ConsultarController {
 			e.printStackTrace();
 		}
 
+		//definir permisos de usuario segun el id de su rol
 		Integer Id;
 		String username = principal.getName();
 		Users users = userService.loadUserByUsername(username);
