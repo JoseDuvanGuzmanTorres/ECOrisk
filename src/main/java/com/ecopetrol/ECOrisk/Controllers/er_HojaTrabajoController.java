@@ -55,6 +55,7 @@ public class er_HojaTrabajoController {
 	public List<er_HojaTrabajo> findGap() {
 
 		// El servidor lleva 5 Horas por delante
+		
 		List<er_HojaTrabajo> Todos = Er_HojaTrabajoService.getHojaTrabajoByNoFechaCierre();
 		DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Date ahora = new Date();
@@ -202,7 +203,10 @@ public class er_HojaTrabajoController {
 
 		return new ResponseEntity<>("Cambio realizado correctamente", HttpStatus.OK);
 	}
-
+	
+	
+	
+  //@Scheduled(cron = "0 2 15 */1 *  2")
 	@Scheduled(cron = "0 2 15 */1 * 2")
 	void CronJobUpdateOportunidad2() {
 		// El servidor lleva 5 Horas por delante
