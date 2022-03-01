@@ -31,6 +31,17 @@ import com.ecopetrol.ECOrisk.Services.er_HojaSeguimientoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
 
+
+/**
+ * CambiosController define el controlador de los cambios y las funciones de realizar los cambios
+ * 
+ * 
+ * @author José Duvan Guzmán Torres
+ *
+ */
+
+
+// se llaman a todas las propiedades que se utilizaran para realizar los cambios
 @Controller
 public class CambiosController {
 	@Autowired
@@ -48,6 +59,7 @@ public class CambiosController {
 	@Autowired
 	private erCambiosService ErCambiosService;
 	
+	//se busca la lista de cambio por el id de la hoja de trabajo
 	@RequestMapping("cambios/findByTrabajoId")
 	@ResponseBody
 	public List<erCambiosProjection> findByTrabajoId(int hojatrabajo_id) {
@@ -56,9 +68,12 @@ public class CambiosController {
 	
 	//public static String uploadDirectory = System.getProperty("user.home")+File.separator+"uploads"+File.separator+"cambios";
 	
+	//se define el directorio donde se guardaran los archivos de las evidencias
 	public static String uploadDirectory = "/home/uploads"+File.separator+"cambios";
 
 	@RequestMapping(value=("cambiogeneral/addNew"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
+	
+	//Funcion para requerir los datos provenientes de cambios.html que seran utilizados para realizar el cambio de dueño de controles
 	public String addNew(@RequestParam("evidencia") MultipartFile[] file, @RequestParam Integer de,@RequestParam Integer[] cuales, @RequestParam Integer a, @RequestParam String desc, Principal principal, RedirectAttributes redirectAttributes){
 		String username = principal.getName();
 		Users user = userService.loadUserByUsername(username);
@@ -70,7 +85,8 @@ public class CambiosController {
 		String archi3 = "";
 		boolean vacio = false;
 		erCambios nuevoCambio = new erCambios();
-
+		
+		//funcion para permitir el cargue de archivos al servidor ftp y la subida de archivos si se cumplen las condiciones
 		if(file.length<4) {
 			int conta = 0;
 			for(MultipartFile archi:file) {
@@ -83,11 +99,13 @@ public class CambiosController {
 						ErCambiosService.save(nuevoCambio);
 					}
 					
+					//cargue de los archivos al directorio designado
 					Path directorio = Paths.get(uploadDirectory+File.separator+nuevoCambio.getEr_cambio_id());
 					
 					String rutaabsoluta = directorio.toFile().getAbsolutePath();
 					
 					ruta = "/uploads/cambios/"+nuevoCambio.getEr_cambio_id()+"/";
+					
 					try {
 						direccion = rutaabsoluta+File.separator+archi.getOriginalFilename();
 						Path rutacompleta = Paths.get(direccion);
@@ -114,7 +132,8 @@ public class CambiosController {
 				
 			}
 		}
-		
+
+		//Funcion para realizar el cambio de dueño de los controles
 		if(!vacio) {
 			
 			List<Integer> encabezados_id = new ArrayList<Integer>();
@@ -134,7 +153,7 @@ public class CambiosController {
 				controles = Er_HojaTrabajoService.getHojaByEncabeIdListAndUserId(encabezados_id,de);
 			}
 			
-			
+			//creacion del seguimiento del cambio
 			int contador = 0;
 			Date date = new Date();
 			er_HojaSeguimiento seguimiento = new er_HojaSeguimiento();
@@ -167,6 +186,7 @@ public class CambiosController {
 		
 	}
 
+	//Funcion para requerir los datos provenientes de cambios.html que seran utilizados para realizar el cambio de dueño de proyecto o proceso
 	@RequestMapping(value=("cambiodueno/addNew"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
 	public String addNewDueno(@RequestParam("evidenciaDue") MultipartFile[] file, @RequestParam Integer deDue ,@RequestParam Integer[] cualesDue , @RequestParam Integer aDue, @RequestParam String descDue, Principal principal, RedirectAttributes redirectAttributes){
 		String username = principal.getName();
@@ -180,6 +200,8 @@ public class CambiosController {
 		boolean vacio = false;
 		erCambios nuevoCambio = new erCambios();
 		
+		
+		//condiciones para el cargue de evidencias, y cargue si se cumplen las condiciones.
 		if(file.length<4) {
 			int conta = 0;
 			for(MultipartFile archi:file) {
@@ -192,11 +214,14 @@ public class CambiosController {
 						ErCambiosService.save(nuevoCambio);
 					}
 					
+					//cargue de los archivos al directorio designado
 					Path directorio = Paths.get(uploadDirectory+File.separator+nuevoCambio.getEr_cambio_id());
 					
 					String rutaabsoluta = directorio.toFile().getAbsolutePath();
 					
 					ruta = "/uploads/cambios/"+nuevoCambio.getEr_cambio_id()+"/";
+					
+					
 					try {
 						direccion = rutaabsoluta+File.separator+archi.getOriginalFilename();
 						Path rutacompleta = Paths.get(direccion);

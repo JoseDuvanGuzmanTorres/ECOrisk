@@ -1,5 +1,7 @@
 package com.ecopetrol.ECOrisk;
 
+//clases y complementos de java,springboot y thymeleaf que se utilizan
+
 import java.io.IOException;
 import java.util.Collections;
 import java.util.Properties;
@@ -23,137 +25,150 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 import org.thymeleaf.templateresolver.ITemplateResolver;
 import org.thymeleaf.templateresolver.StringTemplateResolver;
 
+/**
+ * SpringMailConfig declara las variables para los correos, el formato de
+ * codificacion de caracteres
+ * 
+ * @author José Duvan Guzmán Torres
+ *
+ */
 
-public @Configuration
-@PropertySource("classpath:mail/emailconfig.properties")
-class SpringMailConfig implements ApplicationContextAware, EnvironmentAware {
+public @Configuration @PropertySource("classpath:mail/emailconfig.properties") class SpringMailConfig
+		implements ApplicationContextAware, EnvironmentAware {
+	// se define el formato de codificacion
+	public static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
 
-    public static final String EMAIL_TEMPLATE_ENCODING = "UTF-8";
+	private static final String JAVA_MAIL_FILE = "classpath:mail/javamail.properties";
 
-    private static final String JAVA_MAIL_FILE = "classpath:mail/javamail.properties";
-    
-    private static final String HOST = "mail.server.host";
-    
-    private static final String PORT = "mail.server.port";
-    
-    private static final String PROTOCOL = "mail.server.protocol";
+	private static final String HOST = "mail.server.host";
 
-    private static final String USERNAME = "mail.server.username";
-    
-    private static final String PASSWORD = "mail.server.password";
+	private static final String PORT = "mail.server.port";
 
+	private static final String PROTOCOL = "mail.server.protocol";
 
-    private ApplicationContext applicationContext;
-    private Environment environment;
+	private static final String USERNAME = "mail.server.username";
 
-    @Override
-    public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
-        this.applicationContext = applicationContext;
-    }
+	private static final String PASSWORD = "mail.server.password";
 
-    @Override
-    public void setEnvironment(final Environment environment) {
-        this.environment = environment;
-    }
+	private ApplicationContext applicationContext;
+	private Environment environment;
 
+	@Override
+	public void setApplicationContext(final ApplicationContext applicationContext) throws BeansException {
+		this.applicationContext = applicationContext;
+	}
 
-    /*
-     * SPRING + JAVAMAIL: JavaMailSender instance, configured via .properties files.
-     */
-    @Bean
-    public JavaMailSender mailSender() throws IOException {
+	@Override
+	public void setEnvironment(final Environment environment) {
+		this.environment = environment;
+	}
 
-        final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+	/*
+	 * SPRING + JAVAMAIL: JavaMailSender instancia configurada por .properties files
+	 * para el envio de correos a traves de springboot.
+	 * 
+	 */
 
-        // Basic mail sender configuration, based on emailconfig.properties
-        mailSender.setHost(this.environment.getProperty(HOST));
-        mailSender.setPort(Integer.parseInt(this.environment.getProperty(PORT)));
-        mailSender.setProtocol(this.environment.getProperty(PROTOCOL));
-        mailSender.setUsername(this.environment.getProperty(USERNAME));
-        mailSender.setPassword(this.environment.getProperty(PASSWORD));
+	@Bean
+	public JavaMailSender mailSender() throws IOException {
 
-        // JavaMail-specific mail sender configuration, based on javamail.properties
-        final Properties javaMailProperties = new Properties();
-        javaMailProperties.load(this.applicationContext.getResource(JAVA_MAIL_FILE).getInputStream());
-        mailSender.setJavaMailProperties(javaMailProperties);
+		final JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
 
-        return mailSender;
+		// Basic mail sender configuration, based on emailconfig.properties
+		mailSender.setHost(this.environment.getProperty(HOST));
+		mailSender.setPort(Integer.parseInt(this.environment.getProperty(PORT)));
+		mailSender.setProtocol(this.environment.getProperty(PROTOCOL));
+		mailSender.setUsername(this.environment.getProperty(USERNAME));
+		mailSender.setPassword(this.environment.getProperty(PASSWORD));
 
-    }
+		// JavaMail-specific mail sender configuration, based on javamail.properties
+		final Properties javaMailProperties = new Properties();
+		javaMailProperties.load(this.applicationContext.getResource(JAVA_MAIL_FILE).getInputStream());
+		mailSender.setJavaMailProperties(javaMailProperties);
 
+		return mailSender;
 
-    /*
-     *  Message externalization/internationalization for emails.
-     *
-     *  NOTE we are avoiding the use of the name 'messageSource' for this bean because that
-     *       would make the MessageSource defined in SpringWebConfig (and made available for the
-     *       web-side template engine) delegate to this one, and thus effectively merge email
-     *       messages into web messages and make both types available at the web side, which could
-     *       bring undesired collisions.
-     *
-     *  NOTE also that given we want this specific message source to be used by our
-     *       SpringTemplateEngines for emails (and not by the web one), we will set it explicitly
-     *       into each of the TemplateEngine objects with 'setTemplateEngineMessageSource(...)'
-     */
-    @Bean
-    public ResourceBundleMessageSource emailMessageSource() {
-        final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
-        messageSource.setBasename("mail/MailMessages");
-        return messageSource;
-    }
+	}
 
+	/*
+	 * Externalización/internacionalización de mensajes para correos electrónicos.
+	 *
+	 * NOTA estamos evitando el uso del nombre 'messageSource' para este bean porque
+	 * eso haría que el MessageSource definido en SpringWebConfig (y disponible para
+	 * el motor de plantillas del lado web) delegado a este, y por lo tanto, combine
+	 * de manera efectiva los mensajes de correo electrónico en mensajes web y haga
+	 * ambos tipos disponible en el lado web, lo que podría traer colisiones no
+	 * deseadas.
+	 *
+	 * TENGA EN CUENTA también que dado que queremos que esta fuente de mensaje
+	 * específica sea utilizada por nuestro SpringTemplateEngines para correos
+	 * electrónicos (y no por el web), lo configuraremos explícitamente en cada uno
+	 * de los objetos TemplateEngine con 'establecerTemplateEngineMessageSource'
+	 */
+	
+	@Bean
+	public ResourceBundleMessageSource emailMessageSource() {
+		final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
+		messageSource.setBasename("mail/MailMessages");
+		return messageSource;
+	}
 
-    /* ******************************************************************** */
-    /*  THYMELEAF-SPECIFIC ARTIFACTS FOR EMAIL                              */
-    /*  TemplateResolver(3) <- TemplateEngine                               */
-    /* ******************************************************************** */
+	/**
+	 * TemplateEngine se crean las variables para todos los tipos de correos y se
+	 * enlasan a una funcion, para luego definir su configuracion
+	 * 
+	 */
+	@Bean
+	@Qualifier("email")
+	public TemplateEngine emailTemplateEngine() {
+		final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
+		// Resolver para Emails con texto
+		templateEngine.addTemplateResolver(textTemplateResolver());
+		// Resolver para correos electrónicos HTML (excepto los que sean editables)
+		templateEngine.addTemplateResolver(htmlTemplateResolver());
+		// Resolver para correos electrónicos HTML editables (que se tratarán como un
+		// String)
+		templateEngine.addTemplateResolver(stringTemplateResolver());
+		// Origen del mensaje, internacionalización específica para correos electrónicos
+		templateEngine.setTemplateEngineMessageSource(emailMessageSource());
+		return templateEngine;
+	}
 
-    @Bean
-    @Qualifier("email")
-    public TemplateEngine emailTemplateEngine() {
-        final SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        // Resolver for TEXT emails
-        templateEngine.addTemplateResolver(textTemplateResolver());
-        // Resolver for HTML emails (except the editable one)
-        templateEngine.addTemplateResolver(htmlTemplateResolver());
-        // Resolver for HTML editable emails (which will be treated as a String)
-        templateEngine.addTemplateResolver(stringTemplateResolver());
-        // Message source, internationalization specific to emails
-        templateEngine.setTemplateEngineMessageSource(emailMessageSource());
-        return templateEngine;
-    }
+	// Definicion de la estructura de los correos con texto.
+	private ITemplateResolver textTemplateResolver() {
+		final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setOrder(Integer.valueOf(1));
+		templateResolver.setResolvablePatterns(Collections.singleton("text/*"));
+		templateResolver.setPrefix("/mail/");
+		templateResolver.setSuffix(".txt");
+		templateResolver.setTemplateMode(TemplateMode.TEXT);
+		templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
+		templateResolver.setCacheable(false);
+		return templateResolver;
+	}
 
-    private ITemplateResolver textTemplateResolver() {
-        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setOrder(Integer.valueOf(1));
-        templateResolver.setResolvablePatterns(Collections.singleton("text/*"));
-        templateResolver.setPrefix("/mail/");
-        templateResolver.setSuffix(".txt");
-        templateResolver.setTemplateMode(TemplateMode.TEXT);
-        templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
-        templateResolver.setCacheable(false);
-        return templateResolver;
-    }
+	//Definicion de la estructura de los correos que contienen HTML
+	private ITemplateResolver htmlTemplateResolver() {
+		final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
+		templateResolver.setOrder(Integer.valueOf(2));
+		templateResolver.setResolvablePatterns(Collections.singleton("html/*"));
+		templateResolver.setPrefix("/mail/");
+		templateResolver.setSuffix(".html");
+		templateResolver.setTemplateMode(TemplateMode.HTML);
+		templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
+		templateResolver.setCacheable(false);
+		return templateResolver;
+	}
 
-    private ITemplateResolver htmlTemplateResolver() {
-        final ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
-        templateResolver.setOrder(Integer.valueOf(2));
-        templateResolver.setResolvablePatterns(Collections.singleton("html/*"));
-        templateResolver.setPrefix("/mail/");
-        templateResolver.setSuffix(".html");
-        templateResolver.setTemplateMode(TemplateMode.HTML);
-        templateResolver.setCharacterEncoding(EMAIL_TEMPLATE_ENCODING);
-        templateResolver.setCacheable(false);
-        return templateResolver;
-    }
-
-    private ITemplateResolver stringTemplateResolver() {
-        final StringTemplateResolver templateResolver = new StringTemplateResolver();
-        templateResolver.setOrder(Integer.valueOf(3));
-        // No resolvable pattern, will simply process as a String template everything not previously matched
-        templateResolver.setTemplateMode("HTML5");
-        templateResolver.setCacheable(false);
-        return templateResolver;
-    }
+	//Definicion de la estructura de los correos que tratan como una cadena tipo String
+	private ITemplateResolver stringTemplateResolver() {
+		final StringTemplateResolver templateResolver = new StringTemplateResolver();
+		templateResolver.setOrder(Integer.valueOf(3));
+		// No resolvable pattern, will simply process as a String template everything
+		// not previously matched
+		templateResolver.setTemplateMode("HTML5");
+		templateResolver.setCacheable(false);
+		return templateResolver;
+	}
 
 }

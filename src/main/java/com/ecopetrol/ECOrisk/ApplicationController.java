@@ -17,26 +17,36 @@ import com.ecopetrol.ECOrisk.Services.erRiesgos_ValoracionService;
 
 @Controller
 public class ApplicationController {
-	
+
+/**
+ * ApplicationController inicializa los controladores principales y se configura la pagina index de ECOrisk
+ * 
+ * @author José Duvan Guzmán Torres
+ *
+ */
+	//se llaman las clases que se utilizaran, en este caso los servicios del encabezado, el de usuarios(user) y riesgos valoracion.
 	@Autowired
 	private erEncabezadoService Er_EncabezadoService;
 	@Autowired
 	private UserService userService;
 	@Autowired
 	private erRiesgos_ValoracionService ErRiesgos_ValoracionService;
-	
-	
+
 	@GetMapping("/")
 	public String goHome(Model model) {
+
+		/**
+		 * GoHome declara las variables y modelos para los datos del dashboard
+		 */
 		
 		erRiesgos_ValoracionProjection valoraciones = ErRiesgos_ValoracionService.getValoracionesProjection();
-		
+
 		Integer InicialCapexN = valoraciones.getInicialCapexN();
 		Integer InicialCapexL = valoraciones.getInicialCapexL();
 		Integer InicialCapexM = valoraciones.getInicialCapexM();
 		Integer InicialCapexH = valoraciones.getInicialCapexH();
-		Integer InicialCapexVH  = valoraciones.getInicialCapexVH();		
-		Integer ResidualCapexN  = valoraciones.getResidualCapexN();
+		Integer InicialCapexVH = valoraciones.getInicialCapexVH();
+		Integer ResidualCapexN = valoraciones.getResidualCapexN();
 		Integer ResidualCapexL = valoraciones.getResidualCapexL();
 		Integer ResidualCapexM = valoraciones.getResidualCapexM();
 		Integer ResidualCapexH = valoraciones.getResidualCapexH();
@@ -45,7 +55,7 @@ public class ApplicationController {
 		Integer CerradosCapexL = valoraciones.getCerradosCapexL();
 		Integer CerradosCapexM = valoraciones.getCerradosCapexM();
 		Integer CerradosCapexH = valoraciones.getCerradosCapexH();
-		Integer CerradosCapexVH = valoraciones.getCerradosCapexVH();		
+		Integer CerradosCapexVH = valoraciones.getCerradosCapexVH();
 		Integer AbiertosCapexN = valoraciones.getAbiertosCapexN();
 		Integer AbiertosCapexL = valoraciones.getAbiertosCapexL();
 		Integer AbiertosCapexM = valoraciones.getAbiertosCapexM();
@@ -92,59 +102,59 @@ public class ApplicationController {
 		Integer CerradAutoOpexM = valoraciones.getCerradAutoOpexM();
 		Integer CerradAutoOpexL = valoraciones.getCerradAutoOpexL();
 		Integer CerradAutoOpexN = valoraciones.getCerradAutoOpexN();
-		Integer TotalInicialCapex  = valoraciones.getTotalInicialCapex();
-		Integer TotalAbiertosCapex  = valoraciones.getTotalAbiertosCapex();
-		Integer TotalCerradosCapex  = valoraciones.getTotalCerradosCapex();
-		Integer TotalCongeladosCapex  = valoraciones.getTotalCongeladosCapex();
-		Integer TotalInicialOpex    = valoraciones.getTotalInicialOpex();
-		Integer TotalAbiertosOpex    = valoraciones.getTotalAbiertosOpex();
-		Integer TotalCerradosOpex    = valoraciones.getTotalCerradosOpex();
-		Integer TotalCongeladosOpex    = valoraciones.getTotalCongeladosOpex();
+		Integer TotalInicialCapex = valoraciones.getTotalInicialCapex();
+		Integer TotalAbiertosCapex = valoraciones.getTotalAbiertosCapex();
+		Integer TotalCerradosCapex = valoraciones.getTotalCerradosCapex();
+		Integer TotalCongeladosCapex = valoraciones.getTotalCongeladosCapex();
+		Integer TotalInicialOpex = valoraciones.getTotalInicialOpex();
+		Integer TotalAbiertosOpex = valoraciones.getTotalAbiertosOpex();
+		Integer TotalCerradosOpex = valoraciones.getTotalCerradosOpex();
+		Integer TotalCongeladosOpex = valoraciones.getTotalCongeladosOpex();
 
-		model.addAttribute("InicialCapexN",   InicialCapexN);
-		model.addAttribute("InicialCapexL",   InicialCapexL);
-		model.addAttribute("InicialCapexM",   InicialCapexM);
-		model.addAttribute("InicialCapexH",   InicialCapexH);
-		model.addAttribute("InicialCapexVH",  InicialCapexVH);		
-		model.addAttribute("ResidualCapexN",   ResidualCapexN);
-		model.addAttribute("ResidualCapexL",   ResidualCapexL);
-		model.addAttribute("ResidualCapexM",   ResidualCapexM);
-		model.addAttribute("ResidualCapexH",   ResidualCapexH);
-		model.addAttribute("ResidualCapexVH",  ResidualCapexVH);		
-		model.addAttribute("CerradosCapexN",  CerradosCapexN);
-		model.addAttribute("CerradosCapexL",  CerradosCapexL);
-		model.addAttribute("CerradosCapexM",  CerradosCapexM);
-		model.addAttribute("CerradosCapexH",  CerradosCapexH);
-		model.addAttribute("CerradosCapexVH", CerradosCapexVH);			
+		model.addAttribute("InicialCapexN", InicialCapexN);
+		model.addAttribute("InicialCapexL", InicialCapexL);
+		model.addAttribute("InicialCapexM", InicialCapexM);
+		model.addAttribute("InicialCapexH", InicialCapexH);
+		model.addAttribute("InicialCapexVH", InicialCapexVH);
+		model.addAttribute("ResidualCapexN", ResidualCapexN);
+		model.addAttribute("ResidualCapexL", ResidualCapexL);
+		model.addAttribute("ResidualCapexM", ResidualCapexM);
+		model.addAttribute("ResidualCapexH", ResidualCapexH);
+		model.addAttribute("ResidualCapexVH", ResidualCapexVH);
+		model.addAttribute("CerradosCapexN", CerradosCapexN);
+		model.addAttribute("CerradosCapexL", CerradosCapexL);
+		model.addAttribute("CerradosCapexM", CerradosCapexM);
+		model.addAttribute("CerradosCapexH", CerradosCapexH);
+		model.addAttribute("CerradosCapexVH", CerradosCapexVH);
 		model.addAttribute("AbiertosCapexN", AbiertosCapexN);
 		model.addAttribute("AbiertosCapexL", AbiertosCapexL);
 		model.addAttribute("AbiertosCapexM", AbiertosCapexM);
 		model.addAttribute("AbiertosCapexH", AbiertosCapexH);
-		model.addAttribute("AbiertosCapexVH", AbiertosCapexVH);		
+		model.addAttribute("AbiertosCapexVH", AbiertosCapexVH);
 		model.addAttribute("CongeladosCapexVH", CongeladosCapexVH);
 		model.addAttribute("CongeladosCapexH", CongeladosCapexH);
 		model.addAttribute("CongeladosCapexM", CongeladosCapexM);
 		model.addAttribute("CongeladosCapexL", CongeladosCapexL);
-		model.addAttribute("CongeladosCapexN", CongeladosCapexN);			
-		model.addAttribute("InicialOpexN", InicialOpexN );
-		model.addAttribute("InicialOpexL", InicialOpexL );
-		model.addAttribute("InicialOpexM", InicialOpexM );
-		model.addAttribute("InicialOpexH", InicialOpexH );
-		model.addAttribute("InicialOpexVH", InicialOpexVH );
-		model.addAttribute("ResidualOpexN", ResidualOpexN );
-		model.addAttribute("ResidualOpexL", ResidualOpexL );
-		model.addAttribute("ResidualOpexM", ResidualOpexM );
-		model.addAttribute("ResidualOpexH", ResidualOpexH );
+		model.addAttribute("CongeladosCapexN", CongeladosCapexN);
+		model.addAttribute("InicialOpexN", InicialOpexN);
+		model.addAttribute("InicialOpexL", InicialOpexL);
+		model.addAttribute("InicialOpexM", InicialOpexM);
+		model.addAttribute("InicialOpexH", InicialOpexH);
+		model.addAttribute("InicialOpexVH", InicialOpexVH);
+		model.addAttribute("ResidualOpexN", ResidualOpexN);
+		model.addAttribute("ResidualOpexL", ResidualOpexL);
+		model.addAttribute("ResidualOpexM", ResidualOpexM);
+		model.addAttribute("ResidualOpexH", ResidualOpexH);
 		model.addAttribute("ResidualOpexVH", ResidualOpexVH);
-		model.addAttribute("CerradosOpexN", CerradosOpexN );
-		model.addAttribute("CerradosOpexL", CerradosOpexL );
-		model.addAttribute("CerradosOpexM", CerradosOpexM );
-		model.addAttribute("CerradosOpexH", CerradosOpexH );
+		model.addAttribute("CerradosOpexN", CerradosOpexN);
+		model.addAttribute("CerradosOpexL", CerradosOpexL);
+		model.addAttribute("CerradosOpexM", CerradosOpexM);
+		model.addAttribute("CerradosOpexH", CerradosOpexH);
 		model.addAttribute("CerradosOpexVH", CerradosOpexVH);
-		model.addAttribute("AbiertosOpexN", AbiertosOpexN );
-		model.addAttribute("AbiertosOpexL", AbiertosOpexL );
-		model.addAttribute("AbiertosOpexM", AbiertosOpexM );
-		model.addAttribute("AbiertosOpexH", AbiertosOpexH );
+		model.addAttribute("AbiertosOpexN", AbiertosOpexN);
+		model.addAttribute("AbiertosOpexL", AbiertosOpexL);
+		model.addAttribute("AbiertosOpexM", AbiertosOpexM);
+		model.addAttribute("AbiertosOpexH", AbiertosOpexH);
 		model.addAttribute("AbiertosOpexVH", AbiertosOpexVH);
 		model.addAttribute("CongeladosOpexVH", CongeladosOpexVH);
 		model.addAttribute("CongeladosOpexH", CongeladosOpexH);
@@ -164,12 +174,12 @@ public class ApplicationController {
 		model.addAttribute("TotalInicialCapex", TotalInicialCapex);
 		model.addAttribute("TotalAbiertosCapex", TotalAbiertosCapex);
 		model.addAttribute("TotalCerradosCapex", TotalCerradosCapex);
-		model.addAttribute("TotalCongeladosCapex", TotalCongeladosCapex );
+		model.addAttribute("TotalCongeladosCapex", TotalCongeladosCapex);
 		model.addAttribute("TotalInicialOpex", TotalInicialOpex);
 		model.addAttribute("TotalAbiertosOpex", TotalAbiertosOpex);
 		model.addAttribute("TotalCerradosOpex", TotalCerradosOpex);
 		model.addAttribute("TotalCongeladosOpex", TotalCongeladosOpex);
-		
+
 		ContadorTalleresProjection contadores = Er_EncabezadoService.getContadorTalleres();
 		Integer Whatifca = contadores.getWhatifca();
 		Integer Whatifop = contadores.getWhatifop();
@@ -181,7 +191,7 @@ public class ApplicationController {
 		Integer Peerreop = contadores.getPeerreop();
 		Integer LeccionesAca = contadores.getLeccionesAca();
 		Integer LeccionesAop = contadores.getLeccionesAop();
-		
+
 		model.addAttribute("Whatifca", Whatifca);
 		model.addAttribute("Whatifop", Whatifop);
 		model.addAttribute("Construca", Construca);
@@ -193,34 +203,37 @@ public class ApplicationController {
 		model.addAttribute("LeccionesAca", LeccionesAca);
 		model.addAttribute("LeccionesAop", LeccionesAop);
 		
-		List<UsersProjection> usuarios = userService.getUserProjection();
+		//se obtiene la lista de usuarios y se devuebe el total de usuarios 
+		List<UsersProjection> usuarios = userService.getUserProjection();		
 		model.addAttribute("usuarios", usuarios);
 		Integer contauser = usuarios.size();
 		model.addAttribute("contauser", contauser);
-		
+
 		return "index";
 	}
+	
+	// a continuacion se declaran las url de las paginas /acerca-de, /contactenos, /login, /logut, /register
 	
 	@GetMapping("/acerca-de")
 	public String goAcercaDe() {
 		return "acercade";
 	}
-	
+
 	@GetMapping("/contactenos")
 	public String goContactenos() {
 		return "contactenos";
 	}
-	
+
 	@GetMapping("/login")
 	public String login() {
 		return "login";
 	}
-	
+
 	@GetMapping("/logout")
 	public String logout() {
 		return "login";
 	}
-	
+
 	@GetMapping("/register")
 	public String register() {
 		return "register";

@@ -101,6 +101,15 @@ public class UploadService {
 	
 	@Autowired
 	private UserService UserService;
+	
+
+/**
+ * UploadService declara el modelo de las funciones para el de cargue de talleres
+ * 
+ * @author José Duvan Guzmán Torres
+ *
+ */
+
 
 	public List<String> saveDataFromUploadFile(MultipartFile file, Integer TipoEstudio) {
 		List<String> getError = new ArrayList<String>();
@@ -136,7 +145,6 @@ public class UploadService {
 		Workbook workbook = getWorkbook(file);
 		// Define variables to assign and create new Model
 		erEncabezado encabezado = new erEncabezado();
-
 		// Obtiene y crea el encabezado y devuelve los errores
 		Error = Encabezado(Error, workbook, encabezado, TipoEstudio);
 
@@ -1241,7 +1249,7 @@ public class UploadService {
 
 					}
 
-					// Acción a desarrollar
+					// Acción a desarrollar(control)
 					if (accion_desarrollar != -1) {
 						TempError = getErrores(row, accion_desarrollar, 2000, "Acción a desarrollar", rowcount);
 						if (TempError.isEmpty()) {

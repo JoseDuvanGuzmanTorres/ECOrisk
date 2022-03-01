@@ -12,10 +12,21 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
+
+/**
+ * SpringMailConfig declara las variables para los correos, el formato de
+ * codificacion de caracteres
+ * 
+ * @author José Duvan Guzmán Torres
+ *
+ */
+
 @EnableWebSecurity
 @Configuration
 public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
+	
+	//configuracion general del springsecurity
 	protected void configure(HttpSecurity http) 
 			throws Exception {
 		http
@@ -41,14 +52,17 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		return NoOpPasswordEncoder.getInstance();
 	}*/	
 	
+	//encriptador de conrtaseñas
 	@Bean
 	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 	
+	//detalles del usuario
 	@Autowired
 	private UserDetailsService userDetailsService;
 	
+	//se declara el proveedor de autenticacion
 	@Bean
 	public AuthenticationProvider authenticationProvider() {
 		DaoAuthenticationProvider provider = new DaoAuthenticationProvider();		
