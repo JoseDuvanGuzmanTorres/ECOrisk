@@ -1118,7 +1118,7 @@ public class UploadService {
 
 							if (Temp.startsWith("Cerrado") || Temp.startsWith("cerrado")) {
 								cerrado = true;
-								hojatrabajo.setEr_estado_id(3);
+								hojatrabajo.setEr_estado_id(2);
 								hojatrabajo.setHt_fechacierre(encabezado.getE_fechataller());
 								hojatrabajo.setEr_cierre_id(1);
 							}
@@ -1185,14 +1185,12 @@ public class UploadService {
 					}
 
 					// Qué salió bien
-					boolean tempBien = false;
+					
 					if (salio_bien != -1) {
 						TempError = getErrores(row, salio_bien, 2000, "¿Qué salió bien?", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(salio_bien).getStringCellValue();
 							hojatrabajo.setSalio_bien(Temp);
-						} else {
-							tempBien = true;
 						}
 
 					}
@@ -1204,12 +1202,7 @@ public class UploadService {
 							String Temp = row.getCell(salio_mal).getStringCellValue();
 							hojatrabajo.setSalio_mal(Temp);
 						} else {
-							if (tempBien == true) {
-								Error.add("Formato de ¿Qué salió bien? incorrecto o está vacío FILA(" + (rowcount + 1)
-										+ ")");
-								Error.addAll(TempError);
-							}
-
+							hojatrabajo.setSalio_mal(null);
 						}
 
 					}
@@ -1231,7 +1224,7 @@ public class UploadService {
 							String Temp = row.getCell(que_aprendio).getStringCellValue();
 							hojatrabajo.setQue_aprendio(Temp);
 						} else {
-							Error.addAll(TempError);
+							hojatrabajo.setQue_aprendio(null);
 						}
 
 					}
@@ -1244,7 +1237,7 @@ public class UploadService {
 
 							hojatrabajo.setDescriptor(Temp);
 						} else {
-							Error.addAll(TempError);
+							hojatrabajo.setDescriptor(null);
 						}
 
 					}
@@ -1288,7 +1281,7 @@ public class UploadService {
 							}
 
 						} else {
-							Error.addAll(TempError);
+							hojatrabajo.setHt_responsableimplementacion(null);
 						}
 
 					}
@@ -1304,7 +1297,7 @@ public class UploadService {
 								Error.add("Formato de fecha incorrecto FILA(" + (rowcount + 1) + ")");
 							}
 						} else {
-							Error.addAll(TempError);
+							hojatrabajo.setHt_fechaplaneadacierre(null);
 						}
 					}
 
