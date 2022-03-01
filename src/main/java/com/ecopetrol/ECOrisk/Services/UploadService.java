@@ -1281,7 +1281,7 @@ public class UploadService {
 							}
 
 						} else {
-							hojatrabajo.setHt_responsableimplementacion(null);
+							hojatrabajo.setHt_responsableimplementacion(105);
 						}
 
 					}
