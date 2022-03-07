@@ -21,8 +21,9 @@ public class ApplicationController {
 /**
  * ApplicationController inicializa los controladores principales y se configura la pagina index de ECOrisk
  * 
- * @author José Duvan Guzmán Torres
- *
+ * @author Manuel Eduardo Patarroyo Santos
+ * @coauthor José Duvan Guzmán Torres
+ * 
  */
 	//se llaman las clases que se utilizaran, en este caso los servicios del encabezado, el de usuarios(user) y riesgos valoracion.
 	@Autowired
@@ -31,7 +32,6 @@ public class ApplicationController {
 	private UserService userService;
 	@Autowired
 	private erRiesgos_ValoracionService ErRiesgos_ValoracionService;
-
 	@GetMapping("/")
 	public String goHome(Model model) {
 
@@ -203,8 +203,7 @@ public class ApplicationController {
 		model.addAttribute("LeccionesAca", LeccionesAca);
 		model.addAttribute("LeccionesAop", LeccionesAop);
 		
-		//se obtiene la lista de usuarios y se devuebe el total de usuarios 
-		List<UsersProjection> usuarios = userService.getUserProjection();		
+		List<UsersProjection> usuarios = userService.getUserProjection(); //se obtiene la lista de usuarios y se devuebe el total de usuarios 	
 		model.addAttribute("usuarios", usuarios);
 		Integer contauser = usuarios.size();
 		model.addAttribute("contauser", contauser);
