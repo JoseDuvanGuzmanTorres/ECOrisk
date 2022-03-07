@@ -1264,7 +1264,7 @@ public class UploadService {
 								hojatrabajo.setHt_responsableimplementacion(105);
 							}  if (Temp.equals("Equipo NPCC") || Temp.equals("Equipo NPCC")) {
 								hojatrabajo.setHt_responsableimplementacion(388);
-							} if (Temp.equals("Líder de proyecto") || Temp.equals("Líder de proyecto")) {
+							} if (Temp.equals("Líder de proyectos") || Temp.equals("Líder de proyecto")) {
 								hojatrabajo.setHt_responsableimplementacion(419);
 							}else {
 								if (Asistentes.containsKey(Temp)) {
