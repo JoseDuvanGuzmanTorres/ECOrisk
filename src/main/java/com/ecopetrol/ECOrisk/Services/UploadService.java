@@ -1262,9 +1262,9 @@ public class UploadService {
 							String Temp = row.getCell(responsable).getStringCellValue();
 							if (Temp.equals("N/A") || Temp.equals("N/A")) {
 								hojatrabajo.setHt_responsableimplementacion(105);
-							}  if (Temp.equals("Equipo NPCC") || Temp.equals("Equipo NPCC")) {
+							}else  if (Temp.equals("Equipo NPCC") || Temp.equals("Equipo NPCC")) {
 								hojatrabajo.setHt_responsableimplementacion(388);
-							} if (Temp.equals("Líder de proyectos") || Temp.equals("Líder de proyecto")) {
+							}else if (Temp.equals("Líder de proyectos") || Temp.equals("Líder de proyecto")) {
 								hojatrabajo.setHt_responsableimplementacion(419);
 							}else {
 								if (Asistentes.containsKey(Temp)) {
