@@ -22,7 +22,7 @@ public class ApplicationController {
  * ApplicationController inicializa los controladores principales y se configura la pagina index de ECOrisk
  * 
  * @author Manuel Eduardo Patarroyo Santos
- * @coauthor José Duvan Guzmán Torres
+ * 
  * 
  */
 	//se llaman las clases que se utilizaran, en este caso los servicios del encabezado, el de usuarios(user) y riesgos valoracion.
@@ -41,6 +41,8 @@ public class ApplicationController {
 		
 		erRiesgos_ValoracionProjection valoraciones = ErRiesgos_ValoracionService.getValoracionesProjection();
 
+		
+		//declaracion de variables para los campos del dashboard
 		Integer InicialCapexN = valoraciones.getInicialCapexN();
 		Integer InicialCapexL = valoraciones.getInicialCapexL();
 		Integer InicialCapexM = valoraciones.getInicialCapexM();
@@ -110,7 +112,8 @@ public class ApplicationController {
 		Integer TotalAbiertosOpex = valoraciones.getTotalAbiertosOpex();
 		Integer TotalCerradosOpex = valoraciones.getTotalCerradosOpex();
 		Integer TotalCongeladosOpex = valoraciones.getTotalCongeladosOpex();
-
+		
+		//creacion del modelo para las variables para que puedan ser utilizadas en el index.html
 		model.addAttribute("InicialCapexN", InicialCapexN);
 		model.addAttribute("InicialCapexL", InicialCapexL);
 		model.addAttribute("InicialCapexM", InicialCapexM);
@@ -179,7 +182,7 @@ public class ApplicationController {
 		model.addAttribute("TotalAbiertosOpex", TotalAbiertosOpex);
 		model.addAttribute("TotalCerradosOpex", TotalCerradosOpex);
 		model.addAttribute("TotalCongeladosOpex", TotalCongeladosOpex);
-
+		//inicializacion de las variables para el contador de talleres
 		ContadorTalleresProjection contadores = Er_EncabezadoService.getContadorTalleres();
 		Integer Whatifca = contadores.getWhatifca();
 		Integer Whatifop = contadores.getWhatifop();
@@ -191,7 +194,7 @@ public class ApplicationController {
 		Integer Peerreop = contadores.getPeerreop();
 		Integer LeccionesAca = contadores.getLeccionesAca();
 		Integer LeccionesAop = contadores.getLeccionesAop();
-
+		//modelos para las variables del contador de talleres
 		model.addAttribute("Whatifca", Whatifca);
 		model.addAttribute("Whatifop", Whatifop);
 		model.addAttribute("Construca", Construca);
@@ -203,7 +206,8 @@ public class ApplicationController {
 		model.addAttribute("LeccionesAca", LeccionesAca);
 		model.addAttribute("LeccionesAop", LeccionesAop);
 		
-		List<UsersProjection> usuarios = userService.getUserProjection(); //se obtiene la lista de usuarios y se devuebe el total de usuarios 	
+		//se obtiene la lista de usuarios y se devuebe el total de usuarios para la tabla de usuarios registrados en el dashboard
+		List<UsersProjection> usuarios = userService.getUserProjection(); 
 		model.addAttribute("usuarios", usuarios);
 		Integer contauser = usuarios.size();
 		model.addAttribute("contauser", contauser);

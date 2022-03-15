@@ -40,9 +40,18 @@ import com.ecopetrol.ECOrisk.Services.erProyectoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaSeguimientoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
+/**
+ * CongelarController.java es el encargado de gestionar todo el proceso de congelar y descongelar un proyecto
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
 
 @Controller
 public class CongelarController {
+	//se inizializan las dependencias y clases que se van a usar en el congelamiento y descongelamiento de un proyecto
 	@Autowired
 	private er_HojaSeguimientoService Er_HojaSeguimientoService;
 	
@@ -61,6 +70,7 @@ public class CongelarController {
 	@Autowired
 	private erProyectoService ErProyectoService;
 	
+	//se declara el url que utilizara la pagina de congelar proyectos y se define la informacion que utiliza el modelo
 	@GetMapping("/congelar")
 	public String Congelar(Model model) {
 		
@@ -74,6 +84,11 @@ public class CongelarController {
 	}
 	
 
+	/*
+	 * 
+	 * Rutina para realizar el congelamiento de un proyecto
+	 * 
+	 */
 	
 	@RequestMapping("congelar/findByTrabajoId")
 	@ResponseBody
@@ -81,15 +96,15 @@ public class CongelarController {
 		return ErCambiosService.getAllProjectionByIdEncabeAndUserId(hojatrabajo_id);
 	}
 	
-	//public static String uploadDirectory = System.getProperty("user.home")+File.separator+"uploads"+File.separator+"cambios";
+	//public static String uploadDirectory = System.getProperty("user.home")+File.separator+"uploads"+File.separator+"cambios"; 
 	
 	public static String uploadDirectory = "/home/uploads"+File.separator+"cambios";
 
 	@RequestMapping(value=("congelar/addNew"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
 	public String addNew(@RequestParam("evidencia") MultipartFile[] file, @RequestParam String de,@RequestParam Integer[] cuales, @RequestParam String a, @RequestParam String desc, Principal principal, RedirectAttributes redirectAttributes){
+		//Se inizializan las variables que se utilizan para realizar el congelamiento de un proyecto
 		String username = principal.getName();
 		Users user = userService.loadUserByUsername(username);
-		
 		String direccion = "";
 		String ruta = "";
 		String archi1 = "";
@@ -101,8 +116,8 @@ public class CongelarController {
 		if(file.length<4) {
 			int conta = 0;
 			for(MultipartFile archi:file) {
-				//Path fileNameAndPath = Paths.get(uploadDirectory, archi.getOriginalFilename());
-				
+				//Path fileNameAndPath = Paths.get(uploadDirectory, archi.getOriginalFilename()); (ejemplo para definir la ruta del archivo y asignarle la ruta con su nombre)
+				//se asegura la fecha actual para definir la fecha de congelamiento y se crea el cambio
 				if(!(archi.isEmpty())){
 					if(conta ==0) {
 						
@@ -116,6 +131,7 @@ public class CongelarController {
 						
 						ErCambiosService.save(nuevoCambio);
 					}
+					//se define la ruta que ocupara el/los archivos de evidencia
 					Path directorio = Paths.get(uploadDirectory+File.separator+nuevoCambio.getEr_cambio_id());
 					
 					String rutaabsoluta = directorio.toFile().getAbsolutePath();
@@ -160,13 +176,14 @@ public class CongelarController {
 				}
 				
 			}
+			//procedimiento para cambiar la fecha de congelamiento del proyecto  
 			List<erEncabezado> encabezados = ErEncabezadoService.getEncabezadosByList(encabezados_id);
 			
 			for(erEncabezado encabezado: encabezados) {
 				encabezado.setE_fechacongelamiento(Fcongelamiento);
 				ErEncabezadoService.save(encabezado);
 			}
-			
+			//se consigue la lista de los controles segun el id del proyecto y el estado abierto
 			List<er_HojaTrabajo> controles = new ArrayList<er_HojaTrabajo>();
 			if(todos) {
 				controles = Er_HojaTrabajoService.getHojaTrabajoByProyectoYEstado(de,1);
@@ -174,7 +191,7 @@ public class CongelarController {
 				controles = Er_HojaTrabajoService.getHojaByEncabeIdListYEstado(encabezados_id,1);
 			}
 			
-			
+			//Se realiza el seguimiento, se asigna la fecha de cierre y los controles pasan a estado congelado (id 5)
 			int contador = 0;
 			Date date = new Date();
 			er_HojaSeguimiento seguimiento = new er_HojaSeguimiento();
@@ -200,22 +217,28 @@ public class CongelarController {
 				Er_HojaTrabajoService.save(control);
 				contador++;
 			}
-			
+				//respuesta HTML cuando el cambio es exitoso
 				redirectAttributes.addFlashAttribute("successmessage", "Cierre automático realizado satisfactoriamente. [ "+contador+" ] Controles afectados");
 			
 				return "redirect:/congelar";
 			}
-			
+				//respuesta HTML cuando el cambio no es exitoso
 				redirectAttributes.addFlashAttribute("errormessage", "No cargó ninguna evidencia");
 				return "redirect:/congelar";
 		
 	}
 	
+	/*
+	 * 
+	 * Rutina para realizar el descongelamiento de un proyecto
+	 * 
+	 */
+	
 	@RequestMapping(value=("descongelar/addNew"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
 	public String DaddNew(@RequestParam("evidencia") MultipartFile[] file, @RequestParam String de,@RequestParam Integer[] cuales, @RequestParam String a, @RequestParam String desc, Principal principal, RedirectAttributes redirectAttributes){
+		//Se inizializan las variables que se utilizan para realizar el descongelamiento de un proyecto
 		String username = principal.getName();
-		Users user = userService.loadUserByUsername(username);
-		
+		Users user = userService.loadUserByUsername(username);	
 		String direccion = "";
 		String ruta = "";
 		String archi1 = "";
@@ -227,8 +250,8 @@ public class CongelarController {
 		if(file.length<4) {
 			int conta = 0;
 			for(MultipartFile archi:file) {
-				//Path fileNameAndPath = Paths.get(uploadDirectory, archi.getOriginalFilename());
-				
+				//Path fileNameAndPath = Paths.get(uploadDirectory, archi.getOriginalFilename()); (ejemplo para definir la ruta del archivo y asignarle la ruta con su nombre)
+				//se asegura la fecha actual para definir la fecha de congelamiento y se crea el cambio
 				if(!(archi.isEmpty())){
 					if(conta ==0) {
 						
@@ -242,6 +265,7 @@ public class CongelarController {
 						
 						ErCambiosService.save(nuevoCambio);
 					}
+					//se define la ruta que ocupara el/los archivos de evidencia
 					Path directorio = Paths.get(uploadDirectory+File.separator+nuevoCambio.getEr_cambio_id());
 					
 					String rutaabsoluta = directorio.toFile().getAbsolutePath();
@@ -286,6 +310,9 @@ public class CongelarController {
 				}
 				
 			}
+			
+			//se asigna la fecha de descongelamiento del proyecto
+			
 			List<erEncabezado> encabezados = ErEncabezadoService.getEncabezadosByList(encabezados_id);
 			Date Fcongelamiento = new Date();
 			for(erEncabezado encabezado: encabezados) {
@@ -293,7 +320,7 @@ public class CongelarController {
 				Fcongelamiento = encabezado.getE_fechacongelamiento();
 				ErEncabezadoService.save(encabezado);
 			}
-			
+			//consigue la lista de los controles segun el id del proyecto y el estado congelado
 			List<er_HojaTrabajo> controles = new ArrayList<er_HojaTrabajo>();
 			if(todos) {
 				controles = Er_HojaTrabajoService.getHojaTrabajoByProyectoYEstado(de,4);
@@ -301,7 +328,7 @@ public class CongelarController {
 				controles = Er_HojaTrabajoService.getHojaByEncabeIdListYEstado(encabezados_id,4);
 			}
 			
-			
+			//se crea el seguimiento y se cambia el estado a los controles 
 			int contador = 0;
 			Date date = new Date();
 			er_HojaSeguimiento seguimiento = new er_HojaSeguimiento();
@@ -334,12 +361,12 @@ public class CongelarController {
 				Er_HojaTrabajoService.save(control);
 				contador++;
 			}
-			
+				//respuesta HTML cuando el cambio es exitoso
 				redirectAttributes.addFlashAttribute("successmessage2", "Congelamiento realizado satisfactoriamente. [ "+contador+" ] Registros afectados");
 			
 				return "redirect:/congelar";
 			}
-			
+				//respuesta HTML cuando el cambio no es exitoso
 				redirectAttributes.addFlashAttribute("errormessage2", "No cargó ninguna evidencia");
 				return "redirect:/congelar";
 		

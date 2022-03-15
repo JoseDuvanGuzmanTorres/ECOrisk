@@ -32,6 +32,16 @@ import com.ecopetrol.ECOrisk.Services.erCambiosService;
 import com.ecopetrol.ECOrisk.Services.er_HojaSeguimientoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
+
+/**
+ * 
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
 @Controller
 public class er_HojaTrabajoController {
 	@Autowired

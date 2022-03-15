@@ -12,6 +12,15 @@ import com.ecopetrol.ECOrisk.Projections.erEmailsEnviadosProjection;
 import com.ecopetrol.ECOrisk.Services.UserService;
 import com.ecopetrol.ECOrisk.Services.erEmailsEnviadosService;
 
+
+/**
+ * 
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
 @Controller
 public class erEmailsEnviadosController {
 

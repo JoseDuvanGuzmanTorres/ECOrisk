@@ -10,6 +10,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.ecopetrol.ECOrisk.Models.erEtapas;
 import com.ecopetrol.ECOrisk.Services.erEtapasService;
 
+
+/**
+ * 
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
 @Controller
 public class erEtapasController {
 

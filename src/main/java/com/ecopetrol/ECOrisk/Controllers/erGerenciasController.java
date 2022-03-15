@@ -10,6 +10,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.ecopetrol.ECOrisk.Models.erGerencias;
 import com.ecopetrol.ECOrisk.Services.erGerenciasService;
 
+
+/**
+ * 
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
 @Controller
 public class erGerenciasController {
 

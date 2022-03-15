@@ -10,9 +10,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 /**
  * UploadDirConfig declara el modelo de las paginas de cargue de talleres
  * 
- * @author José Duvan Guzmán Torres
+ * @author Manuel Eduardo Patarroyo Santos
  *
  */
+
 
 @Configuration
 public class UploadDirConfig implements WebMvcConfigurer {

@@ -31,14 +31,14 @@ import com.ecopetrol.ECOrisk.Services.er_HojaSeguimientoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
 
-
 /**
  * CambiosController define el controlador de los cambios y las funciones de realizar los cambios
  * 
  * 
- * @author José Duvan Guzmán Torres
+ * @author Manuel Eduardo Patarroyo Santos
  *
  */
+
 
 
 // se llaman a todas las propiedades que se utilizaran para realizar los cambios
@@ -175,12 +175,12 @@ public class CambiosController {
 			
 			
 			
-			
+			//respuesta de la funcion que devuelve una respuesta HTML para mostrar el letrero de  los cambios que se realizaron satisfactoriamente
 				redirectAttributes.addFlashAttribute("successmessage", "Cambio realizado satisfactoriamente. [ "+contador+" ] Registros reasignados");
 			
-				return "redirect:/load/cambios";
+				return "redirect:/load/cambios";//se recarga la pagina
 			}
-			
+			//respuesta HTML de mensaje de error
 				redirectAttributes.addFlashAttribute("errormessage", "No cargó ninguna evidencia");
 				return "redirect:/load/cambios";
 		
@@ -189,9 +189,9 @@ public class CambiosController {
 	//Funcion para requerir los datos provenientes de cambios.html que seran utilizados para realizar el cambio de dueño de proyecto o proceso
 	@RequestMapping(value=("cambiodueno/addNew"),headers=("content-type=multipart/*"),method=RequestMethod.POST)
 	public String addNewDueno(@RequestParam("evidenciaDue") MultipartFile[] file, @RequestParam Integer deDue ,@RequestParam Integer[] cualesDue , @RequestParam Integer aDue, @RequestParam String descDue, Principal principal, RedirectAttributes redirectAttributes){
+		//Inizializacion de variables que se usan para realizar el cambio
 		String username = principal.getName();
-		Users user = userService.loadUserByUsername(username);
-		
+		Users user = userService.loadUserByUsername(username);		
 		String direccion = "";
 		String ruta = "";
 		String archi1 = "";
@@ -223,6 +223,7 @@ public class CambiosController {
 					
 					
 					try {
+						//en esta seccion se consigue el nombre de los archivos, la ruta en la cual se van a guardar y el tamaño en bytes
 						direccion = rutaabsoluta+File.separator+archi.getOriginalFilename();
 						Path rutacompleta = Paths.get(direccion);
 						Files.createDirectories(directorio);
@@ -250,7 +251,7 @@ public class CambiosController {
 		}
 		
 		if(!vacio) {
-			
+			//re asignacion de usuario responsable del taller verificando si existe un usuario para reasignar
 			List<Integer> encabezados_id = new ArrayList<Integer>();
 			List<erEncabezado> encabezados = new ArrayList<erEncabezado>();
 			boolean todos = false;
@@ -272,7 +273,7 @@ public class CambiosController {
 			}else {
 				controles = Er_HojaTrabajoService.getHojaTrabajoByEncabeIdListDuenoProyecto(encabezados_id,deDue);
 			}
-			
+			//se asigna la fecha del cambio, los archivos del cambio y se crea el seguimiento 
 			
 			int contador = 0;
 			Date date = new Date();
@@ -300,12 +301,12 @@ public class CambiosController {
 			
 			
 			
-			
+			//Respuesta HTML cuando el cambio es exitoso y la recarga de la pagina
 				redirectAttributes.addFlashAttribute("successmessage", "Cambio realizado satisfactoriamente. [ "+contador+" ] Registros reasignados");
 			
 				return "redirect:/load/cambios";
 			}
-			
+			//Respuesta HTML cuando el cambio no es exitoso y la recarga de la pagina
 				redirectAttributes.addFlashAttribute("errormessage", "No cargó ninguna evidencia");
 				return "redirect:/load/cambios";
 		

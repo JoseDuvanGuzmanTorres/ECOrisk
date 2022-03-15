@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
  * SpringMailConfig declara las variables para los correos, el formato de
  * codificacion de caracteres
  * 
- * @author José Duvan Guzmán Torres
+ * @author Manuel Eduardo Patarroyo Santos
  *
  */
 

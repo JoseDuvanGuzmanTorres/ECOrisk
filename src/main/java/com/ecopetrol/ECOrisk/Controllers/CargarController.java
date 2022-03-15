@@ -12,16 +12,34 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ecopetrol.ECOrisk.Services.UploadService;
 
+
+
+/**
+ * CargarController declara la terminacion de los links que tienen las paginas de cargue de talleres
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
 @Controller
 public class CargarController {
 
+	
+	/*
+	 * Se declaran e inizializan las rutas(links asociados) que tendrá cada pagina 
+	 * de cargue de talleres y las acciones que se realizen las relaciona con UploadService 
+	 * que es el que se encarga de procesar los archivos para su cargue
+	 * 
+	 */
 	@Autowired
 	private UploadService uploadService;
 	
 	public void UploadController(UploadService uploadService) {
 		this.uploadService = uploadService;
 	}
-	
+	//declaración de las direcciones de cada pagina
 	@GetMapping("/upload/whatif")
 	public String uploadWhatIf() {
 		return "uploadwhatif";
@@ -56,6 +74,12 @@ public class CargarController {
 	public String uploadRiesgosMaterializados() {
 		return "uploadriesgosma";
 	}
+
+	/*
+	 * Se define el mapeo que tendran las paginas, esto define cuando se redirigen 
+	 * a el modulo de consultas y el mensaje de cargue exitoso o los errores al cargar el taller
+	 * 
+	 */
 
 	@PostMapping("/upload/constructabilidad-")
 	public String upload_Constructabilidad(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) {

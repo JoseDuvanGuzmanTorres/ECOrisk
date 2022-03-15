@@ -7,6 +7,14 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ *
+ * Se define la inicialización de ECOrisk, este archivo se ejecuta cada vez que se reinicia ECOrisk 
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ *
+ */
+
 @SpringBootApplication
 public class ECOriskApplication {
 
@@ -14,12 +22,12 @@ public class ECOriskApplication {
 		SpringApplication.run(ECOriskApplication.class, args);
 	}
 	
-}
 
+//inicialización de la configuracion de ECOrisk
 @Configuration
 @EnableScheduling
-@ConditionalOnProperty(name = "scheduling.enabled", matchIfMissing = true)
+@ConditionalOnProperty(name = "scheduling.enabled", matchIfMissing = true)//activación de las tareas programadas con @cron y/o otras funciones que requieran utilizar el reloj del servidor
 class SchedulingConfiguration{
-	
+	}
 }
 

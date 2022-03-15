@@ -36,6 +36,17 @@ import com.ecopetrol.ECOrisk.Services.erTipoEstudioService;
 import com.ecopetrol.ECOrisk.Services.erEncabezadoService;
 import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
+
+/**
+ * ConsultarController.java se encarga del funcionamiento de la pagina de consultas de ECOrisk
+ * 
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
+
 @Controller
 public class ConsultarController {
 
