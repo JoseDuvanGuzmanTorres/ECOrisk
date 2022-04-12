@@ -1262,10 +1262,8 @@ public class UploadService {
 							String Temp = row.getCell(responsable).getStringCellValue();
 							if (Temp.equals("N/A") || Temp.equals("N/A")) {
 								hojatrabajo.setHt_responsableimplementacion(105);
-							}else  if (Temp.equals("Líder de proyectos") || Temp.equals("Líder de proyectos")) {
+							}else  if (Temp.equals("Líder de Proyectos") || Temp.equals("Líder de Proyectos")) {
 								hojatrabajo.setHt_responsableimplementacion(419);
-							}else if (Temp.equals("Equipo NPCC") || Temp.equals("Equipo NPCC")) {
-								hojatrabajo.setHt_responsableimplementacion(388);
 							}else {
 								if (Asistentes.containsKey(Temp)) {
 									Users usuario = Asistentes.get(Temp);

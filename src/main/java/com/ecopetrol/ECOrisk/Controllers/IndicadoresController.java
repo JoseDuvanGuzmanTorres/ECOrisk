@@ -17,6 +17,15 @@ import com.ecopetrol.ECOrisk.Services.erProyectoService;
 import com.ecopetrol.ECOrisk.Services.UserService;
 import com.ecopetrol.ECOrisk.Services.erIndicadoresFunSemanalService;
 
+/**
+ * 
+ * Controlador para la seccion de indicadores
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
 @Controller
 public class IndicadoresController {
 
@@ -27,21 +36,26 @@ public class IndicadoresController {
 	@Autowired
 	private erIndicadoresFunSemanalService ErIndicadoresFunSemanalService;
 	
-
+	/* 
+	 * se da el mapeo y los datos a consultar en los indicadores por funcionario 
+	 * 
+	 */
+	
 	@GetMapping("/indicadores/funcionario")
 	public String Funcionario(Model model,Principal principal) {
 		Integer Id;
 		String username = principal.getName();
+		//se llaman los datos por username y rol
 		Users users = userService.loadUserByUsername(username);
 		if(users.getRoles_id() == 2 || users.getRoles_id() == 3 || users.getRoles_id() == 6 || users.getRoles_id() == 7) {
 			Id = null;
 		}else {
 			Id = users.getId();
 		}
-		
+		//se hace una lista de indicadores por funcionario OPEX
 		List<IndicadoresProjection> IndicadoresFuncionarioProcesoOPList = ErProyectoService.getAllIndicadoresFuncionarioProceso(Id, 1);
 		model.addAttribute("IndicadoresFuncionarioProcesoOPList", IndicadoresFuncionarioProcesoOPList);
-		
+		//se hace una lista de indicadores por funcionario CAPEX
 		List<IndicadoresProjection> IndicadoresFuncionarioProcesoCAList = ErProyectoService.getAllIndicadoresFuncionarioProceso(Id, 2);
 		model.addAttribute("IndicadoresFuncionarioProcesoCAList", IndicadoresFuncionarioProcesoCAList);
 		model.addAttribute("Funcionario", "Funcionario");

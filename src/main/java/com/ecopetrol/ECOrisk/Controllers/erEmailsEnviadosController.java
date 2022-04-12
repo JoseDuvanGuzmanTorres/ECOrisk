@@ -15,7 +15,7 @@ import com.ecopetrol.ECOrisk.Services.erEmailsEnviadosService;
 
 /**
  * 
- * 
+ * Se inizializa el controlador de los emails enviados para su seguimiento
  * @author Manuel Eduardo Patarroyo Santos
  * 
  * 
@@ -29,8 +29,15 @@ public class erEmailsEnviadosController {
 	@Autowired
 	private UserService userService;
 	
+	/*
+	 * Se define la runa que utilizara la pagina de seguimiento de los emails que se
+	 * envian
+	 */
+	
 	@GetMapping("/load/emails-enviados")
 	public String getEmails(Model model) {
+		
+		//se trae la lista de usuarios, se crea la de emails enviados y se relacionan para poder identificar el correo y asignarle el usuario a que fue enviado
 		List<Users> usersList = userService.findAll();
 		List<erEmailsEnviadosProjection> emailsList = ErEmailsEnviadosService.getEmailsProjection();
 		model.addAttribute("emailsList",emailsList);

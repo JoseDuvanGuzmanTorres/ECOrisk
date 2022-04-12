@@ -20,6 +20,16 @@ import com.ecopetrol.ECOrisk.Services.erEstadoproyectoService;
 import com.ecopetrol.ECOrisk.Services.erPortafolioService;
 import com.ecopetrol.ECOrisk.Services.erProcesoService;
 
+
+/**
+ * 
+ * controlador del protafolio de proyectos CAPEX
+ * @author Manuel Eduardo Patarroyo Santos
+ * 
+ * 
+ */
+
+
 @Controller
 public class erPortafolioController {
 	
@@ -30,7 +40,10 @@ public class erPortafolioController {
 	@Autowired
 	private erEstadoproyectoService erEstadoproyectoService;
 
-	//Get All Users
+	/*
+	 * //se definen todos los atributos de un proyecto y se retornan los valores al
+	 * protafolio, esto para la pagina de edicion de elementos del portafolio
+	 */	
 	@GetMapping("/portafolio")
 	public String Portafolio(Model model,Principal principal) {
 		List<erPortafolio> portafolioc = ErPortafolioService.findAll();
@@ -41,7 +54,7 @@ public class erPortafolioController {
 		model.addAttribute("faseproyecto", faseproyecto);
 		return "portafolio";
 	}
-	
+	//Funcion para llamar los items existentes del portafolio
 	@RequestMapping("portafolio/findById") 
 	@ResponseBody
 	public Optional<erPortafolio> findById(Integer id)
@@ -49,26 +62,26 @@ public class erPortafolioController {
 		return ErPortafolioService.findById(id);
 	}
 	
-	//Add portafolio
+	//Funcion para crear un nuevo item en el portafolio
 	
 	@PostMapping(value="portafolio/addNew")
 	public String addNew(erPortafolio portafolio) {
 		ErPortafolioService.save(portafolio);
 		return "redirect:/portafolio";
 	}
-	
+	//Funcion para actualizar los datos de un elemento en el portafolio se utiliza requestmethod para realizar los cambios y llamar los datosz
 	@RequestMapping(value="portafolio/update", method = {RequestMethod.PUT, RequestMethod.GET})
 	public String update(erPortafolio portafolio) {
 		ErPortafolioService.save(portafolio);
 		return "redirect:/portafolio";
 	}
-	
+	//Funcion para eliminar un elemento del portafolio se utiliza requestmethod para realizar los cambios y llamar los datosz
 	@RequestMapping(value="portafolio/delete", method = {RequestMethod.DELETE, RequestMethod.GET})	
 	public String delete(Integer id) {
 		ErPortafolioService.delete(id);
 		return "redirect:/portafolio";
 	}
-	
+	//Pagina de consulta de el protafolio CAPEX
 	@GetMapping("/portafolio-capex")
 	public String PortafolioCapex(Model model,Principal principal) {
 		List<erPortafolio> portafolioc = ErPortafolioService.loadPortafolioByProcesoId(1);

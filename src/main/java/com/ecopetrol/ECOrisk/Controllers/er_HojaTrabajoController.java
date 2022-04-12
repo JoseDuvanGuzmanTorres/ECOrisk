@@ -61,6 +61,11 @@ public class er_HojaTrabajoController {
 		return Er_HojaTrabajoService.getById(Id);
 	}
 
+	
+	/*
+	 * Funcion para Calcular el gap Se busca una lista de controles y se calcula el
+	 * gap siguiendo la hora actual del servidor
+	 */
 	@RequestMapping("hojatrabajo/gap")
 	public List<er_HojaTrabajo> findGap() {
 
@@ -99,8 +104,12 @@ public class er_HojaTrabajoController {
 		return Todos;
 	}
 
+	/*
+	 * rutina para el cambio de responsable de controles individuales
+	 * se requieren los datos necesarios para realizar el cambio(archivo/s de evidencia, id de la hoa de trabajo, los cambios a realizar segun aplique el caso
+	 */
 	public static String uploadDirectory = System.getProperty("user.home") + File.separator + "uploads";
-
+		// la fecha nueva y responsable nuevo no son requeridos segun el cambio que se realize, pueden cambiar ambos o alguno de los dos individualmente
 	@RequestMapping(value = ("hojatrabajo/update"), headers = ("content-type=multipart/*"), method = RequestMethod.POST)
 	public ResponseEntity<Object> addNew(@RequestParam("file2") MultipartFile[] file,@RequestParam String ht_id,@RequestParam (required = false)String fecha_nueva,
 			@RequestParam (required = false)  String  responsable_nuevo,String comentario, Principal principal) {
@@ -116,6 +125,8 @@ public class er_HojaTrabajoController {
 		Date fec_nueva = new Date();
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		// boolean fecha = false;
+		
+		//Reasignacion de fecha planeada de cierre y oportunidad
 		
 		if (fecha_nueva != null && fecha_nueva != "") {
 			try {
@@ -136,7 +147,8 @@ public class er_HojaTrabajoController {
 			
 		}
 		
-	
+		//Reasignacion de responsable de control
+		
 	//	boolean resp = false;
 		Integer respon = null;
 		if (responsable_nuevo != null && responsable_nuevo != "") {
@@ -154,6 +166,8 @@ public class er_HojaTrabajoController {
 		//	resp = false;
 			hoja.setHt_responsableimplementacion(hoja.getHt_responsableimplementacion());
 		}
+		
+		//Creacion del seguimiento 
 		
 		er_HojaSeguimiento seguimiento = new er_HojaSeguimiento();
 		String direccion = "";

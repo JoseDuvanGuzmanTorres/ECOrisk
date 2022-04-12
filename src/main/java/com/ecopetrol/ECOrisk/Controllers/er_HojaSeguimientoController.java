@@ -34,10 +34,18 @@ import com.ecopetrol.ECOrisk.Services.er_HojaTrabajoService;
 
 /**
  * 
+ * er_HojaSeguimientoController se encarga de gestionar los seguimientos de cierres de controles
+ * y los que se generan en el modulo de cambios
  * 
  * @author Manuel Eduardo Patarroyo Santos
  * 
  * 
+ */
+
+
+/*
+ * er_hojaSeguimientoController declara el controlador y las rutas para hacer los controles y el
+ * encabezado
  */
 
 @Controller
@@ -66,6 +74,12 @@ public class er_HojaSeguimientoController {
 	// public static String uploadDirectory =
 	// System.getProperty("user.home")+File.separator+"uploads";
 
+	
+	/*
+	 * Se requieren los elementos necesarios para realizar
+	 * un seguimiento y asigna la ruta de carga p
+	 */
+	
 	public static String uploadDirectory = "/home/uploads" + File.separator + "seguimiento";
 
 	@RequestMapping(value = ("hojacomentarios/addNew"), headers = ("content-type=multipart/*"), method = RequestMethod.POST)
@@ -106,6 +120,11 @@ public class er_HojaSeguimientoController {
 				conta++;
 
 			}
+			
+			/*
+			 * Se crea el seguimiento con hora actual y se enlaza con el control o taller al
+			 * que corresponde, Tambien se cambia la el estado del control
+			 */
 			
 			Date ahora = new Date();
 			
@@ -158,7 +177,7 @@ public class er_HojaSeguimientoController {
 			Er_HojaTrabajoService.save(hoja);
 
 		}
-
+		//Respuesta html para el aviso de que el seguimiento fue exitoso
 		return new ResponseEntity<>("Seguimiento agregado correctamente", HttpStatus.OK);
 	}
 }
