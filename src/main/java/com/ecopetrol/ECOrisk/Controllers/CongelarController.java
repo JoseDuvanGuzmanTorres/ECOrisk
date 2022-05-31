@@ -184,11 +184,13 @@ public class CongelarController {
 				ErEncabezadoService.save(encabezado);
 			}
 			//se consigue la lista de los controles segun el id del proyecto y el estado abierto
+			
+			
 			List<er_HojaTrabajo> controles = new ArrayList<er_HojaTrabajo>();
 			if(todos) {
-				controles = Er_HojaTrabajoService.getHojaTrabajoByProyectoYEstado(de,1);
+				controles = Er_HojaTrabajoService.getHojaTrabajoByProyectoYEstado(de,4);
 			}else {
-				controles = Er_HojaTrabajoService.getHojaByEncabeIdListYEstado(encabezados_id,1);
+				controles = Er_HojaTrabajoService.getHojaByEncabeIdListYEstado(encabezados_id,4);
 			}
 			
 			//Se realiza el seguimiento, se asigna la fecha de cierre y los controles pasan a estado congelado (id 5)
