@@ -162,77 +162,71 @@ public class SendingController {
     //Custom2
     //@RequestMapping(value = "/iniciar2")
     //0 30 10 */1 * 2 martes 0 0 13 */1 * 1 lunes
-    @Scheduled(cron = "0 0 13 */1 * 1")
+   
     void sendMailComplex() throws MessagingException, InterruptedException {
     	
     	//Envía emails a los usuarios con rol LiderProcesoGir y Administrador de riesgos
     	List<Users> semiadmins = userService.getUsersBySemiAdmin();
     	List<erEmailsEnviados> enviados = new ArrayList<erEmailsEnviados>();
-    	for(Users usuario : semiadmins) {
-        	String email = usuario.getUsername();
-        	
-        	if(esEmail(email)) {
-    
-        		Context ctx = new Context();
-        		String Para = email;
-        		String Asunto = "Reporte de indicadores de ECOrisk";
-				
-				List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(null);
-        		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-        		List<IndicadoresProjection> IndicadoresFuncionarioList = ErProyectoService.getAllIndicadoresFuncionario(null);
-        		ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
-
-        		emailService.sendMailIndicadores(Para,Asunto,ctx);
-        		System.out.println("Salió LiderProcesoGir :"+ email);
-        		
-        		erEmailsEnviados nuevo = new erEmailsEnviados();
-        		Date fecha = new Date();
-        		nuevo.setAsunto(Asunto);
-        		nuevo.setFecha(fecha);
-        		nuevo.setUser_id(usuario.getId());
-        		enviados.add(nuevo);
-        		Thread.sleep(1000);
-        		
-        	}
-    	}
-    	
-    	//Envía emails a todos los dueños de proyecto
-    	List<Users> duenos = userService.getUsersByDueno();
-    	for(Users usuario : duenos) {
-        	String email = usuario.getUsername();
-        	if(esEmail(email)) {
-        		Context ctx = new Context();
-        		String Para = email;
-        		String Asunto = "Reporte de proyectos y talleres ECOrisk";
-        		
-        		List<IndicadoresProjection> IndicadoresProyectoList = ErProyectoService.getAllIndicadoresProyecto(usuario.getId());
-        		ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
-        		
-        		List<er_HojaTrabajoProjection> hojatrabajoList = Er_HojaTrabajoService.getAllProjectionAbiertasByDueno(usuario.getId());
-        		ctx.setVariable("hojatrabajoList", hojatrabajoList);
-        		
-          		List<IndicadoresProjection> IndicadoresLA = ErProyectoService.getAllIndicadoresLA(usuario.getId());
-        		ctx.setVariable("IndicadoresLA", IndicadoresLA);
-        		
-         		List<er_HojaTrabajoLeccionesAProjection> leccionesAList=  Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(usuario.getId());
-        		ctx.setVariable("leccionesAList", leccionesAList);
-       
-        		
-        		emailService.sendMailIndicadoresLideres(Para,Asunto,ctx);
-        		System.out.println("Salió dueño :"+ email);
-        		erEmailsEnviados nuevo = new erEmailsEnviados();
-        		Date fecha = new Date();
-        		nuevo.setAsunto(Asunto);
-        		nuevo.setFecha(fecha);
-        		nuevo.setUser_id(usuario.getId());
-        		enviados.add(nuevo);
-        		Thread.sleep(1000);
-        		
-        	}
-    	}
+		/*
+		 * for(Users usuario : semiadmins) { String email = usuario.getUsername();
+		 * 
+		 * if(esEmail(email)) {
+		 * 
+		 * Context ctx = new Context(); String Para = email; String Asunto =
+		 * "Reporte de indicadores de ECOrisk";
+		 * 
+		 * List<IndicadoresProjection> IndicadoresProyectoList =
+		 * ErProyectoService.getAllIndicadoresProyecto(null);
+		 * ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
+		 * List<IndicadoresProjection> IndicadoresFuncionarioList =
+		 * ErProyectoService.getAllIndicadoresFuncionario(null);
+		 * ctx.setVariable("IndicadoresFuncionarioList", IndicadoresFuncionarioList);
+		 * 
+		 * emailService.sendMailIndicadores(Para,Asunto,ctx);
+		 * System.out.println("Salió LiderProcesoGir :"+ email);
+		 * 
+		 * erEmailsEnviados nuevo = new erEmailsEnviados(); Date fecha = new Date();
+		 * nuevo.setAsunto(Asunto); nuevo.setFecha(fecha);
+		 * nuevo.setUser_id(usuario.getId()); enviados.add(nuevo); Thread.sleep(1000);
+		 * 
+		 * } }
+		 * 
+		 * //Envía emails a todos los dueños de proyecto List<Users> duenos =
+		 * userService.getUsersByDueno(); for(Users usuario : duenos) { String email =
+		 * usuario.getUsername(); if(esEmail(email)) { Context ctx = new Context();
+		 * String Para = email; String Asunto =
+		 * "Reporte de proyectos y talleres ECOrisk";
+		 * 
+		 * List<IndicadoresProjection> IndicadoresProyectoList =
+		 * ErProyectoService.getAllIndicadoresProyecto(usuario.getId());
+		 * ctx.setVariable("IndicadoresProyectoList", IndicadoresProyectoList);
+		 * 
+		 * List<er_HojaTrabajoProjection> hojatrabajoList =
+		 * Er_HojaTrabajoService.getAllProjectionAbiertasByDueno(usuario.getId());
+		 * ctx.setVariable("hojatrabajoList", hojatrabajoList);
+		 * 
+		 * List<IndicadoresProjection> IndicadoresLA =
+		 * ErProyectoService.getAllIndicadoresLA(usuario.getId());
+		 * ctx.setVariable("IndicadoresLA", IndicadoresLA);
+		 * 
+		 * List<er_HojaTrabajoLeccionesAProjection> leccionesAList=
+		 * Er_HojaTrabajoService.getAllHojaTrabajoLAProjectionByUserId(usuario.getId());
+		 * ctx.setVariable("leccionesAList", leccionesAList);
+		 * 
+		 * 
+		 * emailService.sendMailIndicadoresLideres(Para,Asunto,ctx);
+		 * System.out.println("Salió dueño :"+ email); erEmailsEnviados nuevo = new
+		 * erEmailsEnviados(); Date fecha = new Date(); nuevo.setAsunto(Asunto);
+		 * nuevo.setFecha(fecha); nuevo.setUser_id(usuario.getId());
+		 * enviados.add(nuevo); Thread.sleep(1000);
+		 * 
+		 * } }
+		 */
     	
     	
     	//Envía emails a todos aquellos que tengan controles abiertos
+    	
         List<Users> usuarios = userService.getUsersByControlesAbiertos();
         for(Users usuario : usuarios) {
         	String email = usuario.getUsername();
