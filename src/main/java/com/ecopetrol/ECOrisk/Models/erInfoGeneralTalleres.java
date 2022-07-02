@@ -53,10 +53,6 @@ public class erInfoGeneralTalleres {
 	private String Codigodocumento;
 	
 
-	
-	public erInfoGeneralTalleres() {
-		
-	}
 
 	public erInfoGeneralTalleres(int id_taller, String estadoTaller, String proyecto, String taller, String proceso,
 			String ejecucion, String planeacion, String duenotaller, String lidertaller, String codigodocumento) {
