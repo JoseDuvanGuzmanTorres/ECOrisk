@@ -253,7 +253,6 @@ public class SendingController {
         		nuevo.setUser_id(usuario.getId());
         		enviados.add(nuevo);
         		Thread.sleep(1000);
-                
         	}
         	
         }
