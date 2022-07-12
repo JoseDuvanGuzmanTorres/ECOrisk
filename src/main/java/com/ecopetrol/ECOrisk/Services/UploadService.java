@@ -1260,11 +1260,13 @@ public class UploadService {
 						TempError = getErrores(row, responsable, 255, "El responsable de implementación", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(responsable).getStringCellValue();
-							if (Temp.equals("Administrador de Contratos") || Temp.equals("N/A")) {
+							if (Temp.equals("Administrador de Contratos") || Temp.equals("Administrador de Contratos")) {
 								hojatrabajo.setHt_responsableimplementacion(541);
-							}else  if (Temp.equals("Líder de Proyectos") || Temp.equals("Líder de Proyectos")) {
+							}else if (Temp.equals("Líder de Proyectos") || Temp.equals("Líder de Proyectos")) {
 								hojatrabajo.setHt_responsableimplementacion(419);
-							}else {
+								
+								
+							}   else {
 								if (Asistentes.containsKey(Temp)) {
 									Users usuario = Asistentes.get(Temp);
 									if (usuario.getRoles_id() != 1 && usuario.getRoles_id() != 2
