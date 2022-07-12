@@ -1260,8 +1260,8 @@ public class UploadService {
 						TempError = getErrores(row, responsable, 255, "El responsable de implementación", rowcount);
 						if (TempError.isEmpty()) {
 							String Temp = row.getCell(responsable).getStringCellValue();
-							if (Temp.equals("N/A") || Temp.equals("N/A")) {
-								hojatrabajo.setHt_responsableimplementacion(105);
+							if (Temp.equals("Administrador de Contratos") || Temp.equals("N/A")) {
+								hojatrabajo.setHt_responsableimplementacion(541);
 							}else  if (Temp.equals("Líder de Proyectos") || Temp.equals("Líder de Proyectos")) {
 								hojatrabajo.setHt_responsableimplementacion(419);
 							}else {
